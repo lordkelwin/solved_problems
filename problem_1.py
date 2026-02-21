@@ -56,8 +56,29 @@ class VelocityProblemSolution(Scene):
         self.play(Write(lines[2]))
         self.wait()
         self.play(Write(lines[3]))
-        self.play(ReplacementTransform(lines[2], lines_1[2]))
+        self.play(ReplacementTransform(lines[3], lines_1[3]))
         self.wait()
-        self.play(ReplacementTransform(lines_1[2], lines_2[2]))
+        self.play(ReplacementTransform(lines_1[3], lines_2[3]))
         self.wait()
-        self.play(FadeOut(lines[0:2], lines_2[3]))
+        self.play(FadeOut(lines[0:3], lines_2[3]))
+
+        lines = VGroup(
+            Tex("Integrating both sides:"),
+            MathTex(r"\int_{0}^{s} \mathrm{d}x = \int_0^{t_1} \frac{t^2 - t + 1}{(t + 2)^2(t^2 + 1)}\,\mathrm{d}t"),
+            Tex("Before performing the integration, a partial fraction \\\\ decomposition must be performed. "
+                "This equation is under case 3 \\\\ (at least 1 Quadratic factors)."),
+            MathTex(r"\frac{t^2 - t + 1}{(t + 2)^2(t^2 + 1)} = \frac{A}{t + 2} + \frac{B}{(t + 2)^2} + "
+                    r"\frac{Ct + D}{t^2 + 1}")
+        )
+
+        lines.arrange(DOWN, buff=MED_LARGE_BUFF)
+        self.add(lines[0])
+        self.play(Write(lines[0]))
+        self.wait()
+        self.play(Write(lines[1]))
+        self.wait()
+        self.play(Write(lines[2]))
+        self.wait()
+        self.play(Write(lines[3]))
+        self.wait(2)
+        self.play(FadeOut(lines))
