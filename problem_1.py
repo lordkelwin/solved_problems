@@ -82,3 +82,53 @@ class VelocityProblemSolution(Scene):
         self.play(Write(lines[3]))
         self.wait(2)
         self.play(FadeOut(lines))
+
+        lines = VGroup(
+            Tex("Multiplying both sides by its denominator \\\\ and simplify:"),
+            MathTex(r"t^2 - t + 1 = A(t + 2)(t^2 + 1) + B(t^2 + 1) + (Ct + D)(t + 2)^2"),
+        )
+
+        lines_1 = [
+            MathTex(r"t^2 - t + 1 = A(t^3 + 2t^2 + t + 2) + B(t^2 + 1) + \\ (Ct + D)(t^2 + 4t + 4)"),
+            MathTex(r"t^2 - t + 1 = A(t^3 + 2t^2 + t + 2) + B(t^2 + 1) + \\ (Ct^3 + 4Ct^2 + 4Ct + Dt^2 + 4Dt + 4D)"),
+            MathTex(r"t^2 - t + 1 = (At^3 + 2At^2 + At + 2A) + (Bt^2 + B) + \\ (Ct^3 + 4Ct^2 + 4Ct)  + "
+                    r"(Dt^2 + 4Dt + 4D)"),
+            MathTex(r"t^2 - t + 1 =(A + C)t^3 + (2A + B + 4C + D)t^2 + \\ (A + B + 4C + 4D)t + (2A + B + 4D)")
+        ]
+
+        lines.arrange(DOWN, buff=MED_LARGE_BUFF)
+        lines[0].move_to(UP * 2)
+        self.add(lines[0])
+        self.play(Write(lines[0]))
+        self.wait()
+        self.play(Write(lines[1]))
+        self.wait()
+        self.play(ReplacementTransform(lines[1], lines_1[0]))
+        self.wait()
+        self.play(ReplacementTransform(lines_1[0], lines_1[1]))
+        self.wait()
+        self.play(ReplacementTransform(lines_1[1], lines_1[2]))
+        self.wait()
+        self.play(ReplacementTransform(lines_1[2], lines_1[3]))
+        self.wait(2)
+        self.play(FadeOut(lines[0], lines_1[3]))
+
+        lines = VGroup(
+            Tex("Equating the coefficients in both sides:"),
+            MathTex(r"t^3:\,A + C = 0"),
+            MathTex(r"t^2:\,2A + B + 4C + D = 1"),
+            MathTex(r"t:\,A + B + 4C + 4D = -1"),
+            MathTex(r"t^0:\,2A + B + 4D = 1")
+        )
+
+        lines.arrange(DOWN, buff=MED_LARGE_BUFF)
+
+        self.add(lines[0])
+        self.play(Write(lines[0]))
+        self.wait(0.5)
+        for i in range(1, 5):
+            self.play(Write(lines[i]))
+            self.wait(0.5)
+        self.wait(0.5)
+        self.play(FadeOut(lines))
+
