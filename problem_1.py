@@ -1,5 +1,4 @@
 from manim import *
-import numpy as np
 
 
 class VelocityProblemStatement(Scene):
@@ -64,7 +63,7 @@ class VelocityProblemSolution(Scene):
 
         lines = VGroup(
             Tex("Integrating both sides:"),
-            MathTex(r"\int_{0}^{s} \mathrm{d}x = \int_0^{t_1} \frac{t^2 - t + 1}{(t + 2)^2(t^2 + 1)}\,\mathrm{d}t"),
+            MathTex(r"\int_{0}^{s} \mathrm{d}s = \int_0^{t_1} \frac{t^2 - t + 1}{(t + 2)^2(t^2 + 1)}\,\mathrm{d}t"),
             Tex("Before performing the integration, a partial fraction \\\\ decomposition must be performed. "
                 "This equation is under case 3 \\\\ (at least 1 Quadratic factors)."),
             MathTex(r"\frac{t^2 - t + 1}{(t + 2)^2(t^2 + 1)} = \frac{A}{t + 2} + \frac{B}{(t + 2)^2} + "
@@ -115,10 +114,10 @@ class VelocityProblemSolution(Scene):
 
         lines = VGroup(
             Tex("Equating the coefficients in both sides:"),
-            MathTex(r"t^3:\,A + C = 0"),
-            MathTex(r"t^2:\,2A + B + 4C + D = 1"),
-            MathTex(r"t:\,A + B + 4C + 4D = -1"),
-            MathTex(r"t^0:\,2A + B + 4D = 1")
+            MathTex(r"t^3:\,A + C = 0\,\,\,\,\mathrm{(eq. 1)}"),
+            MathTex(r"t^2:\,2A + B + 4C + D = 1\,\,\,\mathrm{(eq. 2)}"),
+            MathTex(r"t:\,A + B + 4C + 4D = -1\,\,\,\mathrm{(eq. 3)}"),
+            MathTex(r"t^0:\,2A + B + 4D = 1\,\,\,\mathrm{(eq. 4)}")
         )
 
         lines.arrange(DOWN, buff=MED_LARGE_BUFF)
@@ -131,4 +130,60 @@ class VelocityProblemSolution(Scene):
             self.wait(0.5)
         self.wait(0.5)
         self.play(FadeOut(lines))
+
+        lines = VGroup(
+            Tex("Manipulating equation 1: "),
+            MathTex(r"A + C = 0"),
+            Tex("Substitute equation 5 in equations 2, 3, and 4:"),
+            MathTex(r"A + 2B + 4C + D = 1"),
+            MathTex(r"A + B + 4C + 4D = -1"),
+            MathTex(r"2A + B + 4D = 1")
+        )
+
+        lines_extra = VGroup(
+            MathTex(r"A = -C"),
+            MathTex(r"A = -C\,\,\,\mathrm{(eq. 5)}"),
+            MathTex(r"-C + 2B + 4C + D = 1"),
+            MathTex(r"2B + 3C + D = 1\,\,\,\mathrm{(eq. 6)}"),
+            MathTex(r"-C + B + 4C + 4D = -1"),
+            MathTex(r"B + 3C + 4D = -1\,\,\,\mathrm{(eq. 7)}"),
+            MathTex(r"2(-C) + B + 4D = 1"),
+            MathTex(r"-2C + B + 4D = 1\,\,\,\mathrm{(eq. 8)}")
+        )
+
+        lines.arrange(DOWN, buff=MED_LARGE_BUFF)
+
+        self.add(lines[0])
+        self.play(Write(lines[0]))
+        self.wait()
+        self.play(Write(lines[1]))
+        self.play(ReplacementTransform(lines[1], lines_extra[0].next_to(lines[0], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait()
+        self.play(ReplacementTransform(lines_extra[0].next_to(lines[0], direction=DOWN, buff=MED_LARGE_BUFF),
+                                       lines_extra[1].next_to(lines[0], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait()
+        self.play(Write(lines[2].next_to(lines_extra[1], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait()
+        self.play(Write(lines[3]))
+        self.wait()
+        self.play(ReplacementTransform(lines[3], lines_extra[2].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait()
+        self.play(ReplacementTransform(lines_extra[2].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF),
+                                       lines_extra[3].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait()
+        self.play(Write(lines[4]))
+        self.wait()
+        self.play(ReplacementTransform(lines[4], lines_extra[4].next_to(lines[3], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait()
+        self.play(ReplacementTransform(lines_extra[4].next_to(lines[3], direction=DOWN, buff=MED_LARGE_BUFF),
+                                       lines_extra[5].next_to(lines[3], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait()
+        self.play(Write(lines[5]))
+        self.wait()
+        self.play(ReplacementTransform(lines[5], lines_extra[6].next_to(lines[4], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait()
+        self.play(ReplacementTransform(lines_extra[6].next_to(lines[4], direction=DOWN, buff=MED_LARGE_BUFF),
+                                       lines_extra[7].next_to(lines[4], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(2)
+        self.play(FadeOut(lines[0], lines[2], lines_extra[1:8:2]))
 
