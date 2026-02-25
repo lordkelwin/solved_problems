@@ -3,15 +3,22 @@ from manim import *
 
 class VelocityProblemStatement(Scene):
     def construct(self):
-        problem_statement = Tex(
-            r"\begin{minipage}{9 cm}"
-            r"A particle is moving along a straight line so that if $v$ ft/sec "
-            r"is the velocity of the particle at $t$ sec, then \\"
-            r"$v = \frac{t^2 - t + 1}{(t + 2)^2(t^2 +1)}$\\"
-            r"Find a formula for the distance traveled by the particle from the time when "
-            r"$t = 0$ to the time when $t = t_1$."
-            r"\end{minipage}"
+        problem_statement = VGroup(
+            Tex(
+                r"\begin{minipage}{9 cm}"
+                r"A particle is moving along a straight line so that if $v$ ft/sec "
+                r"is the velocity of the particle at $t$ sec, then \\"
+                r"\end{minipage}"
+            ),
+            MathTex(r"v = \frac{t^2 - t + 1}{(t + 2)^2(t^2 +1)}"),
+            Tex(
+                r"\begin{minipage}{9 cm}"
+                r"Find a formula for the distance traveled by the particle from the time when "
+                r"$t = 0$ to the time when $t = t_1$."
+                r"\end{minipage}"
+            ),
         )
+        problem_statement.arrange(DOWN, buff=MED_LARGE_BUFF)
         problem_statement.to_corner(UL)
         problem_statement.set_stroke(width=0.5)
         self.add(problem_statement)
@@ -364,7 +371,7 @@ class VelocityProblemSolution(Scene):
             MathTex(r"\frac{1}{25}\bigg[\frac{3}{2}(\ln\vert t_{1}^{2} + 1 \rvert - \ln \vert 0^{2} + 1 \rvert) + 4("
                     r"\tan^{-1}t_{1} -\tan^{-1} 0)\bigg]"),
             MathTex(r"\frac{1}{25}\bigg(\frac{3}{2}\ln\lvert t_{1}^{2} + 1 \rvert+ 4\tan^{-1}t_{1}\bigg)"),
-            MathTex(r"\frac{3}{50}\ln\lvert t_{1}^{2} + 1 + \frac{4}{25}\tan^{-1}t_1")
+            MathTex(r"\frac{3}{50}\ln\lvert t_{1}^{2} + 1 \rvert + \frac{4}{25}\tan^{-1}t_1")
         )
 
         lines.arrange(DOWN, buff=MED_LARGE_BUFF)
@@ -428,3 +435,20 @@ class VelocityProblemSolution(Scene):
         self.wait(0.5)
         self.play(FadeOut(lines[0], lines[2], lines_extra[13], lines_extra[0], frameBox))
         self.wait(1)
+
+        lines = VGroup(
+            Tex("The distance traveled by the particle from $t=0$ to $t=t_{1}$:"),
+            MathTex(r"s = \frac{3}{25}\ln\bigg\lvert \frac{t_{1}+2}{2} \bigg\rvert - \frac{7}{5(t_{1}+2)} - \frac{"
+                    r"3}{50}\ln\lvert t_{1}^{2} + 1 \rvert \\ - \frac{4}{25}\tan^{-1}t_{1} + \frac{7}{10}")
+        )
+
+        lines.arrange(DOWN, buff=MED_LARGE_BUFF)
+
+        self.add(lines[0])
+        self.play(Write(lines[0]))
+        self.wait(0.5)
+        self.play(FadeIn(lines[1]))
+        frameBox = SurroundingRectangle(lines[1], buff=0.2)
+        self.play(Create(frameBox))
+        self.wait(1)
+        self.play(FadeOut(lines, frameBox))
