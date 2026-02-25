@@ -286,5 +286,145 @@ class VelocityProblemSolution(Scene):
         self.play(FadeOut(lines[0:4:2], lines_extra[0], lines_extra[1]))
 
         lines = VGroup(
-
+            Tex("Substitute $C = -\\frac{3}{25}$ and $D = -\\frac{4}{25}$ in equation 6:"),
+            MathTex(r"B + 2C + D = 1"),
+            Tex("The complete partial fraction decomposition is:"),
+            MathTex(r"\frac{t^2 - t + 1}{(t + 2)^{2}(t^2 + 1)} = \frac{\frac{3}{25}}{t + 2} + \frac{\frac{7}{5}}{(t + "
+                    r"2)^{2}} + \frac{-\frac{3}{25}t - \frac{4}{25}}{t^{2} + 1}")
         )
+
+        lines_extra = VGroup(
+            MathTex(r"B + 2\bigg(-\frac{3}{25}\bigg) + \bigg(-\frac{4}{25}\bigg) = 1"),
+            MathTex(r"B -\frac{6}{25} - \frac{4}{25} = 1"),
+            MathTex(r"B - \frac{10}{25} = 1"),
+            MathTex(r"B - \frac{2}{5} = 1"),
+            MathTex(r"B = 1 + \frac{2}{5}"),
+            MathTex(r" B = \frac{7}{5}"),
+            MathTex(r"\frac{t^2 - t + 1}{(t + 2)^{2}(t^2 + 1)} = \frac{\frac{3}{25}}{t + 2} + \frac{\frac{7}{5}}{(t + "
+                    r"2)^{2}} - \frac{\frac{3}{25}t + \frac{4}{25}}{t^{2} + 1}")
+        )
+
+        lines.arrange(DOWN, buff=MED_LARGE_BUFF)
+
+        self.add(lines[0])
+        self.play(Write(lines[0]))
+        self.wait(0.3)
+        self.play(Write(lines[1]))
+        self.wait(0.3)
+        self.play(ReplacementTransform(lines[1], lines_extra[0].next_to(lines[0], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(ReplacementTransform(lines_extra[0].next_to(lines[0], direction=DOWN, buff=MED_LARGE_BUFF),
+                                       lines_extra[1].next_to(lines[0], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(ReplacementTransform(lines_extra[1].next_to(lines[0], direction=DOWN, buff=MED_LARGE_BUFF),
+                                       lines_extra[2].next_to(lines[0], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(ReplacementTransform(lines_extra[2].next_to(lines[0], direction=DOWN, buff=MED_LARGE_BUFF),
+                                       lines_extra[3].next_to(lines[0], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(ReplacementTransform(lines_extra[3].next_to(lines[0], direction=DOWN, buff=MED_LARGE_BUFF),
+                                       lines_extra[4].next_to(lines[0], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(ReplacementTransform(lines_extra[4].next_to(lines[0], direction=DOWN, buff=MED_LARGE_BUFF),
+                                       lines_extra[5].next_to(lines[0], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(Write(lines[2].next_to(lines_extra[5], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(Write(lines[3].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(ReplacementTransform(lines[3],
+                                       lines_extra[6].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(1)
+        self.play(FadeOut(lines[0], lines[2], lines_extra[5:7]))
+
+        lines = VGroup(
+            Tex("Evaluating the integral:"),
+            MathTex(r"\int_{0}^{s}\mathrm{d}s = \int_{0}^{t_1}\bigg(\frac{"
+                    r"\frac{3}{25}}{t + 2} + \frac{\frac{7}{5}}{(t +"
+                    r"2)^{2}} - \frac{\frac{3}{25}t + \frac{4}{25}}{t^{2} + 1}\bigg)\mathrm{d}t"),
+            Tex("Solving this integral:"),
+            MathTex(r"\frac{3}{25}\int_{0}^{t_1}\frac{dt}{t+2}")
+        )
+
+        lines_extra = VGroup(
+            MathTex(r"s = \frac{3}{25}\int_{0}^{t_1}\frac{\mathrm{d}t}{t + 2} + \frac{7}{5}\int_{0}^{t_1}\frac{"
+                    r"\mathrm{d}t}{(t + 2)^{2}} - \frac{1}{25}\int_{0}^{t_1}\frac{3t + 4}{t^{2} + 1}\mathrm{d}t"),
+            MathTex(r"\frac{3}{25}\ln(t+2)\bigg]_{0}^{t_1}"),
+            MathTex(r"\frac{3}{25}\bigg[\ln\lvert t_{1} + 2 \rvert - \ln\lvert 0 + 2 \rvert\bigg]"),
+            MathTex(r"\frac{3}{25}\ln\bigg\lvert\frac{t_{1} + 2}{2}\bigg\rvert"),
+            MathTex(r"\frac{7}{5}\int_{0}^{t_1} \frac{\mathrm{d}t}{(t+2)^2}"),
+            MathTex(r"\frac{7}{5}\bigg(-\frac{1}{t+2}\bigg]_{0}^{t_1}\bigg)"),
+            MathTex(r"\frac{7}{5}\bigg(-\frac{1}{t_{1}+2} + \frac{1}{2}\bigg)"),
+            MathTex(r"-\frac{7}{5(t_{1}+2)}+\frac{7}{10}"),
+            MathTex(r"\frac{1}{25}\int_{0}^{t_1} \frac{3t+4}{t^{2}+1}\mathrm{d}t"),
+            MathTex(r"\frac{1}{25}\bigg(\int_{0}^{t_1}\frac{3t}{t^{2}+1}\mathrm{d}t + \int_{0}^{t_1} \frac{4}{t^{"
+                    r"2}+1}\mathrm{d}t\bigg)"),
+            MathTex(r"\frac{1}{25}\bigg(\frac{3}{2}\ln\lvert t^{2}+1 \rvert\bigg]_{0}^{t_1} + 4\tan^{-1}t\bigg]_{0}^{"
+                    r"t_1}\bigg)"),
+            MathTex(r"\frac{1}{25}\bigg[\frac{3}{2}(\ln\vert t_{1}^{2} + 1 \rvert - \ln \vert 0^{2} + 1 \rvert) + 4("
+                    r"\tan^{-1}t_{1} -\tan^{-1} 0)\bigg]"),
+            MathTex(r"\frac{1}{25}\bigg(\frac{3}{2}\ln\lvert t_{1}^{2} + 1 \rvert+ 4\tan^{-1}t_{1}\bigg)"),
+            MathTex(r"\frac{3}{50}\ln\lvert t_{1}^{2} + 1 + \frac{4}{25}\tan^{-1}t_1")
+        )
+
+        lines.arrange(DOWN, buff=MED_LARGE_BUFF)
+
+        self.add(lines[0])
+        self.play(Write(lines[0]))
+        self.wait(0.3)
+        self.play(Write(lines[1]))
+        self.wait(0.3)
+        self.play(ReplacementTransform(lines[1], lines_extra[0].next_to(lines[0], direction=DOWN, buff=MED_LARGE_BUFF)))
+        lines_extra[0][0][17:33].set_color(YELLOW)
+        lines_extra[0][0][34:53].set_color(BLUE)
+        frameBox = SurroundingRectangle(lines_extra[0][0][2:16], buff=0.25)
+        self.play(Create(frameBox))
+        self.wait(0.5)
+        self.play(Write(lines[2]))
+        self.wait(0.5)
+        self.play(Write(lines[3]))
+        self.wait(0.5)
+        self.play(ReplacementTransform(lines[3], lines_extra[1].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(ReplacementTransform(lines_extra[1].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF),
+                                       lines_extra[2].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(ReplacementTransform(lines_extra[2].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF),
+                                       lines_extra[3].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(FadeOut(lines_extra[3]))
+        self.play(frameBox.animate.move_to(lines_extra[0][0][17:33]))
+        self.wait(0.5)
+        self.play(Write(lines_extra[4].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(ReplacementTransform(lines_extra[4].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF),
+                                       lines_extra[5].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(ReplacementTransform(lines_extra[5].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF),
+                                       lines_extra[6].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(ReplacementTransform(lines_extra[6].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF),
+                                       lines_extra[7].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(FadeOut(lines_extra[7]))
+        self.play(frameBox.animate.move_to(lines_extra[0][0][34:53]))
+        self.play(frameBox.animate.scale(1.15))
+        self.play(FadeIn(lines_extra[8].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(ReplacementTransform(lines_extra[8].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF),
+                                       lines_extra[9].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(ReplacementTransform(lines_extra[9].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF),
+                                       lines_extra[10].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(ReplacementTransform(lines_extra[10].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF),
+                                       lines_extra[11].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(ReplacementTransform(lines_extra[11].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF),
+                                       lines_extra[12].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(ReplacementTransform(lines_extra[12].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF),
+                                       lines_extra[13].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(FadeOut(lines[0], lines[2], lines_extra[13], lines_extra[0], frameBox))
+        self.wait(1)
