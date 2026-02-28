@@ -89,7 +89,7 @@ class ProblemSolution(Scene):
 
         lines = VGroup(
             Tex("Solving the determinant first:"),
-            MathTex(r"sI-A = \begin{bmatrix} s & -1 & 0 \\ 0 & s & -1 \\ 1 & 2 & s+3 \end{bmatrix} "
+            MathTex(r"sI-A = \begin{vmatrix} s & -1 & 0 \\ 0 & s & -1 \\ 1 & 2 & s+3 \end{vmatrix} "
                     r"\begin{matrix} s & -1 \\ 0 & s \\ 1 & 2 \end{matrix}"),
             MathTex(r"\mathrm{det}(sI-A) = (s)(s)(s+3)")
         )
@@ -112,20 +112,20 @@ class ProblemSolution(Scene):
         self.wait(0.3)
         self.play(Write(lines[1]))
         self.wait(0.3)
-        line_1 = Line(lines[1][0][7].get_center(), lines[1][0][17:20].get_center(),
+        line_1 = Line(lines[1][0][11].get_center(), lines[1][0][21:24].get_center(),
                       color=BLUE)
         self.play(Create(line_1))
         self.wait(0.2)
         self.play(Write(lines[2]))
         self.wait(0.2)
-        line_2 = Line(lines[1][0][8:10].get_center(), lines[1][0][27].get_center(),
+        line_2 = Line(lines[1][0][12:14].get_center(), lines[1][0][35].get_center(),
                       color=BLUE)
         self.play(Create(line_2))
         self.wait(0.2)
         self.play(Unwrite(lines[2], reverse=False),
                   Write(extra_lines[0].next_to(lines[1], direction=DOWN, buff=MED_LARGE_BUFF)))
         self.wait(0.2)
-        line_3 = Line(lines[1][0][10].get_center(), lines[1][0][28].get_center(), color=BLUE)
+        line_3 = Line(lines[1][0][14].get_center(), lines[1][0][36].get_center(), color=BLUE)
         self.play(Create(line_3))
         self.wait(0.2)
         self.play(Unwrite(extra_lines[0], reverse=False), Write(extra_lines[1].next_to(lines[1], direction=DOWN,
@@ -134,19 +134,19 @@ class ProblemSolution(Scene):
         self.play(ReplacementTransform(extra_lines[1], extra_lines[2].next_to(lines[1], direction=DOWN,
                                                                               buff=MED_LARGE_BUFF)))
         self.wait(0.2)
-        line_4 = Line(lines[1][0][15].get_center(), lines[1][0][10].get_center(), color=YELLOW)
+        line_4 = Line(lines[1][0][19].get_center(), lines[1][0][14].get_center(), color=YELLOW)
         self.play(Create(line_4))
         self.wait(0.2)
         self.play(Unwrite(extra_lines[2], reverse=False), Write(extra_lines[3].next_to(lines[1], direction=DOWN,
                                                                                        buff=MED_LARGE_BUFF)))
         self.wait(0.2)
-        line_5 = Line(lines[1][0][16].get_center(), lines[1][0][22].get_center(), color=YELLOW)
+        line_5 = Line(lines[1][0][20].get_center(), lines[1][0][30].get_center(), color=YELLOW)
         self.play(Create(line_5))
         self.wait(0.2)
         self.play(Unwrite(extra_lines[3], reverse=False), Write(extra_lines[4].next_to(lines[1], direction=DOWN,
                                                                                        buff=MED_LARGE_BUFF)))
         self.wait(0.2)
-        line_6 = Line(lines[1][0][17:20].get_center(), lines[1][0][23:25].get_center(), color=YELLOW)
+        line_6 = Line(lines[1][0][21:24].get_center(), lines[1][0][31:33].get_center(), color=YELLOW)
         self.play(Create(line_6))
         self.wait(0.2)
         self.play(Unwrite(extra_lines[4], reverse=False), Write(extra_lines[5].next_to(lines[1], direction=DOWN,
@@ -162,3 +162,72 @@ class ProblemSolution(Scene):
         self.wait(1)
         self.play(FadeOut(lines[0:2], line_1, line_2, line_3, line_4, line_5,
                           line_6, extra_lines[7], frameBox))
+
+        lines = VGroup(
+            Tex("Solving for the adjoint matrix:"),
+            MathTex(r"\mathrm{adj}(sI-A) = C_{sI-A}^{T}"),
+            MathTex(r"sI-A = \begin{bmatrix} s & -1 & 0 \\ 0 & s & -1 \\ 1 & 2 & s+3 \end{bmatrix}"),
+            MathTex(r"\mathbf{C}_{11}=(-1)^{(1+1)} \begin{vmatrix} s & -1 \\ 2 & s+3 \end{vmatrix}")
+        )
+
+        extra_lines = VGroup(
+            MathTex(r"\mathbf{C}_{11} = (s)(s+3)-(-1)(2)"),
+            MathTex(r"\mathbf{C}_{11} = s^{2}+3s+2"),
+            MathTex(r"\mathbf{C}_{12}=(-1)^{(1+2)} \begin{vmatrix} 0 & -1 \\ 1 & s+3 \end{vmatrix}"),
+            MathTex(r"\mathbf{C}_{12}=-1[(0)(s+3)-(-1)(1)]"),
+            MathTex(r"\mathbf{C}_{12}=-1(1)"),
+            MathTex(r"\mathbf{C}_{12}=-1"),
+            MathTex(r"\mathbf{C}_{13}=(-1)^{(1+3)} \begin{vmatrix} 0 & s \\ 1 & 2 \end{vmatrix}"),
+            MathTex(r"\mathbf{C}_{13}=(0)(2)-(s)(1)"),
+            MathTex(r"\mathbf{C}_{13}=-s"),
+            MathTex(r"\mathbf{C}_{21}=(-1)^{(2+1)} \begin{vmatrix} 1 & 0 \\ 2 & s+3 \end{vmatrix}")
+        )
+
+        lines.arrange(DOWN, buff=MED_LARGE_BUFF)
+        self.add(lines[0])
+        for i in range(3):
+            self.play(Write(lines[i]))
+            self.wait(0.3)
+        line_1 = Line(lines[2][0][7].get_center(), lines[2][0][10].get_center(), color=BLUE)
+        line_2 = Line(lines[2][0][7].get_center(), lines[2][0][15].get_center(), color=BLUE)
+        self.play(Circumscribe(lines[2][0][7], shape=Circle, color=YELLOW, run_time=3, fade_out=True), Create(line_1),
+                  Create(line_2))
+        self.play(Write(lines[3]))
+        self.wait(0.3)
+        self.play(ReplacementTransform(lines[3], extra_lines[0].next_to(lines[2], direction=DOWN,
+                                                                        buff=MED_LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(ReplacementTransform(extra_lines[0], extra_lines[1].next_to(lines[2], direction=DOWN,
+                                                                        buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(FadeOut(line_1, line_2, extra_lines[1]))
+        self.wait(0.3)
+        line_1 = Line(lines[2][0][7].get_center(), lines[2][0][10].get_center(), color=BLUE)
+        line_2 = Line(lines[2][0][8:10].get_center(), lines[2][0][16].get_center(), color=BLUE)
+        self.play(Circumscribe(lines[2][0][8:10], shape=Circle, color=YELLOW, run_time=3, fade_out=True), Create(line_1),
+                  Create(line_2))
+        self.play(Write(extra_lines[2].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.3)
+        for i in range(3, 6):
+            self.play(ReplacementTransform(extra_lines[i-1], extra_lines[i].next_to(lines[2], direction=DOWN,
+                                                                                    buff=MED_LARGE_BUFF)))
+            self.wait(0.3)
+        self.wait(0.2)
+        self.play(FadeOut(line_1, line_2, extra_lines[5]))
+        line_1 = Line(lines[2][0][10].get_center(), lines[2][0][7].get_center(), color=BLUE)
+        line_2 = Line(lines[2][0][10].get_center(), lines[2][0][17:20].get_center(), color=BLUE)
+        self.play(Circumscribe(lines[2][0][10], shape=Circle, color=YELLOW, run_time=3, fade_out=True), Create(line_1),
+                  Create(line_2))
+        self.play(Write(extra_lines[6].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF)))
+        for i in range(7, 9):
+            self.play(ReplacementTransform(extra_lines[i - 1], extra_lines[i].next_to(lines[2], direction=DOWN,
+                                                                                      buff=MED_LARGE_BUFF)))
+            self.wait(0.3)
+        self.wait(0.2)
+        self.play(FadeOut(line_1, line_2, extra_lines[8]))
+        line_1 = Line(lines[2][0][11].get_center(), lines[2][0][13:15].get_center(), color=BLUE)
+        line_2 = Line(lines[2][0][7].get_center(), lines[2][0][15].get_center(), color=BLUE)
+        self.play(Circumscribe(lines[2][0][11], shape=Circle, color=YELLOW, run_time=3, fade_out=True), Create(line_1),
+                  Create(line_2))
+        self.play(Write(extra_lines[9].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(2)
