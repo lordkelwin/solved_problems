@@ -180,7 +180,10 @@ class ProblemSolution(Scene):
             MathTex(r"\mathbf{C}_{13}=(-1)^{(1+3)} \begin{vmatrix} 0 & s \\ 1 & 2 \end{vmatrix}"),
             MathTex(r"\mathbf{C}_{13}=(0)(2)-(s)(1)"),
             MathTex(r"\mathbf{C}_{13}=-s"),
-            MathTex(r"\mathbf{C}_{21}=(-1)^{(2+1)} \begin{vmatrix} 1 & 0 \\ 2 & s+3 \end{vmatrix}")
+            MathTex(r"\mathbf{C}_{21}=(-1)^{(2+1)} \begin{vmatrix} -1 & 0 \\ 2 & s+3 \end{vmatrix}"),
+            MathTex(r"\mathbf{C}_{21}=(-1)[(1)(s+3)-(2)(0)]"),
+            MathTex(r"\mathbf{C}_{21}=(-1)(s+3)"),
+            MathTex(r"\mathbf{C}_{21}=-(s+3)"),
         )
 
         lines.arrange(DOWN, buff=MED_LARGE_BUFF)
@@ -230,4 +233,10 @@ class ProblemSolution(Scene):
         self.play(Circumscribe(lines[2][0][11], shape=Circle, color=YELLOW, run_time=3, fade_out=True), Create(line_1),
                   Create(line_2))
         self.play(Write(extra_lines[9].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF)))
+        for i in range(10, 13):
+            self.play(ReplacementTransform(extra_lines[i - 1], extra_lines[i].next_to(lines[2], direction=DOWN,
+                                                                                      buff=MED_LARGE_BUFF)))
+            self.wait(0.3)
+        self.wait(0.2)
+        self.play(FadeOut(line_1, line_2, extra_lines[12]))
         self.wait(2)
