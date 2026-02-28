@@ -88,15 +88,77 @@ class ProblemSolution(Scene):
         self.play(FadeOut(lines))
 
         lines = VGroup(
-
+            Tex("Solving the determinant first:"),
+            MathTex(r"sI-A = \begin{bmatrix} s & -1 & 0 \\ 0 & s & -1 \\ 1 & 2 & s+3 \end{bmatrix} "
+                    r"\begin{matrix} s & -1 \\ 0 & s \\ 1 & 2 \end{matrix}"),
+            MathTex(r"\mathrm{det}(sI-A) = (s)(s)(s+3)")
         )
 
-        line_1 = Line(extra_lines[1][0][7].get_corner(UL), extra_lines[1][0][17:20].get_corner(DR),
+        extra_lines = VGroup(
+            MathTex(r"\mathrm{det}(sI-A) = (s)(s)(s+3)+(-1)(-1)(1)"),
+            MathTex(r"\mathrm{det}(sI-A) = (s)(s)(s+3)+(-1)(-1)(1)+\\(0)(0)(2)"),
+            MathTex(r"\mathrm{det}(sI-A)=s^{3}+3s^{2}+1"),
+            MathTex(r"\mathrm{det}(sI-A)=s^{3}+3s^{2}+1-(1)(s)(0)"),
+            MathTex(r"\mathrm{det}(sI-A)=s^{3}+3s^{2}+1-(1)(s)(0)-\\(2)(-1)(s)"),
+            MathTex(r"\mathrm{det}(sI-A)=s^{3}+3s^{2}+1-(1)(s)(0)-\\(2)(-1)(s)-(s+3)(0)(-1)"),
+            MathTex(r"\mathrm{det}(sI-A)=s^{3}+3s^{2}+1+2s"),
+            MathTex(r"\mathrm{det}(sI-A)=s^{3}+3s^{2}+2s+1")
+        )
+
+        lines.arrange(DOWN, buff=MED_LARGE_BUFF)
+
+        self.add(lines[0])
+        self.play(Write(lines[0]))
+        self.wait(0.3)
+        self.play(Write(lines[1]))
+        self.wait(0.3)
+        line_1 = Line(lines[1][0][7].get_center(), lines[1][0][17:20].get_center(),
                       color=BLUE)
-
-        extra_lines[1][0][7].set_color(YELLOW)
-        extra_lines[1][0][12].set_color(YELLOW)
-        extra_lines[1][0][17:20].set_color(YELLOW)
-
-        MathTex(r"sI-A = \begin{bmatrix} s & -1 & 0 \\ 0 & s & -1 \\ 1 & 2 & s+3 \end{bmatrix} "
-                r"\begin{matrix} s & -1 \\ 0 & s \\ 1 & 2 \end{matrix}")
+        self.play(Create(line_1))
+        self.wait(0.2)
+        self.play(Write(lines[2]))
+        self.wait(0.2)
+        line_2 = Line(lines[1][0][8:10].get_center(), lines[1][0][27].get_center(),
+                      color=BLUE)
+        self.play(Create(line_2))
+        self.wait(0.2)
+        self.play(Unwrite(lines[2], reverse=False),
+                  Write(extra_lines[0].next_to(lines[1], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.2)
+        line_3 = Line(lines[1][0][10].get_center(), lines[1][0][28].get_center(), color=BLUE)
+        self.play(Create(line_3))
+        self.wait(0.2)
+        self.play(Unwrite(extra_lines[0], reverse=False), Write(extra_lines[1].next_to(lines[1], direction=DOWN,
+                                                                                       buff=MED_LARGE_BUFF)))
+        self.wait(0.2)
+        self.play(ReplacementTransform(extra_lines[1], extra_lines[2].next_to(lines[1], direction=DOWN,
+                                                                              buff=MED_LARGE_BUFF)))
+        self.wait(0.2)
+        line_4 = Line(lines[1][0][15].get_center(), lines[1][0][10].get_center(), color=YELLOW)
+        self.play(Create(line_4))
+        self.wait(0.2)
+        self.play(Unwrite(extra_lines[2], reverse=False), Write(extra_lines[3].next_to(lines[1], direction=DOWN,
+                                                                                       buff=MED_LARGE_BUFF)))
+        self.wait(0.2)
+        line_5 = Line(lines[1][0][16].get_center(), lines[1][0][22].get_center(), color=YELLOW)
+        self.play(Create(line_5))
+        self.wait(0.2)
+        self.play(Unwrite(extra_lines[3], reverse=False), Write(extra_lines[4].next_to(lines[1], direction=DOWN,
+                                                                                       buff=MED_LARGE_BUFF)))
+        self.wait(0.2)
+        line_6 = Line(lines[1][0][17:20].get_center(), lines[1][0][23:25].get_center(), color=YELLOW)
+        self.play(Create(line_6))
+        self.wait(0.2)
+        self.play(Unwrite(extra_lines[4], reverse=False), Write(extra_lines[5].next_to(lines[1], direction=DOWN,
+                                                                                       buff=MED_LARGE_BUFF)))
+        self.wait(0.2)
+        self.play(ReplacementTransform(extra_lines[5], extra_lines[6].next_to(lines[1], direction=DOWN,
+                                                                              buff=MED_LARGE_BUFF)))
+        self.wait(0.2)
+        self.play(ReplacementTransform(extra_lines[6], extra_lines[7].next_to(lines[1], direction=DOWN,
+                                                                              buff=MED_LARGE_BUFF)))
+        frameBox = SurroundingRectangle(extra_lines[7], buff=0.25)
+        self.play(Create(frameBox))
+        self.wait(1)
+        self.play(FadeOut(lines[0:2], line_1, line_2, line_3, line_4, line_5,
+                          line_6, extra_lines[7], frameBox))
