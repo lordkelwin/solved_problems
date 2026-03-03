@@ -334,6 +334,7 @@ class ProblemSolution(Scene):
         for i in range(4):
             self.play(Write(lines[i]))
             self.wait(0.2)
+        self.play(lines[:3].animate.shift(UP))
         self.play(ReplacementTransform(lines[3], extra_lines[0].next_to(lines[2], direction=DOWN, buff=MED_LARGE_BUFF)))
         self.wait(0.3)
         self.play(ReplacementTransform(extra_lines[0], extra_lines[1].next_to(lines[2], direction=DOWN,
@@ -347,26 +348,30 @@ class ProblemSolution(Scene):
         )
 
         extra_lines = VGroup(
-            MathTex(r"T(s) = \frac{1}{s^{3}+3s^{2}+2s+1} \begin{bmatrix} 1 & 0 & 0 \end{bmatrix}"
+            MathTex(r"T(s) = \frac{\begin{bmatrix} 1 & 0 & 0 \end{bmatrix}"
                     r"\begin{bmatrix} s^{2}+3s+2 & s+3 & 1 \\ -1 & s^{2}+3s & s \\"
-                    r"-s & -(2s+1) & s^{2} \end{bmatrix} \begin{bmatrix} 10 \\ 0 \\ 0 \end{bmatrix}"),
-            MathTex(r"T(s)=\frac{1}{s^{3}+3s^{2}+2s+1} \begin{bmatrix} s^{2}+3s+2 & s+3 & 1 \end{bmatrix}"
-                    r"\begin{bmatrix} 10 \\ 0 \\ 0 \end{bmatrix}"),
+                    r"-s & -(2s+1) & s^{2} \end{bmatrix} \begin{bmatrix} 10 \\ 0 \\ 0 \end{bmatrix}}"
+                    r"{s^{3}+3s^{2}+2s+1}"),
+            MathTex(r"T(s)=\frac{\begin{bmatrix} s^{2}+3s+2 & s+3 & 1 \end{bmatrix}"
+                    r"\begin{bmatrix} 10 \\ 0 \\ 0 \end{bmatrix}}{s^{3}+3s^{2}+2s+1} "),
             MathTex(r"T(s)=\frac{10(s^{2}+3s+2)}{s^{3}+3s^{2}+2s+1}")
         )
 
         lines.arrange(DOWN, buff=MED_LARGE_BUFF)
+        lines.to_edge(UP)
         self.add(lines[0])
 
         for i in range(2):
             self.play(Write(lines[i]))
             self.wait(0.3)
+
         self.play(ReplacementTransform(lines[1], extra_lines[0].next_to(lines[0], direction=DOWN, buff=MED_LARGE_BUFF)))
-        self.wait(0.3)
+        self.wait(0.8)
         for i in range(1, 3):
             self.play(ReplacementTransform(extra_lines[i - 1],
                                            extra_lines[i].next_to(lines[0], direction=DOWN, buff=MED_LARGE_BUFF)))
-            self.wait(0.3)
+            self.wait(1)
+        self.play(lines[0].animate.shift(2*DOWN), extra_lines[2].animate.shift(2*DOWN))
         frameBox = SurroundingRectangle(extra_lines[2], buff=0.2)
         self.play(Create(frameBox))
         self.wait(2)
