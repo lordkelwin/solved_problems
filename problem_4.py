@@ -343,7 +343,7 @@ class ProblemSolution(Scene):
         self.play(FadeOut(lines[:3], extra_lines[1]))
 
         lines = VGroup(
-            Tex("Solving for the Phase-Variable Form:"),
+            Tex("Solving for the Transfer Function:"),
             MathTex(r"T(s) = C(sI-A)^{-1}B+D")
         )
 
