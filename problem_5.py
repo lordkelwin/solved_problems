@@ -17,3 +17,4 @@ class ProblemStatement(Scene):
         self.play(Write(problem[0]))
         self.wait(3)
         self.play(FadeOut(problem))
+
