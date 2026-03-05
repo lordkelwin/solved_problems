@@ -3,5 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="elwin" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="elwin" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="manim_elwin" project-jdk-type="Python SDK" />
 </project>
