@@ -158,3 +158,11 @@ class ProblemSolution(Scene):
                                                                               buff=MED_LARGE_BUFF)))
         self.wait(2)
         self.play(FadeOut(lines[0], extra_lines[1:3], extra_lines[5]))
+
+        lines = VGroup(
+            Tex("Integrating both sides:"),
+            MathTex(r"\int{d[ie^{20t}]=6e^{20t}\sin{2t}\,dt}"),
+            MathTex(r"\int{d[ie^{20t}]}=\int{6e^{20t}\sin{2t}\,dt}"),
+            MathTex(r"ie^{20t}=\int{6e^{20t}\sin{2t}\,dt")
+        )
+
