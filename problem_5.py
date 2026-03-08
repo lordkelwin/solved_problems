@@ -163,6 +163,41 @@ class ProblemSolution(Scene):
             Tex("Integrating both sides:"),
             MathTex(r"\int{d[ie^{20t}]=6e^{20t}\sin{2t}\,dt}"),
             MathTex(r"\int{d[ie^{20t}]}=\int{6e^{20t}\sin{2t}\,dt}"),
-            MathTex(r"ie^{20t}=\int{6e^{20t}\sin{2t}\,dt")
+            MathTex(r"ie^{20t}=\int{6e^{20t}\sin{2t}\,dt"),
+            Tex("To integrate the right-hand side part of the equation,// use integration by parts"),
+            Tex("Let $M$ be the right-hand side of the equation."),
+            MathTex(r"M=\int{6e^{20t}\sin{2t}\,dt"),
+            Tex('Using the LIATE priority for determining the $u$'),
+            MathTex(r"u=\sin{2t},\,\,\,dv=e^{20t}\,dt\\du=2\cos{2t}\,dt,\,\,\,v=\frac{1}{20}e^{20t}"),
+            MathTex(r"M=6\bigg[\frac{1}{20}e^{20t}\sin{2t}-\int{\bigg(\frac{1}{20}e^{20t}\bigg)(2\cos{2t}\,dt)}\bigg]"),
+            MathTex(r"M=6\bigg[\frac{1}{20}e^{20t}\sin{2t}-\frac{1}{10}\int{e^{20t}\cos{2t}\,dt}\bigg]"),
+            MathTex(r"M=\frac{3}{10}e^{20t}\sin{2t}-\frac{3}{5}\int{e^{20t}\cos{2t}\,dt}"),
+            Tex('The second term of the equation requires to redo integration by parts:'),
+            MathTex(r"u=\cos{2t},\,\,\,dv=e^{20t}\,dt\\du=-2\sin{2t}\,dt,\,\,\,v=\frac{1}{20}e^{20t}"),
+            MathTex(r"M=\frac{3}{10}e^{20t}\sin{2t}-\frac{3}{5}\bigg[\frac{1}{20}e^{20t}\cos{2t}-\int{\bigg(\frac{1}{"
+                    r"20)e^{20t}\bigg)(-2\sin{2t}\,dt}\bigg]"),
+            MathTex(r"M=\frac{3}{10}e^{20t}\sin{2t}-\frac{3}{5}\bigg[\frac{1}{20}e^{20t}\cos{2t}+\frac{1}{10}\int{e^{"
+                    r"20t}\sin{2t}\,dt}\bigg]"),
+            MathTex(r"M=\frac{3}{10}e^{20t}\sin{2t}-\frac{3}{100}e^{20t}\cos{2t}-\frac{3}{50}\int{e^{20t}\sin{2t}\,dt}"),
+            Tex("Since $M=6\\int{e^{20t}\\sin{2t}\\,dt}$ or $\\frac{M}{6}=\\int{e^{20t}\\sin{2t}\\,dt}$"),
+            MathTex(r"M=\frac{3}{10}e^{20t}\sin{2t}-\frac{3}{100}e^{20t}\cos{2t}-\bigg(\frac{3}{50}\bigg)\bigg(\frac{"
+                    r"M}{6}\bigg)"),
+            MathTex(r"M=\frac{3}{10}e^{20t}\sin{2t}-\frac{3}{100}e^{20t}\cos{2t}-\frac{1}{100}M"),
+            MathTex(r"M+\frac{1}{100}M=\frac{3}{10}e^{20t}\sin{2t}-\frac{3}{100}e^{20t}\cos{2t}"),
+            MathTex(r"\frac{101}{100}M=\frac{3}{10}e^{20t}\sin{2t}-\frac{3}{100}e^{20t}\cos{2t}"),
+            MathTex(r"{\frac{100}{101}}\times{frac{101}{100}}M=\bigg[\frac{3}{10}e^{20t}\sin{2t}-\frac{3}{100}e^{"
+                    r"20t}\cos{2t}\bigg]\times{\frac{100}{101}}"),
+            MathTex(r"M=\frac{30}{101}e^{20t}\sin{2t}-\frac{3}{101}e^{20t}\cos{2t}+C"),
+            Tex('Substituting back to the original equation:'),
+            MathTex(r"{ie^{20t}}\times{e^{-20t}}=\bigg[\frac{30}{101}e^{20t}\sin{2t}-\frac{3}{101}e^{20t}\cos{"
+                    r"2t}+C\bigg]\times{e^{-20t}}"),
+            MathTex(r"i(t)=\frac{30}{101}\sin{2t}-\frac{3}{101}\cos{2t}+Ce^{-20t}"),
+            Tex('Solving for C, using the initial conditions, $t=0,\\,i=6$'),
+            MathTex(r"i(0)=\frac{30}{101}\sin{[2(0)]}-\frac{3}{101}\cos{[2(0)]}+Ce^{-20(0)}"),
+            MathTex(r"6=-\frac{3}{101}+C"),
+            MathTex(r"6+\frac{3}{101}=C"),
+            MathTex(r"C=\frac{609}{101}"),
+            Tex('The equation of current $i$ at any time $t$ is:'),
+            MathTex(r"i(t)=\frac{30}{101}\sin{2t}-\frac{3}{101}\cos{2t}+\frac{609}{101}e^{-20t}")
         )
 
