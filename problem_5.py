@@ -165,7 +165,7 @@ class ProblemSolution(Scene):
 
         lines = VGroup(
             Tex("Integrating both sides:"),
-            MathTex(r"\int{d[ie^{20t}]=6e^{20t}\sin{2t}\,dt}"),
+            MathTex(r"\int\bigg[{d[ie^{20t}]=6e^{20t}\sin{2t}\,dt}\bigg]"),
             MathTex(r"\int{d[ie^{20t}]}=\int{6e^{20t}\sin{2t}\,dt}"),
             MathTex(r"ie^{20t}=\int{6e^{20t}\sin{2t}\,dt"),
             Tex("To integrate the right-hand side part of the equation,\\\\ use integration by parts"),
