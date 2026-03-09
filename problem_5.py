@@ -119,7 +119,7 @@ class ProblemSolution(Scene):
         self.wait(0.5)
         self.play(ReplacementTransform(extra_lines[6], extra_lines[7].next_to(extra_lines[5], direction=DOWN,
                                                                               buff=MED_LARGE_BUFF)))
-        self.wait(2)
+        self.wait(1.25)
         self.play(FadeOut(lines[0], extra_lines[0], extra_lines[5], extra_lines[7]))
 
         lines = VGroup(
@@ -129,8 +129,9 @@ class ProblemSolution(Scene):
 
         extra_lines = VGroup(
             MathTex(r"{e^{20t}}\times{\bigg[\frac{di}{dt}+20i\bigg]}={6\sin{2t}}\times{e^{20t}}"),
-            MathTex(r"e^{20t}\frac{di}{dt}+20e^{20t}i=6e^{20t}\sin{2t}"),
+            MathTex(r"e^{20t}\frac{di}{dt}+20ie^{20t}=6e^{20t}\sin{2t}"),
             Tex("From the Product rule: $d[uv]=ud[v]+vd[u]$"),
+            MathTex(r"\frac{d}{dt}[ie^{20t}]=e^{20t}\frac{di}{dt}+20ie^{20t}"),
             MathTex(r"\frac{d}{dt}[ie^{20t}]=6e^{20t}\sin{2t}"),
             MathTex(r"{dt}\times{\frac{d}{dt}[ie^{20t}]}={6e^{20t}\sin{2t}}\times{dt}"),
             MathTex(r"d[ie^{20t}]=6e^{20t}\sin{2t}\,dt")
@@ -156,8 +157,11 @@ class ProblemSolution(Scene):
         self.wait(0.5)
         self.play(ReplacementTransform(extra_lines[4], extra_lines[5].next_to(extra_lines[2], direction=DOWN,
                                                                               buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(ReplacementTransform(extra_lines[5], extra_lines[6].next_to(extra_lines[2], direction=DOWN,
+                                                                              buff=MED_LARGE_BUFF)))
         self.wait(1.25)
-        self.play(FadeOut(lines[0], extra_lines[1:3], extra_lines[5]))
+        self.play(FadeOut(lines[0], extra_lines[1:3], extra_lines[6]))
 
         lines = VGroup(
             Tex("Integrating both sides:"),
@@ -277,8 +281,18 @@ class ProblemSolution(Scene):
         self.play(Write(lines[28].next_to(lines[27], direction=DOWN, buff=MED_LARGE_BUFF)))
         self.wait(0.5)
         for i in range(29, 32):
-            self.play(ReplacementTransform(lines[i-1], lines[i].next_to(lines[28], direction=DOWN,
+            self.play(ReplacementTransform(lines[i-1], lines[i].next_to(lines[27], direction=DOWN,
                                                                         buff=MED_LARGE_BUFF)))
             self.wait(0.5)
         self.wait(0.75)
         self.play(FadeOut(lines[24], lines[26:28], lines[31]))
+
+        lines[32].move_to(ORIGIN)
+        lines[32].move_to(UP)
+        self.play(Write(lines[32]))
+        self.wait(0.3)
+        self.play(Write(lines[33].next_to(lines[32], direction=DOWN, buff=MED_LARGE_BUFF)))
+        frameBox = SurroundingRectangle(lines[33], buff=0.25)
+        self.play(Create(frameBox))
+        self.wait(2)
+        self.play(FadeOut(lines[32:34], frameBox))
