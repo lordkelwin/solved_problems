@@ -63,10 +63,10 @@ class ProblemSolution(Scene):
         self.play(Write(extra_lines[1].next_to(extra_lines[0], direction=DOWN, buff=MED_SMALL_BUFF)))
         self.wait(0.3)
         self.play(TransformMatchingTex(extra_lines[1], extra_lines[2].next_to(extra_lines[0], direction=DOWN,
-                                                                              buff=MED_SMALL_BUFF)))
+                                                                              buff=MED_SMALL_BUFF), path_arc=90*DEGREES))
         self.wait(0.5)
         self.play(TransformMatchingTex(extra_lines[2], extra_lines[3].next_to(extra_lines[0], direction=DOWN,
-                                                                              buff=MED_SMALL_BUFF)))
+                                                                              buff=MED_SMALL_BUFF), path_arc=90*DEGREES))
         self.wait(2)
         self.play(FadeOut(image, lines[:2], extra_lines[0], extra_lines[3]))
 
@@ -156,7 +156,7 @@ class ProblemSolution(Scene):
         self.wait(0.5)
         self.play(ReplacementTransform(extra_lines[4], extra_lines[5].next_to(extra_lines[2], direction=DOWN,
                                                                               buff=MED_LARGE_BUFF)))
-        self.wait(2)
+        self.wait(1.25)
         self.play(FadeOut(lines[0], extra_lines[1:3], extra_lines[5]))
 
         lines = VGroup(
@@ -164,7 +164,7 @@ class ProblemSolution(Scene):
             MathTex(r"\int{d[ie^{20t}]=6e^{20t}\sin{2t}\,dt}"),
             MathTex(r"\int{d[ie^{20t}]}=\int{6e^{20t}\sin{2t}\,dt}"),
             MathTex(r"ie^{20t}=\int{6e^{20t}\sin{2t}\,dt"),
-            Tex("To integrate the right-hand side part of the equation,// use integration by parts"),
+            Tex("To integrate the right-hand side part of the equation,\\\\ use integration by parts"),
             Tex("Let $M$ be the right-hand side of the equation."),
             MathTex(r"M=\int{6e^{20t}\sin{2t}\,dt"),
             Tex('Using the LIATE priority for determining the $u$'),
@@ -172,20 +172,21 @@ class ProblemSolution(Scene):
             MathTex(r"M=6\bigg[\frac{1}{20}e^{20t}\sin{2t}-\int{\bigg(\frac{1}{20}e^{20t}\bigg)(2\cos{2t}\,dt)}\bigg]"),
             MathTex(r"M=6\bigg[\frac{1}{20}e^{20t}\sin{2t}-\frac{1}{10}\int{e^{20t}\cos{2t}\,dt}\bigg]"),
             MathTex(r"M=\frac{3}{10}e^{20t}\sin{2t}-\frac{3}{5}\int{e^{20t}\cos{2t}\,dt}"),
-            Tex('The second term of the equation requires to redo integration by parts:'),
+            Tex('The second term of the equation requires to \\\\ redo integration by parts:'),
             MathTex(r"u=\cos{2t},\,\,\,dv=e^{20t}\,dt\\du=-2\sin{2t}\,dt,\,\,\,v=\frac{1}{20}e^{20t}"),
             MathTex(r"M=\frac{3}{10}e^{20t}\sin{2t}-\frac{3}{5}\bigg[\frac{1}{20}e^{20t}\cos{2t}-\int{\bigg(\frac{1}{"
-                    r"20)e^{20t}\bigg)(-2\sin{2t}\,dt}\bigg]"),
+                    r"20}e^{20t}\bigg)(-2\sin{2t}\,dt)}\bigg]"),
             MathTex(r"M=\frac{3}{10}e^{20t}\sin{2t}-\frac{3}{5}\bigg[\frac{1}{20}e^{20t}\cos{2t}+\frac{1}{10}\int{e^{"
                     r"20t}\sin{2t}\,dt}\bigg]"),
-            MathTex(r"M=\frac{3}{10}e^{20t}\sin{2t}-\frac{3}{100}e^{20t}\cos{2t}-\frac{3}{50}\int{e^{20t}\sin{2t}\,dt}"),
+            MathTex(r"M=\frac{3}{10}e^{20t}\sin{2t}-\frac{3}{100}e^{20t}\cos{2t}-\frac{3}{50}\int{e^{20t}\sin{2t}\,"
+                    r"dt}"),
             Tex("Since $M=6\\int{e^{20t}\\sin{2t}\\,dt}$ or $\\frac{M}{6}=\\int{e^{20t}\\sin{2t}\\,dt}$"),
             MathTex(r"M=\frac{3}{10}e^{20t}\sin{2t}-\frac{3}{100}e^{20t}\cos{2t}-\bigg(\frac{3}{50}\bigg)\bigg(\frac{"
                     r"M}{6}\bigg)"),
             MathTex(r"M=\frac{3}{10}e^{20t}\sin{2t}-\frac{3}{100}e^{20t}\cos{2t}-\frac{1}{100}M"),
             MathTex(r"M+\frac{1}{100}M=\frac{3}{10}e^{20t}\sin{2t}-\frac{3}{100}e^{20t}\cos{2t}"),
             MathTex(r"\frac{101}{100}M=\frac{3}{10}e^{20t}\sin{2t}-\frac{3}{100}e^{20t}\cos{2t}"),
-            MathTex(r"{\frac{100}{101}}\times{frac{101}{100}}M=\bigg[\frac{3}{10}e^{20t}\sin{2t}-\frac{3}{100}e^{"
+            MathTex(r"{\frac{100}{101}}\times{\frac{101}{100}}M=\bigg[\frac{3}{10}e^{20t}\sin{2t}-\frac{3}{100}e^{"
                     r"20t}\cos{2t}\bigg]\times{\frac{100}{101}}"),
             MathTex(r"M=\frac{30}{101}e^{20t}\sin{2t}-\frac{3}{101}e^{20t}\cos{2t}+C"),
             Tex('Substituting back to the original equation:'),
@@ -201,3 +202,83 @@ class ProblemSolution(Scene):
             MathTex(r"i(t)=\frac{30}{101}\sin{2t}-\frac{3}{101}\cos{2t}+\frac{609}{101}e^{-20t}")
         )
 
+        self.add(lines[0])
+        lines[0].move_to(ORIGIN)
+        lines[0].move_to(UP * 2)
+        self.play(Write(lines[0]))
+        self.wait(0.3)
+        self.play(Write(lines[1].next_to(lines[0], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(ReplacementTransform(lines[1], lines[2].next_to(lines[0], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(ReplacementTransform(lines[2], lines[3].next_to(lines[0], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(Write(lines[4].next_to(lines[3], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(FadeOut(lines[4]))
+        self.wait(0.2)
+        self.play(Write(lines[5].next_to(lines[3], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(Write(lines[6].next_to(lines[5], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(2)
+        self.play(FadeOut(lines[0], lines[3], lines[5:7]))
+
+        lines[7].move_to(ORIGIN)
+        lines[7].move_to(UP * 2)
+        self.play(Write(lines[7]))
+        self.wait(0.3)
+        self.play(Write(lines[8].next_to(lines[7], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(Write(lines[9].next_to(lines[8], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(ReplacementTransform(lines[9], lines[10].next_to(lines[8], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(ReplacementTransform(lines[10], lines[11].next_to(lines[8], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(1.25)
+        self.play(FadeOut(lines[7:9], lines[11]))
+
+        lines[12].move_to(ORIGIN)
+        lines[12].move_to(UP * 2)
+        self.play(Write(lines[12]))
+        self.wait(0.3)
+        self.play(Write(lines[13].next_to(lines[12], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(Write(lines[14].next_to(lines[13], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(ReplacementTransform(lines[14], lines[15].next_to(lines[13], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(ReplacementTransform(lines[15], lines[16].next_to(lines[13], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(1.25)
+        self.play(FadeOut(lines[12:14], lines[16]))
+
+        lines[17].move_to(ORIGIN)
+        lines[17].move_to(UP)
+        self.play(Write(lines[17]))
+        self.wait(0.3)
+        self.play(Write(lines[18].next_to(lines[17], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        for i in range(19, 24):
+            self.play(ReplacementTransform(lines[i-1], lines[i].next_to(lines[17], direction=DOWN,
+                                                                        buff=MED_LARGE_BUFF)))
+            self.wait(0.5)
+        self.wait(0.75)
+        self.play(FadeOut(lines[17], lines[23]))
+
+        lines[24].move_to(ORIGIN)
+        lines[24].move_to(UP * 2)
+        self.play(Write(lines[24]))
+        self.wait(0.3)
+        self.play(Write(lines[25].next_to(lines[24], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(ReplacementTransform(lines[25], lines[26].next_to(lines[24], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(Write(lines[27].next_to(lines[26], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(Write(lines[28].next_to(lines[27], direction=DOWN, buff=MED_LARGE_BUFF)))
+        self.wait(0.5)
+        for i in range(29, 32):
+            self.play(ReplacementTransform(lines[i-1], lines[i].next_to(lines[28], direction=DOWN,
+                                                                        buff=MED_LARGE_BUFF)))
+            self.wait(0.5)
+        self.wait(0.75)
+        self.play(FadeOut(lines[24], lines[26:28], lines[31]))
