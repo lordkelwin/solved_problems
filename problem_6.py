@@ -120,3 +120,33 @@ class ProblemSolution(Scene):
         self.play(Create(surroundRectangle))
         self.wait(1.5)
         self.play(FadeOut(lines[22:24], surroundRectangle))
+
+        axes = Axes(x_range=[-7, 7], y_range=[-6, 6])
+        curveFamily = VGroup()
+        lineFamily = VGroup()
+
+        for n in np.arange(1, 6, 1):
+            curve = axes.plot_parametric_curve(
+                lambda t: np.array([n * np.cos(t), n * np.sin(t), 0]),
+                t_range=[0, TAU],
+                color=BLUE
+            )
+
+            curveFamily.add(curve)
+
+        for m in np.arange(-5, 6, 1):
+            orthoCurve = axes.plot(
+                lambda x: m * x,
+                x_range=[-4, 4],
+                color=YELLOW
+            )
+            lineFamily.add(orthoCurve)
+
+        self.add(axes)
+        self.play(FadeIn(axes))
+        self.wait(0.2)
+        self.play(Create(curveFamily), run_time=3)
+        self.wait(0.5)
+        self.play(Create(lineFamily), run_time=3)
+        self.wait(1.25)
+        self.play(FadeOut(axes, curveFamily, lineFamily))
