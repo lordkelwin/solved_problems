@@ -121,9 +121,42 @@ class ProblemSolution(Scene):
         solutionLines[5][0][32].set_color(BLUE)
         solutionLines[5][0][30].set_color(YELLOW)
         solutionLines[5][0][31].set_color(YELLOW)
+        arrowLine_1 = Arrow(solutionLines[5][0][29].get_center(), solutionLines[5][0][32].get_center(),
+                            color=BLUE)
+        arrowLine_2 = Arrow(solutionLines[5][0][31].get_center(), solutionLines[5][0][30].get_center(),
+                            color=BLUE)
         self.wait(0.3)
-        for i in range(6, 15):
-            self.play(TransformMatchingTex(solutionLines[i-1], solutionLines[i].next_to(solutionLines[4],
+        self.play(Create(arrowLine_1), Create(arrowLine_2))
+        self.wait(0.3)
+        self.play(FadeOut(arrowLine_2, arrowLine_1), TransformMatchingTex(solutionLines[5],
+                                                                          solutionLines[6].next_to(
+                                                                              solutionLines[4],
+                                                                              direction=DOWN,
+                                                                              buff=LARGE_BUFF)))
+        self.wait(0.5)
+        for i in range(6, 14):
+            if i == 6:
+                solutionLines[i][0][25].set_color(BLUE)
+                solutionLines[i][0][29].set_color(BLUE)
+                solutionLines[i][0][26:28].set_color(YELLOW)
+                solutionLines[i][0][28].set_color(YELLOW)
+                arrowLine_1 = Arrow(solutionLines[i][0][25].get_center(), solutionLines[i][0][29].get_center(),
+                                    color=BLUE)
+                arrowLine_2 = Arrow(solutionLines[i][0][28].get_center(), solutionLines[i][0][26:28].get_center(),
+                                    color=BLUE)
+            elif i == 7:
+                solutionLines[i][0][23].set_color(BLUE)
+                solutionLines[i][0][26].set_color(BLUE)
+                solutionLines[i][0][24].set_color(YELLOW)
+                solutionLines[i][0][25].set_color(YELLOW)
+                arrowLine_1 = Arrow(solutionLines[i][0][23].get_center(), solutionLines[i][0][26].get_center(),
+                                    color=BLUE)
+                arrowLine_2 = Arrow(solutionLines[i][0][25].get_center(), solutionLines[i][0][24].get_center(),
+                                    color=BLUE)
+            self.play(Create(arrowLine_1), Create(arrowLine_2))
+            self.wait(0.3)
+            self.play(FadeOut(arrowLine_1, arrowLine_2),
+                      TransformMatchingTex(solutionLines[i], solutionLines[i+1].next_to(solutionLines[4],
                                                                                         direction=DOWN,
                                                                                         buff=LARGE_BUFF)))
             self.wait(0.5)
