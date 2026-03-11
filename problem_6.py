@@ -10,7 +10,8 @@ class ProblemStatement(Scene):
         )
 
         lines.arrange(DOWN, buff=MED_LARGE_BUFF)
-        lines.move_to(UP * 9)
+        lines.move_to(ORIGIN)
+        lines.move_to(2 * UP)
         self.add(lines)
         self.play(Write(lines))
         self.wait(3)
