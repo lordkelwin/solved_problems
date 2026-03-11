@@ -49,7 +49,7 @@ class ProblemSolution(Scene):
             MathTex(r"\ln{y}=\ln{ky}"),
             Tex("Logarithm property: $e^{\\ln{x}}=x$"),
             MathTex(r"e^{\ln{y}}=e^{\ln{ky}}"),
-            Tex("The Orthogonal Trajectories of the curve \\\\ $x^{2}+y^{2}=c^{2}$ is:"),
+            Tex("The Orthogonal Trajectories of the \\\\ curve $x^{2}+y^{2}=c^{2}$ is:"),
             MathTex(r"y=kx")
         )
 
@@ -132,7 +132,6 @@ class ProblemSolution(Scene):
                 t_range=[0, TAU],
                 color=BLUE
             )
-
             curveFamily.add(curve)
 
         for m in np.arange(-5, 6, 1):
