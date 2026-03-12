@@ -93,7 +93,20 @@ class ProblemSolution(Scene):
                     r"6 & 2 \\ -3 & 4 & 0 \\ 4 & 12 & \begin{vmatrix} 1 & 0 \\ 4 & 0 "
                     r"\end{vmatrix}\end{vmatrix}", font_size=65),
             MathTex(r"\det{\mathbf{A}} = \begin{vmatrix} 4 & "
-                    r"6 & 2 \\ -3 & 4 & 0 \\ 4 & 12 & 0 \end{vmatrix}", font_size=65),
+                    r"6 & 2 \\ -3 & 4 & 0 \\ 4 & 12 & 0 \end{vmatrix}", font_size=90),
+            Tex(r"\begin{minipage}{5 cm}Solving for the determinant \\ using the basket method:\end{minipage}"),
+            MathTex(r"\det{\mathbf{A}} = \begin{vmatrix} 4 & "
+                    r"6 & 2 \\ -3 & 4 & 0 \\ 4 & 12 & 0 \end{vmatrix} \begin{matrix} 4 & 6 \\ -3 & 4 \\ 4 &12 "
+                    r"\end{matrix}", font_size=90),
+            MathTex(r"\det{\mathbf{A}}=[(4)(4)(0)]"),
+            MathTex(r"\det{\mathbf{A}}=[0+(6)(0)(4)]"),
+            MathTex(r"\det{\mathbf{A}}=[0+0+(2)(-3)(12)]"),
+            MathTex(r"\det{\mathbf{A}}=[0+0-72]-[(4)(4)(2)]"),
+            MathTex(r"\det{\mathbf{A}}=[0+0-72]-\\ [32+(12)(0)(4)]"),
+            MathTex(r"\det{\mathbf{A}}=[0+0-72]- \\ [32+0+(0)(-3)(6)]"),
+            MathTex(r"\det{\mathbf{A}}=[0+0-72]-[32+0+0]"),
+            MathTex(r"\det{\mathbf{A}}=-72-32"),
+            MathTex(r"\det{\mathbf{A}}=-104")
         )
 
         solutionLines[0].move_to(ORIGIN)
@@ -143,7 +156,7 @@ class ProblemSolution(Scene):
                 arrowLine_1 = Arrow(solutionLines[i][0][25].get_center(), solutionLines[i][0][29].get_center(),
                                     color=BLUE)
                 arrowLine_2 = Arrow(solutionLines[i][0][28].get_center(), solutionLines[i][0][26:28].get_center(),
-                                    color=BLUE)
+                                    color=YELLOW)
             elif i == 7:
                 solutionLines[i][0][23].set_color(BLUE)
                 solutionLines[i][0][26].set_color(BLUE)
@@ -152,7 +165,61 @@ class ProblemSolution(Scene):
                 arrowLine_1 = Arrow(solutionLines[i][0][23].get_center(), solutionLines[i][0][26].get_center(),
                                     color=BLUE)
                 arrowLine_2 = Arrow(solutionLines[i][0][25].get_center(), solutionLines[i][0][24].get_center(),
+                                    color=YELLOW)
+            elif i == 8:
+                solutionLines[i][0][22].set_color(BLUE)
+                solutionLines[i][0][25:27].set_color(BLUE)
+                solutionLines[i][0][23].set_color(YELLOW)
+                solutionLines[i][0][24].set_color(YELLOW)
+                arrowLine_1 = Arrow(solutionLines[i][0][22].get_center(), solutionLines[i][0][25:27].get_center(),
                                     color=BLUE)
+                arrowLine_2 = Arrow(solutionLines[i][0][24].get_center(), solutionLines[i][0][23].get_center(),
+                                    color=YELLOW)
+            elif i == 9:
+                solutionLines[i][0][24].set_color(BLUE)
+                solutionLines[i][0][28].set_color(BLUE)
+                solutionLines[i][0][25:27].set_color(YELLOW)
+                solutionLines[i][0][27].set_color(YELLOW)
+                arrowLine_1 = Arrow(solutionLines[i][0][24].get_center(), solutionLines[i][0][28].get_center(),
+                                    color=BLUE)
+                arrowLine_2 = Arrow(solutionLines[i][0][27].get_center(), solutionLines[i][0][25:27].get_center(),
+                                    color=YELLOW)
+            elif i == 10:
+                solutionLines[i][0][25].set_color(BLUE)
+                solutionLines[i][0][28].set_color(BLUE)
+                solutionLines[i][0][26].set_color(YELLOW)
+                solutionLines[i][0][27].set_color(YELLOW)
+                arrowLine_1 = Arrow(solutionLines[i][0][25].get_center(), solutionLines[i][0][28].get_center(),
+                                    color=BLUE)
+                arrowLine_2 = Arrow(solutionLines[i][0][27].get_center(), solutionLines[i][0][26].get_center(),
+                                    color=YELLOW)
+            elif i == 11:
+                solutionLines[i][0][24].set_color(BLUE)
+                solutionLines[i][0][27].set_color(BLUE)
+                solutionLines[i][0][25].set_color(YELLOW)
+                solutionLines[i][0][26].set_color(YELLOW)
+                arrowLine_1 = Arrow(solutionLines[i][0][24].get_center(), solutionLines[i][0][27].get_center(),
+                                    color=BLUE)
+                arrowLine_2 = Arrow(solutionLines[i][0][26].get_center(), solutionLines[i][0][25].get_center(),
+                                    color=YELLOW)
+            elif i == 12:
+                solutionLines[i][0][25].set_color(BLUE)
+                solutionLines[i][0][29].set_color(BLUE)
+                solutionLines[i][0][26:28].set_color(YELLOW)
+                solutionLines[i][0][28].set_color(YELLOW)
+                arrowLine_1 = Arrow(solutionLines[i][0][25].get_center(), solutionLines[i][0][29].get_center(),
+                                    color=BLUE)
+                arrowLine_2 = Arrow(solutionLines[i][0][28].get_center(), solutionLines[i][0][26:28].get_center(),
+                                    color=YELLOW)
+            elif i == 13:
+                solutionLines[i][0][27].set_color(BLUE)
+                solutionLines[i][0][30].set_color(BLUE)
+                solutionLines[i][0][28].set_color(YELLOW)
+                solutionLines[i][0][29].set_color(YELLOW)
+                arrowLine_1 = Arrow(solutionLines[i][0][27].get_center(), solutionLines[i][0][30].get_center(),
+                                    color=BLUE)
+                arrowLine_2 = Arrow(solutionLines[i][0][29].get_center(), solutionLines[i][0][28].get_center(),
+                                    color=YELLOW)
             self.play(Create(arrowLine_1), Create(arrowLine_2))
             self.wait(0.3)
             self.play(FadeOut(arrowLine_1, arrowLine_2),
@@ -162,3 +229,37 @@ class ProblemSolution(Scene):
             self.wait(0.5)
         self.wait(0.75)
         self.play(FadeOut(solutionLines[4], solutionLines[14]))
+
+        solutionLines[15].move_to(ORIGIN)
+        solutionLines[15].move_to(UP * 3)
+        self.play(Write(solutionLines[15]))
+        self.wait(0.3)
+        self.play(Write(solutionLines[16].next_to(solutionLines[15], direction=DOWN, buff=LARGE_BUFF)))
+        arrowLines = VGroup(
+            Arrow(solutionLines[16][0][11].get_center(), solutionLines[16][0][21].get_center(),
+                  color=BLUE),
+            Arrow(solutionLines[16][0][12].get_center(), solutionLines[16][0][33].get_center(),
+                  color=BLUE),
+            Arrow(solutionLines[16][0][13].get_center(), solutionLines[16][0][34:36].get_center(),
+                  color=BLUE),
+            Arrow(solutionLines[16][0][18].get_center(), solutionLines[16][0][13].get_center(),
+                  color=YELLOW),
+            Arrow(solutionLines[16][0][19:21].get_center(), solutionLines[16][0][28].get_center(),
+                  color=YELLOW),
+            Arrow(solutionLines[16][0][21].get_center(), solutionLines[16][0][29].get_center(),
+                  color=YELLOW)
+        )
+        self.play(Create(arrowLines[0]))
+        self.play(Write(solutionLines[17].next_to(solutionLines[16], direction=DOWN, buff=LARGE_BUFF)))
+
+        for i in range(18, 26):
+            if i <= 22:
+                self.play(Create(arrowLines[i-17]))
+            self.play(ReplacementTransform(solutionLines[i-1], solutionLines[i].next_to(solutionLines[16],
+                                                                                        direction=DOWN,
+                                                                                        buff=LARGE_BUFF)))
+            self.wait(0.5)
+        rectangleFrame = SurroundingRectangle(solutionLines[25], buff=0.5)
+        self.play(Create(rectangleFrame))
+        self.wait(1.25)
+        self.play(FadeOut(solutionLines[15:17], solutionLines[25], rectangleFrame, arrowLines))
