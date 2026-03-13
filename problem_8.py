@@ -9,7 +9,7 @@ class ProblemStatement(Scene):
             Tex(r"\begin{minipage}{6 cm}"
                 r"Find the inverse Laplace Transform of the function using convolution theorem:"
                 r"\end{minipage}"),
-            MathTex(r"\mathcal{L}^{-1}\bigg\{\frac{1}{(s-1)^{2}}\bigg\}")
+            MathTex(r"\mathcal{L}^{-1}\bigg\{\frac{240}{(s^{2}+1)(s^{2}+25)}\bigg\}")
         )
 
         statement[0].move_to(3 * UP)
@@ -19,3 +19,13 @@ class ProblemStatement(Scene):
         self.play(Write(statement[1].next_to(statement[0], direction=DOWN, buff=LARGE_BUFF)))
         self.wait(2)
         self.play(FadeOut(statement))
+
+
+class ProblemSolution(Scene):
+    def construct(self):
+        Tex.set_default(font_size=85)
+        MathTex.set_default(font_size=90)
+        solutionDetails = VGroup(
+            Tex("Convolution theorem can be used when finding the inverse Laplace Transform"),
+            MathTex(r"")
+        )
