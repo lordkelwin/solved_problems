@@ -26,13 +26,16 @@ class ProblemSolution(Scene):
         Tex.set_default(font_size=85)
         MathTex.set_default(font_size=90)
         solutionDetails = VGroup(
-            Tex("Convolution theorem can be used when finding the inverse Laplace Transform"),
-            MathTex(r"\mathcal{L}^{-1}\{F(s)G(s)\}={f(t)}\ast{g(t)}=\int_{0}^{t}f(x)g{t-x}\,dx"),
-            MathTex(r"\mathcal{L}^{-1}\bigg\{\frac{240}{(s^{2}+1)(s^{2}+25)\bigg\}=\mathcal{L}^{-1}\bigg\{48\times{"
+            Tex("Convolution theorem can be used when \\\\ finding the inverse Laplace Transform \\\\"
+                "of a product."),
+            MathTex(r"\mathcal{L}^{-1}\{F(s)G(s)\}={f(t)}\ast{g(t)}\\=\int_{0}^{t}f(x)g{(t-x)}\,dx"),
+            MathTex(r"\mathcal{L}^{-1}\bigg\{\frac{240}{(s^{2}+1)(s^{2}+25)}\bigg\}= \\\mathcal{L}^{-1}\bigg\{48\times{"
                     r"\frac{1}{s^{2}+1}}\times{\frac{5}{s^{2}+25}}\bigg\}"),
             Tex("Where:"),
             MathTex(r"F(s)=\frac{1}{s^{2}+1}\\G(s)=\frac{5}{s^{2}+25}"),
-            Tex("And their corresponding inverse Laplace Transforms:"),
+            Tex("And their corresponding \\\\ Inverse Laplace Transforms:"),
+            MathTex(r"\mathcal{L}^{-1}\left\{F(s)=\frac{1}{s^{2}+1}\right\}\\"
+                    r"\mathcal{L}^{-1}\left\{G(s)=\frac{5}{s^{2}+25}\right\}"),
             MathTex(r"f(t)=\sin{t}\\g(t)=\sin{5t}"),
             Tex("Solving for the Inverse Laplace Transform:"),
             MathTex(r"f(t)\ast{g(t)} = \int_{0}^{t}\sin{x}\sin{5(t-x)}\,dx"),
@@ -60,14 +63,14 @@ class ProblemSolution(Scene):
             MathTex(r"f(t)\ast{g(t)}=\sin{(5t)}\int_{0}^{t}\bigg[\frac{1}{2}(\sin{(6x)}-\sin{(4x)})\bigg]\,dx -"
                     r"\cos{(5t)}\int_{0}^{t}\bigg[\frac{1}{2}(\cos{(4x)}-\cos{(6x)})\bigg]\,dx"),
             Tex("Integrating:"),
-            MathTex(r"f(t)\ast{g(t)}=\frac{\sin{(5t)}}{2}\left[-\frac{\cos{(6x)}}{6}+\frac{\cos{(4x)}}{4}\right]_{0}^"
-                    r"{t} - \frac{\cos{(5t)}}{2}\left[\frac{\sin{(4x)}}{4}-\frac{\sin{(6x)}}{6}\right]_{0}^{t}"),
-            MathTex(r"f(t)\ast{g(t)}=\frac{\sin{(5t)}}{2}\left[\left(\frac{\cos{(4t)}}{4}-\frac{\cos{(6t)}{6}\right)-"
-                    r"\left(\frac{cos{0}}{4}-\frac{cos{0}}{6}\right)\right]-\frac{\cos{(5t)}}{2}\left[\left("
-                    r"\frac{\sin{(4t)}}{4}-\frac{\sin{(6t)}}{6}\right)-\left(\frac{\sin{0}}{4}-\frac{\sin{0}}{6}"
-                    r"\right)\right]"),
-            MathTex(r"f(t)\ast{g(t)}=\frac{\sin{(5t)}}{2}\left[\frac{\cos{(4t)}}{4}-\frac{\cos{(6t)}}{6}-\frac{1}{4}+"
-                    r"\frac{1}{6}\right]-\frac{\cos{(5t)}}{2}\left[\frac{\sin{(4t)}}{4}-\frac{\sin{(6t)}}{6}\right]"),
+            MathTex(r"f(t)\ast{g(t)}=\frac{\sin{(5t)}}{2}\bigg[-\frac{\cos{(6x)}}{6}+\frac{\cos{(4x)}}{4}\bigg]_{0}^"
+                    r"{t} - \frac{\cos{(5t)}}{2}\bigg[\frac{\sin{(4x)}}{4}-\frac{\sin{(6x)}}{6}\bigg]_{0}^{t}"),
+            MathTex(r"f(t)\ast{g(t)}=\frac{\sin{(5t)}}{2}\bigg[\bigg(\frac{\cos{(4t)}}{4}-\frac{\cos{(6t)}}{6}\bigg)-"
+                    r"\bigg(\frac{\cos{0}}{4}-\frac{\cos{0}}{6}\bigg)\bigg]-\frac{\cos{(5t)}}{2}\bigg[\bigg("
+                    r"\frac{\sin{(4t)}}{4}-\frac{\sin{(6t)}}{6}\bigg)-\bigg(\frac{\sin{0}}{4}-\frac{\sin{0}}{6}"
+                    r"\bigg)\bigg]"),
+            MathTex(r"f(t)\ast{g(t)}=\frac{\sin{(5t)}}{2}\bigg[\frac{\cos{(4t)}}{4}-\frac{\cos{(6t)}}{6}-\frac{1}{4}+"
+                    r"\frac{1}{6}\bigg]-\frac{\cos{(5t)}}{2}\bigg[\frac{\sin{(4t)}}{4}-\frac{\sin{(6t)}}{6}\bigg]"),
             MathTex(r"f(t)\ast{g(t)}=\frac{1}{8}\sin{(5t)}\cos{(4t)}-\frac{1}{12}\cos{(6t)}\sin{(5t)}-"
                     r"\frac{1}{12}\sin{(5t)}-\frac{1}{8}\cos{(5t)}\sin{(4t)}+\frac{1}{12}\sin{(6t)}\cos{(5t)}"),
             MathTex(r"f(t)\ast{g(t)}=\frac{1}{8}[\sin{(5t)}\cos{(4t)}-\cos{(5t)}\sin{(4t)}]-\frac{1}{12}[\sin{(6t)}"
@@ -77,11 +80,41 @@ class ProblemSolution(Scene):
             Tex("Utilizing the identity to simplify:"),
             MathTex(r"f(t)\ast{g(t)}=\frac{1}{8}\sin{5t-4t}+\frac{1}{12}\sin{(6t-5t)-\frac{1}{12}\sin{(5t)}"),
             MathTex(r"f(t)\ast{g(t)}=\frac{1}{8}\sin{t}+\frac{1}{12}\sin{t}-\frac{1}{12}\sin{(5t)}"),
-            MathTex(r"f(t)\ast{g(t)}=\left(\frac{1}{8}+\frac{1}{12}\right)\sin{t}-\frac{1}{12}\sin{(5t)}"),
+            MathTex(r"f(t)\ast{g(t)}=\bigg(\frac{1}{8}+\frac{1}{12}\bigg)\sin{t}-\frac{1}{12}\sin{(5t)}"),
             MathTex(r"f(t)\ast{g(t)}=\frac{5}{24}\sin{t}-\frac{1}{12}\sin{(5t)}"),
             Tex("Solving for the Inverse Laplace Transform:"),
-            MathTex(r"\mathcal{L}^{-1}\left\{\frac{240}{(s^{2}+1)(s^{2}+25)}\right\}=48(f(t)\ast{g(t)})"),
-            MathTex(r"\mathcal{L}^{-1}\left\{\frac{240}{(s^{2}+1)(s^{2}+25)}\right\}=48\left[\frac{5}{24}\sin{t}-"
-                    r"\frac{1}{12}\sin{(5t)}\right]"),
-            MathTex(r"\mathcal{L}^{-1}\left\{\frac{240}{(s^{2}+1)(s^{2}+25)}\right\}=10\sin{t}-2\sin{(5t)}")
+            MathTex(r"\mathcal{L}^{-1}\bigg\{\frac{240}{(s^{2}+1)(s^{2}+25)}\bigg\}=48(f(t)\ast{g(t)})"),
+            MathTex(r"\mathcal{L}^{-1}\bigg\{\frac{240}{(s^{2}+1)(s^{2}+25)}\bigg\}=48\bigg[\frac{5}{24}\sin{t}-"
+                    r"\frac{1}{12}\sin{(5t)}\bigg]"),
+            MathTex(r"\mathcal{L}^{-1}\bigg\{\frac{240}{(s^{2}+1)(s^{2}+25)}\bigg\}=10\sin{t}-2\sin{(5t)}")
         )
+
+        solutionDetails[0].move_to(UP * 7)
+        self.play(Write(solutionDetails[0]))
+        self.wait(0.3)
+        self.play(Write(solutionDetails[1].next_to(solutionDetails[0], direction=DOWN, buff=LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(ReplacementTransform(solutionDetails[1], solutionDetails[2].next_to(solutionDetails[0],
+                                                                                      direction=DOWN,
+                                                                                      buff=LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(Write(solutionDetails[3].next_to(solutionDetails[2], direction=DOWN, buff=LARGE_BUFF)),
+                  Write(solutionDetails[4].next_to(solutionDetails[3], direction=DOWN, buff=LARGE_BUFF)))
+        self.wait(1)
+        self.play(solutionDetails[4].animate.shift(DOWN))
+        self.play(ReplacementTransform(solutionDetails[3],
+                                       solutionDetails[5].next_to(solutionDetails[2], direction=DOWN, buff=LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(ReplacementTransform(solutionDetails[4], solutionDetails[6].next_to(solutionDetails[5],
+                                                                                      direction=DOWN,
+                                                                                      buff=LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(ReplacementTransform(solutionDetails[6], solutionDetails[7].next_to(solutionDetails[5],
+                                                                                      direction=DOWN,
+                                                                                      buff=LARGE_BUFF)))
+        self.wait(1.25)
+        self.play(FadeOut(solutionDetails[0], solutionDetails[2], solutionDetails[5], solutionDetails[7]))
+
+        solutionDetails[8].move_to(6 * UP)
+        self.play(Write(solutionDetails[8]))
+        self.wait(0.3)
