@@ -37,28 +37,31 @@ class ProblemSolution(Scene):
             MathTex(r"\mathcal{L}^{-1}\left\{F(s)=\frac{1}{s^{2}+1}\right\}\\"
                     r"\mathcal{L}^{-1}\left\{G(s)=\frac{5}{s^{2}+25}\right\}"),
             MathTex(r"f(t)=\sin{t}\\g(t)=\sin{5t}"),
-            Tex("Solving for the Inverse Laplace Transform:"),
+            Tex("Solving for the \\\\ Inverse Laplace Transform:"),
             MathTex(r"f(t)\ast{g(t)} = \int_{0}^{t}\sin{x}\sin{5(t-x)}\,dx"),
             MathTex(r"f(t)\ast{g(t)} = \int_{0}^{t}\sin{x}\sin{(5t-5x)}\,dx"),
             Tex(r"Using the identity:\\$\sin{(a-b)}=\sin{a}\cos{b}-\cos{a}\sin{b}$"),
-            MathTex(r"f(t)\ast{g(t)} = \int_{0}^{t}\sin{x}[\sin{(5t)}\cos{(5x)}-\cos{(5t)}\sin{(5x)}]\,dx"),
-            MathTex(r"f(t)\ast{g(t)} = \int_{0}^{t}[\sin{(5t)}\sin{x}\sin{(5x)}-\cos{(5t)}\sin{x}\sin{(5x)}]\,dx"),
-            MathTex(r"f(t)\ast{g(t)} = \int_{0}^{t}\sin{(5t)}\sin{x}\sin{(5x)}\,dx - \int_{0}^{t}\cos{(5t)}\sin{"
-                    r"x}\sin{(5x)}\,dx"),
-            MathTex(r"f(t)\ast{g(t)} = \sin{(5t)}\int_{0}^{t}\sin{x}\cos{(5x)}\,dx - \cos{(5t)}\int_{0}^{t}\sin{"
-                    r"x}\sin{(5x)}\,dx"),
-            Tex(r"To simplify the integral, some identities are required:"),
-            MathTex(r"\sin{a}\cos{b}=\frac{1}{2}[\sin{(a+b)}+\sin{(a-b)}]"),
-            MathTex(r"\sin{a}\sin{b}=\frac{1}{2}[\cos{(a-b)}-\cos{(a+b)}]"),
+            MathTex(r"f(t)\ast{g(t)} = \int_{0}^{t}\sin{x}[\sin{(5t)}\cos{(5x)}-\\\cos{(5t)}\sin{(5x)}]\,dx",
+                    font_size=80),
+            MathTex(r"f(t)\ast{g(t)} = \int_{0}^{t}[\sin{(5t)}\sin{x}\sin{(5x)}-\\\cos{(5t)}\sin{x}\sin{(5x)}]\,dx",
+                    font_size=80),
+            MathTex(r"f(t)\ast{g(t)} = \int_{0}^{t}\sin{(5t)}\sin{x}\sin{(5x)}\,dx -\\\int_{0}^{t}\cos{(5t)}\sin{"
+                    r"x}\sin{(5x)}\,dx",
+                    font_size=80),
+            MathTex(r"f(t)\ast{g(t)} = \sin{(5t)}\int_{0}^{t}\sin{x}\cos{(5x)}\,dx -\\\cos{(5t)}\int_{0}^{t}\sin{"
+                    r"x}\sin{(5x)}\,dx", font_size=80),
+            Tex(r"To simplify the integral, \\ some identities are required:"),
+            MathTex(r"\sin{a}\cos{b}=\frac{1}{2}[\sin{(a+b)}+\sin{(a-b)}]", font_size=80),
+            MathTex(r"\sin{a}\sin{b}=\frac{1}{2}[\cos{(a-b)}-\cos{(a+b)}]", font_size=80),
             Tex("Applying the identities, we have:"),
-            MathTex(r"\sin{x}\cos{(5x)}=\frac{1}{2}[\sin{(x+5x)}+\sin{(x-5x)}]"),
-            MathTex(r"\sin{x}\cos{(5x)}=\frac{1}{2}[\sin{(6x)}+\sin{(-4x)}]"),
+            MathTex(r"\sin{x}\cos{(5x)}=\frac{1}{2}[\sin{(x+5x)}+\sin{(x-5x)}]", font_size=80),
+            MathTex(r"\sin{x}\cos{(5x)}=\frac{1}{2}[\sin{(6x)}+\sin{(-4x)}]", font_size=80),
             Tex(r"Since $\sin{(-x)}=-\sin{x}$"),
-            MathTex(r"\sin{x}\cos{(5x)}=\frac{1}{2}[\sin{(6x)}-\sin{(4x)}]"),
-            MathTex(r"\sin{x}\sin{(5x)}=\frac{1}{2}[\cos{(x-5x)}-\cos{(x+5x)}]"),
-            MathTex(r"\sin{x}\sin{(5x)}=\frac{1}{2}[\cos{(-4x)}-\cos{(6x)}]"),
+            MathTex(r"\sin{x}\cos{(5x)}=\frac{1}{2}[\sin{(6x)}-\sin{(4x)}]", font_size=80),
+            MathTex(r"\sin{x}\sin{(5x)}=\frac{1}{2}[\cos{(x-5x)}-\cos{(x+5x)}]", font_size=75),
+            MathTex(r"\sin{x}\sin{(5x)}=\frac{1}{2}[\cos{(-4x)}-\cos{(6x)}]", font_size=75),
             Tex(r"Since $\cos{(-x)}=\cos{x}$"),
-            MathTex(r"\sin{x}\sin{(5x)}=\frac{1}{2}[\cos{(4x)}-\cos{(6x)}]"),
+            MathTex(r"\sin{x}\sin{(5x)}=\frac{1}{2}[\cos{(4x)}-\cos{(6x)}]", font_size=75),
             Tex("Applying to the integral:"),
             MathTex(r"f(t)\ast{g(t)}=\sin{(5t)}\int_{0}^{t}\bigg[\frac{1}{2}(\sin{(6x)}-\sin{(4x)})\bigg]\,dx -"
                     r"\cos{(5t)}\int_{0}^{t}\bigg[\frac{1}{2}(\cos{(4x)}-\cos{(6x)})\bigg]\,dx"),
@@ -118,3 +121,55 @@ class ProblemSolution(Scene):
         solutionDetails[8].move_to(6 * UP)
         self.play(Write(solutionDetails[8]))
         self.wait(0.3)
+        self.play(Write(solutionDetails[9].next_to(solutionDetails[8], direction=DOWN, buff=LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(TransformMatchingTex(solutionDetails[9], solutionDetails[10].next_to(solutionDetails[8],
+                                                                                       direction=DOWN,
+                                                                                       buff=LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(Write(solutionDetails[11].next_to(solutionDetails[10], direction=DOWN, buff=LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(Write(solutionDetails[12].next_to(solutionDetails[11], direction=DOWN, buff=LARGE_BUFF)))
+        self.wait(0.5)
+        for i in range(13, 16):
+            self.play(TransformMatchingTex(solutionDetails[i - 1], solutionDetails[i].next_to(solutionDetails[11],
+                                                                                              direction=DOWN,
+                                                                                              buff=LARGE_BUFF)))
+            self.wait(0.5)
+        self.wait(0.75)
+        self.play(FadeOut(solutionDetails[8], solutionDetails[10:12], solutionDetails[15]))
+
+        solutionDetails[16].move_to(7 * UP)
+        self.play(Write(solutionDetails[16]))
+        self.wait(0.3)
+        self.play(Write(solutionDetails[17].next_to(solutionDetails[16], DOWN, LARGE_BUFF)),
+                  Write(solutionDetails[18].next_to(solutionDetails[17], DOWN, LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(Write(solutionDetails[19].next_to(solutionDetails[18], DOWN, LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(Write(solutionDetails[20].next_to(solutionDetails[19], DOWN, LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(ReplacementTransform(solutionDetails[20], solutionDetails[21].next_to(solutionDetails[19],
+                                                                                        DOWN,
+                                                                                        LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(Write(solutionDetails[22].next_to(solutionDetails[21], DOWN, LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(Write(solutionDetails[23].next_to(solutionDetails[22], DOWN, LARGE_BUFF)))
+        rectangleBox = SurroundingRectangle(solutionDetails[23], buff=0.25)
+        self.play(Create(rectangleBox))
+        self.wait(1.25)
+        self.play(FadeOut(solutionDetails[21:24], rectangleBox))
+        self.play(Write(solutionDetails[24].next_to(solutionDetails[19], DOWN, LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(TransformMatchingTex(solutionDetails[24], solutionDetails[25].next_to(solutionDetails[19],
+                                                                                        DOWN,
+                                                                                        LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(Write(solutionDetails[26].next_to(solutionDetails[25], DOWN, LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(Write(solutionDetails[27].next_to(solutionDetails[26], DOWN, LARGE_BUFF)))
+        rectangleBox = SurroundingRectangle(solutionDetails[27], buff=0.25)
+        self.play(Create(rectangleBox))
+        self.wait(1.25)
+        self.play(FadeOut(rectangleBox, solutionDetails[25:28], solutionDetails[16:20]))
