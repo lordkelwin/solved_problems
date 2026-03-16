@@ -30,7 +30,8 @@ class ProblemSolution(Scene):
                 "of a product."),
             MathTex(r"\mathcal{L}^{-1}\{F(s)G(s)\}={f(t)}\ast{g(t)}\\=\int_{0}^{t}f(x)g{(t-x)}\,dx"),
             MathTex(r"\mathcal{L}^{-1}\bigg\{\frac{240}{(s^{2}+1)(s^{2}+25)}\bigg\}= \\\mathcal{L}^{-1}\bigg\{48\times{"
-                    r"\frac{1}{s^{2}+1}}\times{\frac{5}{s^{2}+25}}\bigg\}"),
+                    r"\frac{1}{s^{2}+1}}\times{\frac{5}{s^{2}+25}}\bigg\} =\\\mathcal{L}^{-1}\{48F(s)G(s)\} = "
+                    r"48[f(t)\ast{g(t)}]"),
             Tex("Where:"),
             MathTex(r"F(s)=\frac{1}{s^{2}+1}\\G(s)=\frac{5}{s^{2}+25}"),
             Tex("And their corresponding \\\\ Inverse Laplace Transforms:"),
@@ -62,22 +63,31 @@ class ProblemSolution(Scene):
             MathTex(r"\sin{x}\sin{(5x)}=\frac{1}{2}[\cos{(-4x)}-\cos{(6x)}]", font_size=75),
             Tex(r"Since $\cos{(-x)}=\cos{x}$"),
             MathTex(r"\sin{x}\sin{(5x)}=\frac{1}{2}[\cos{(4x)}-\cos{(6x)}]", font_size=75),
-            Tex("Applying to the integral:"),
-            MathTex(r"f(t)\ast{g(t)}=\sin{(5t)}\int_{0}^{t}\bigg[\frac{1}{2}(\sin{(6x)}-\sin{(4x)})\bigg]\,dx -"
-                    r"\cos{(5t)}\int_{0}^{t}\bigg[\frac{1}{2}(\cos{(4x)}-\cos{(6x)})\bigg]\,dx"),
+            Tex("Substitute to the integral:"),
+            MathTex(r"f(t)\ast{g(t)}=\sin{(5t)}\int_{0}^{t}\bigg[\frac{1}{2}(\sin{(6x)}-\sin{(4x)})\bigg]\,dx "
+                    r"-\\\cos{(5t)}\int_{0}^{t}\bigg[\frac{1}{2}(\cos{(4x)}-\cos{(6x)})\bigg]\,dx", font_size=65),
+            MathTex(r"f(t)\ast{g(t)}=\frac{\sin{(5t)}}{2}\int_{0}^{t}[\sin{(6x)}-\sin{(4x)}]\,dx "
+                    r"-\\\frac{\cos{(5t)}}{2}\int_{0}^{t}[\cos{(4x)}-\cos{(6x)}]\,dx", font_size=65),
+            MathTex(r"f(t)\ast{g(t)}=\frac{\sin{(5t)}}{2}\bigg[\int_{0}^{t}\sin{(6x)}\,dx-"
+                    r"\int_{0}^{t}\sin{(4x)}\,dx\bigg]"
+                    r"-\\\frac{\cos{(5t)}}{2}\bigg[\int_{0}^{t}\cos{(4x)}\,dx-\int_{0}^{t}\cos{(6x)}\,dx\bigg]",
+                    font_size=62),
             Tex("Integrating:"),
             MathTex(r"f(t)\ast{g(t)}=\frac{\sin{(5t)}}{2}\bigg[-\frac{\cos{(6x)}}{6}+\frac{\cos{(4x)}}{4}\bigg]_{0}^"
-                    r"{t} - \frac{\cos{(5t)}}{2}\bigg[\frac{\sin{(4x)}}{4}-\frac{\sin{(6x)}}{6}\bigg]_{0}^{t}"),
-            MathTex(r"f(t)\ast{g(t)}=\frac{\sin{(5t)}}{2}\bigg[\bigg(\frac{\cos{(4t)}}{4}-\frac{\cos{(6t)}}{6}\bigg)-"
+                    r"{t} - \\\frac{\cos{(5t)}}{2}\bigg[\frac{\sin{(4x)}}{4}-\frac{\sin{(6x)}}{6}\bigg]_{0}^{t}",
+                    font_size=68),
+            MathTex(r"f(t)\ast{g(t)}=\frac{\sin{(5t)}}{2}\bigg[\bigg(\frac{\cos{(4t)}}{4}-\frac{\cos{(6t)}}{6}\bigg)-\\"
                     r"\bigg(\frac{\cos{0}}{4}-\frac{\cos{0}}{6}\bigg)\bigg]-\frac{\cos{(5t)}}{2}\bigg[\bigg("
-                    r"\frac{\sin{(4t)}}{4}-\frac{\sin{(6t)}}{6}\bigg)-\bigg(\frac{\sin{0}}{4}-\frac{\sin{0}}{6}"
-                    r"\bigg)\bigg]"),
-            MathTex(r"f(t)\ast{g(t)}=\frac{\sin{(5t)}}{2}\bigg[\frac{\cos{(4t)}}{4}-\frac{\cos{(6t)}}{6}-\frac{1}{4}+"
-                    r"\frac{1}{6}\bigg]-\frac{\cos{(5t)}}{2}\bigg[\frac{\sin{(4t)}}{4}-\frac{\sin{(6t)}}{6}\bigg]"),
-            MathTex(r"f(t)\ast{g(t)}=\frac{1}{8}\sin{(5t)}\cos{(4t)}-\frac{1}{12}\cos{(6t)}\sin{(5t)}-"
-                    r"\frac{1}{12}\sin{(5t)}-\frac{1}{8}\cos{(5t)}\sin{(4t)}+\frac{1}{12}\sin{(6t)}\cos{(5t)}"),
-            MathTex(r"f(t)\ast{g(t)}=\frac{1}{8}[\sin{(5t)}\cos{(4t)}-\cos{(5t)}\sin{(4t)}]-\frac{1}{12}[\sin{(6t)}"
-                    r"\cos{(5t)}-\cos{(6t)}\sin{(5t)}]-\frac{1}{12}\sin{(5t)}"),
+                    r"\frac{\sin{(4t)}}{4}-\\\frac{\sin{(6t)}}{6}\bigg)-\bigg(\frac{\sin{0}}{4}-\frac{\sin{0}}{6}"
+                    r"\bigg)\bigg]", font_size=60),
+            MathTex(r"f(t)\ast{g(t)}=\frac{\sin{(5t)}}{2}\bigg[\frac{\cos{(4t)}}{4}-\frac{\cos{(6t)}}{6}\\-\frac{1}{4}+"
+                    r"\frac{1}{6}\bigg]-\frac{\cos{(5t)}}{2}\bigg[\frac{\sin{(4t)}}{4}-\\\frac{\sin{(6t)}}{6}\bigg]",
+                    font_size=60),
+            MathTex(r"f(t)\ast{g(t)}=\frac{1}{8}\sin{(5t)}\cos{(4t)}-\frac{1}{12}\cos{(6t)}\sin{(5t)}-\\"
+                    r"\frac{1}{12}\sin{(5t)}-\frac{1}{8}\cos{(5t)}\sin{(4t)}+\\\frac{1}{12}\sin{(6t)}\cos{(5t)}",
+                    font_size=60),
+            MathTex(r"f(t)\ast{g(t)}=\frac{1}{8}[\sin{(5t)}\cos{(4t)}-\cos{(5t)}\sin{(4t)}]-\\\frac{1}{12}[\sin{(6t)}"
+                    r"\cos{(5t)}-\cos{(6t)}\sin{(5t)}]-\\\frac{1}{12}\sin{(5t)}", font_size=60),
             Tex("To simplify, using a certain trigonometric identity:"),
             MathTex(r"\sin{(a-b)}=\sin{a}\cos{b}-\cos{a}\sin{b}"),
             Tex("Utilizing the identity to simplify:"),
@@ -173,3 +183,71 @@ class ProblemSolution(Scene):
         self.play(Create(rectangleBox))
         self.wait(1.25)
         self.play(FadeOut(rectangleBox, solutionDetails[25:28], solutionDetails[16:20]))
+
+        solutionDetails[28].move_to(7 * UP)
+        self.play(Write(solutionDetails[28]))
+        self.wait(0.3)
+        self.play(Write(solutionDetails[29].next_to(solutionDetails[28], DOWN, LARGE_BUFF)))
+        self.wait(0.5)
+        for i in range(30, 32):
+            self.play(ReplacementTransform(solutionDetails[i - 1], solutionDetails[i].next_to(solutionDetails[28],
+                                                                                              DOWN, LARGE_BUFF)))
+            self.wait(0.5)
+        self.play(Write(solutionDetails[32].next_to(solutionDetails[31], DOWN, LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(Write(solutionDetails[33].next_to(solutionDetails[32], DOWN, LARGE_BUFF)))
+        self.wait(0.5)
+        for i in range(34, 36):
+            match i:
+                case 34:
+                    self.play(
+                        ReplacementTransform(solutionDetails[i - 1], solutionDetails[i].next_to(solutionDetails[32],
+                                                                                                DOWN, LARGE_BUFF)))
+                    self.wait(0.3)
+                    solutionDetails[i][0][43:47].set_color(BLUE)
+                    solutionDetails[i][0][50:54].set_color(BLUE)
+                    solutionDetails[i][0][92:96].set_color(YELLOW)
+                    solutionDetails[i][0][99:103].set_color(YELLOW)
+                    linesDetail_1 = Arrow(solutionDetails[i][0][43:47].get_corner(DL),
+                                          solutionDetails[i][0][43:47].get_corner(UR), color=YELLOW)
+                    linesDetail_2 = Arrow(solutionDetails[i][0][50:54].get_corner(DL),
+                                          solutionDetails[i][0][50:54].get_corner(UR), color=YELLOW)
+                    linesDetail_3 = Arrow(solutionDetails[i][0][92:96].get_corner(DL),
+                                          solutionDetails[i][0][92:96].get_corner(UR), color=BLUE)
+                    linesDetail_4 = Arrow(solutionDetails[i][0][99:103].get_corner(DL),
+                                          solutionDetails[i][0][99:103].get_corner(UR), color=BLUE)
+                    tempText = VGroup(MathTex(r"1", font_size=30),
+                                      MathTex(r"1", font_size=30), MathTex(r"0", font_size=30),
+                                      MathTex(r"0", font_size=30))
+                    self.wait(0.2)
+                    self.play(Create(linesDetail_1), Create(linesDetail_2), Create(linesDetail_3),
+                              Create(linesDetail_4))
+                    self.wait(0.2)
+                    self.play(Write(tempText[0].next_to(solutionDetails[i][0][43:47].get_corner(UR), UP, SMALL_BUFF)),
+                              Write(tempText[1].next_to(solutionDetails[i][0][50:54].get_corner(UR), UP, SMALL_BUFF)),
+                              Write(tempText[2].next_to(solutionDetails[i][0][92:96].get_corner(UR), UP, SMALL_BUFF)),
+                              Write(tempText[3].next_to(solutionDetails[i][0][99:103].get_corner(UR), UP, SMALL_BUFF)))
+                    self.wait(0.5)
+                    self.play(FadeOut(linesDetail_1, linesDetail_2, linesDetail_3, linesDetail_4, tempText),
+                              ReplacementTransform(solutionDetails[i],
+                                                   solutionDetails[i + 1].next_to(solutionDetails[32],
+                                                                                  DOWN, LARGE_BUFF))
+                              )
+                case 35:
+                    self.wait(0.2)
+                    solutionDetails[i][0][39:47].set_color(BLUE)
+                    linesDetail_1 = Arrow(solutionDetails[i][0][39:47].get_corner(DL),
+                                          solutionDetails[i][0][39:47].get_corner(UR), color=YELLOW)
+                    tempText = MathTex(r"-\frac{1}{12}", font_size=20)
+                    self.wait(0.2)
+                    self.play(Create(linesDetail_1))
+                    self.wait(0.2)
+                    self.play(Write(tempText.next_to(solutionDetails[i][0][39:47].get_corner(UR), UP, SMALL_BUFF)))
+                    self.wait(0.5)
+                    self.play(FadeOut(linesDetail_1, tempText),
+                              ReplacementTransform(solutionDetails[i],
+                                                   solutionDetails[i + 1].next_to(solutionDetails[32],
+                                                                                  DOWN, LARGE_BUFF))
+                              )
+
+        self.wait(0.75)
