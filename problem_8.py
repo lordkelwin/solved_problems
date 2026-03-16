@@ -38,7 +38,7 @@ class ProblemSolution(Scene):
             MathTex(r"\mathcal{L}^{-1}\left\{F(s)=\frac{1}{s^{2}+1}\right\}\\"
                     r"\mathcal{L}^{-1}\left\{G(s)=\frac{5}{s^{2}+25}\right\}"),
             MathTex(r"f(t)=\sin{t}\\g(t)=\sin{5t}"),
-            Tex("Solving for the \\\\ Inverse Laplace Transform:"),
+            Tex("Solving for the \\\\ Convolution $f(t)\\ast{g(t)}$:"),
             MathTex(r"f(t)\ast{g(t)} = \int_{0}^{t}\sin{x}\sin{5(t-x)}\,dx"),
             MathTex(r"f(t)\ast{g(t)} = \int_{0}^{t}\sin{x}\sin{(5t-5x)}\,dx"),
             Tex(r"Using the identity:\\$\sin{(a-b)}=\sin{a}\cos{b}-\cos{a}\sin{b}$"),
@@ -101,9 +101,9 @@ class ProblemSolution(Scene):
             Tex("Solving for the Inverse \\\\ Laplace Transform:"),
             MathTex(r"\mathcal{L}^{-1}\bigg\{\frac{240}{(s^{2}+1)(s^{2}+25)}\bigg\}=48[f(t)\ast{g(t)}]",
                     font_size=70),
-            MathTex(r"\mathcal{L}^{-1}\bigg\{\frac{240}{(s^{2}+1)(s^{2}+25)}\bigg\}=\\48\bigg[\frac{5}{24}\sin{t}-"
+            MathTex(r"\mathcal{L}^{-1}\bigg\{\frac{240}{(s^{2}+1)(s^{2}+25)}\bigg\}=\\\\48\bigg[\frac{5}{24}\sin{t}-"
                     r"\frac{1}{12}\sin{(5t)}\bigg]", font_size=70),
-            MathTex(r"\mathcal{L}^{-1}\bigg\{\frac{240}{(s^{2}+1)(s^{2}+25)}\bigg\}=10\sin{t}-2\sin{(5t)}")
+            MathTex(r"\mathcal{L}^{-1}\bigg\{\frac{240}{(s^{2}+1)(s^{2}+25)}\bigg\}=\\10\sin{t}-2\sin{(5t)}")
         )
 
         solutionDetails[0].move_to(UP * 7)
@@ -162,27 +162,78 @@ class ProblemSolution(Scene):
         self.play(Write(solutionDetails[19].next_to(solutionDetails[18], DOWN, LARGE_BUFF)))
         self.wait(0.3)
         self.play(Write(solutionDetails[20].next_to(solutionDetails[19], DOWN, LARGE_BUFF)))
+        solutionDetails[20][0][20:24].set_color(BLUE)
+        solutionDetails[20][0][30:34].set_color(YELLOW)
+        linesDetail_1 = Arrow(solutionDetails[20][0][20:24].get_corner(DL),
+                              solutionDetails[20][0][20:24].get_corner(UR), color=YELLOW)
+        linesDetail_2 = Arrow(solutionDetails[20][0][30:34].get_corner(DL),
+                              solutionDetails[20][0][30:34].get_corner(UR), color=BLUE)
+        tempDetails = VGroup(
+            MathTex(r"6x", font_size=50, color=YELLOW),
+            MathTex(r"-4x", font_size=50, color=BLUE)
+        )
+        self.wait(0.2)
+        self.play(Create(linesDetail_1), Create(linesDetail_2))
+        self.wait(0.2)
+        self.play(Write(tempDetails[0].next_to(solutionDetails[20][0][20:24].get_corner(UR), UP, SMALL_BUFF)),
+                  Write(tempDetails[1].next_to(solutionDetails[20][0][30:34].get_corner(UR), UP, SMALL_BUFF)))
         self.wait(0.5)
-        self.play(ReplacementTransform(solutionDetails[20], solutionDetails[21].next_to(solutionDetails[19],
-                                                                                        DOWN,
-                                                                                        LARGE_BUFF)))
+        self.play(
+            FadeOut(linesDetail_1, linesDetail_2, tempDetails, run_time=0.5),
+            ReplacementTransform(solutionDetails[20], solutionDetails[21].next_to(solutionDetails[19],
+                                                                                  DOWN,
+                                                                                  LARGE_BUFF)))
         self.wait(0.3)
         self.play(Write(solutionDetails[22].next_to(solutionDetails[21], DOWN, LARGE_BUFF)))
+        solutionDetails[21][0][24:32].set_color(BLUE)
+        linesDetail_1 = Arrow(solutionDetails[21][0][24:32].get_corner(DL),
+                              solutionDetails[21][0][24:32].get_corner(UR), color=YELLOW)
+        tempDetails = MathTex(r"-\sin{(4x)}", font_size=50, color=YELLOW)
+        self.play(Create(linesDetail_1))
         self.wait(0.3)
-        self.play(Write(solutionDetails[23].next_to(solutionDetails[22], DOWN, LARGE_BUFF)))
+        self.play(Write(tempDetails.next_to(solutionDetails[21][0][24:32].get_corner(UR), UP, SMALL_BUFF)))
+        self.wait(0.3)
+        solutionDetails[21][0][24:32].set_color(WHITE)
+        self.play(FadeOut(linesDetail_1, tempDetails, run_time=0.5),
+                  Write(solutionDetails[23].next_to(solutionDetails[22], DOWN, LARGE_BUFF)))
         rectangleBox = SurroundingRectangle(solutionDetails[23], buff=0.25)
         self.play(Create(rectangleBox))
         self.wait(1.25)
         self.play(FadeOut(solutionDetails[21:24], rectangleBox))
         self.play(Write(solutionDetails[24].next_to(solutionDetails[19], DOWN, LARGE_BUFF)))
+        solutionDetails[24][0][20:24].set_color(BLUE)
+        solutionDetails[24][0][30:34].set_color(YELLOW)
+        linesDetail_1 = Arrow(solutionDetails[24][0][20:24].get_corner(DL),
+                              solutionDetails[24][0][20:24].get_corner(UR), color=YELLOW)
+        linesDetail_2 = Arrow(solutionDetails[24][0][30:34].get_corner(DL),
+                              solutionDetails[24][0][30:34].get_corner(UR), color=BLUE)
+        tempDetails = VGroup(
+            MathTex(r"-4x", font_size=50, color=YELLOW),
+            MathTex(r"6x", font_size=50, color=BLUE)
+        )
+        self.wait(0.2)
+        self.play(Create(linesDetail_1), Create(linesDetail_2))
+        self.wait(0.2)
+        self.play(Write(tempDetails[0].next_to(solutionDetails[24][0][20:24].get_corner(UR), UP, SMALL_BUFF)),
+                  Write(tempDetails[1].next_to(solutionDetails[24][0][30:34].get_corner(UR), UP, SMALL_BUFF)))
         self.wait(0.5)
-        self.play(TransformMatchingTex(solutionDetails[24], solutionDetails[25].next_to(solutionDetails[19],
+        self.play(FadeOut(linesDetail_1, linesDetail_2, tempDetails, run_time=0.5),
+                  ReplacementTransform(solutionDetails[24], solutionDetails[25].next_to(solutionDetails[19],
                                                                                         DOWN,
                                                                                         LARGE_BUFF)))
         self.wait(0.3)
         self.play(Write(solutionDetails[26].next_to(solutionDetails[25], DOWN, LARGE_BUFF)))
+        solutionDetails[25][0][16:24].set_color(BLUE)
+        linesDetail_1 = Arrow(solutionDetails[25][0][16:24].get_corner(DL),
+                              solutionDetails[25][0][16:24].get_corner(UR), color=YELLOW)
+        tempDetails = MathTex(r"\cos{(4x)}", font_size=50, color=YELLOW)
+        self.play(Create(linesDetail_1))
         self.wait(0.3)
-        self.play(Write(solutionDetails[27].next_to(solutionDetails[26], DOWN, LARGE_BUFF)))
+        self.play(Write(tempDetails.next_to(solutionDetails[25][0][16:24].get_corner(UR), UP, SMALL_BUFF)))
+        self.wait(0.3)
+        solutionDetails[25][0][16:24].set_color(WHITE)
+        self.play(FadeOut(linesDetail_1, tempDetails, run_time=0.5),
+                  Write(solutionDetails[27].next_to(solutionDetails[26], DOWN, LARGE_BUFF)))
         rectangleBox = SurroundingRectangle(solutionDetails[27], buff=0.25)
         self.play(Create(rectangleBox))
         self.wait(1.25)
@@ -233,11 +284,12 @@ class ProblemSolution(Scene):
                               Write(tempText[2].next_to(solutionDetails[i][0][92:96].get_corner(UR), UP, SMALL_BUFF)),
                               Write(tempText[3].next_to(solutionDetails[i][0][99:103].get_corner(UR), UP, SMALL_BUFF)))
                     self.wait(0.5)
-                    self.play(FadeOut(linesDetail_1, linesDetail_2, linesDetail_3, linesDetail_4, tempText, run_time=0.5),
-                              ReplacementTransform(solutionDetails[i],
-                                                   solutionDetails[i + 1].next_to(solutionDetails[32],
-                                                                                  DOWN, LARGE_BUFF))
-                              )
+                    self.play(
+                        FadeOut(linesDetail_1, linesDetail_2, linesDetail_3, linesDetail_4, tempText, run_time=0.5),
+                        ReplacementTransform(solutionDetails[i],
+                                             solutionDetails[i + 1].next_to(solutionDetails[32],
+                                                                            DOWN, LARGE_BUFF))
+                        )
                 case 35:
                     self.wait(0.2)
                     solutionDetails[i][0][39:47].set_color(BLUE)
@@ -256,8 +308,9 @@ class ProblemSolution(Scene):
                               )
                     self.wait(0.5)
                 case 36:
-                    self.play(ReplacementTransform(solutionDetails[i], solutionDetails[i+1].next_to(solutionDetails[32],
-                                                                                                    DOWN, LARGE_BUFF)))
+                    self.play(
+                        ReplacementTransform(solutionDetails[i], solutionDetails[i + 1].next_to(solutionDetails[32],
+                                                                                                DOWN, LARGE_BUFF)))
 
         self.wait(1.25)
         self.play(FadeOut(solutionDetails[28], solutionDetails[31:33], solutionDetails[37]))
@@ -266,7 +319,7 @@ class ProblemSolution(Scene):
         self.play(Write(solutionDetails[38]))
         self.wait(0.3)
         for i in range(39, 41):
-            self.play(Write(solutionDetails[i].next_to(solutionDetails[i-1], DOWN, LARGE_BUFF)))
+            self.play(Write(solutionDetails[i].next_to(solutionDetails[i - 1], DOWN, LARGE_BUFF)))
             self.wait(0.3)
         self.play(Write(solutionDetails[37].next_to(solutionDetails[40], DOWN, LARGE_BUFF)))
         self.wait(0.2)
@@ -332,12 +385,34 @@ class ProblemSolution(Scene):
         self.play(ReplacementTransform(solutionDetails[46], solutionDetails[47].next_to(solutionDetails[45], DOWN,
                                                                                         LARGE_BUFF)))
         self.wait(0.3)
-        solutionDetails[46][0][23:25].set_color(BLUE)
-        solutionDetails[46][0][26:30].set_color(YELLOW)
-        solutionDetails[46][0][35:39].set_color(YELLOW)
-        linesDetail_1 = CurvedArrow(solutionDetails[46][0][23:25].get_top(),
-                                    solutionDetails[46][0][26:30].get_top(), color=YELLOW)
-        linesDetail_2 = CurvedArrow(solutionDetails[46][0][23:25].get_top(),
-                                    solutionDetails[46][0][35:39].get_top(), color=BLUE)
+        solutionDetails[47][0][23:25].set_color(BLUE)
+        solutionDetails[47][0][26:30].set_color(YELLOW)
+        solutionDetails[47][0][35:39].set_color(YELLOW)
+        linesDetail_1 = CurvedArrow(solutionDetails[47][0][23:25].get_top(),
+                                    solutionDetails[47][0][26:30].get_top(), radius=-5, color=BLUE)
+        linesDetail_2 = CurvedArrow(solutionDetails[47][0][23:25].get_top(),
+                                    solutionDetails[47][0][35:39].get_top(), radius=-3, color=BLUE)
+        linesDetail_3 = Arrow(solutionDetails[47][0][26:30].get_corner(UR),
+                              solutionDetails[47][0][26:30].get_corner(DL), color=BLUE)
+        linesDetail_4 = Arrow(solutionDetails[47][0][35:39].get_corner(UR),
+                              solutionDetails[47][0][35:39].get_corner(DL), color=BLUE)
+        tempText = VGroup(
+            MathTex(r"10", font_size=50, color=YELLOW),
+            MathTex(r"2", font_size=50, color=BLUE)
+        )
         self.play(Create(linesDetail_1), Create(linesDetail_2))
-        self.wait(1.25)
+        self.wait(0.5)
+        self.play(Create(linesDetail_3), Create(linesDetail_4))
+        self.wait(0.3)
+        self.play(Write(tempText[0].next_to(solutionDetails[47][0][26:30].get_corner(DL), DOWN, SMALL_BUFF)),
+                  Write(tempText[1].next_to(solutionDetails[47][0][35:39].get_corner(DL), DOWN, SMALL_BUFF)))
+        self.wait(1)
+        self.play(FadeOut(linesDetail_1, linesDetail_2, linesDetail_3, linesDetail_4, tempText, run_time=0.5),
+                  ReplacementTransform(solutionDetails[47], solutionDetails[48].next_to(solutionDetails[45], DOWN,
+                                                                                        LARGE_BUFF)))
+        self.wait(0.2)
+        solutionDetails[48][0][23:38].set_color(YELLOW)
+        rectangleBox = SurroundingRectangle(solutionDetails[48], buff=0.5)
+        self.play(Create(rectangleBox))
+        self.wait(1.5)
+        self.play(FadeOut(solutionDetails[48], rectangleBox, solutionDetails[45]))
