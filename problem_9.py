@@ -20,18 +20,83 @@ class problemStatement(Scene):
 class problemSolution(Scene):
     def construct(self):
         Tex.set_default(font_size=85)
-        MathTex.set(font_size=75)
+        MathTex.set_default(font_size=75)
         solutionLines = VGroup(
             Tex(r"\begin{minipage}{6 cm}"
                 r"To determine the equilibrium size, the growth rate must be equal to zero:"
                 r"\end{minipage}"),
             MathTex(r"\frac{dx}{dt}=x(b-ax)"),
+            MathTex(r"0=x(b-ax)"),
+            MathTex(r"\begin{cases}"
+                    r"x=0 \\"
+                    r"b-ax=0"
+                    r"\end{cases}"),
+            MathTex(r"\begin{cases}"
+                    r"x=0 \\"
+                    r"ax=b"
+                    r"\end{cases}"),
+            MathTex(r"\begin{cases}"
+                    r"x=0 \\"
+                    r"x=\frac{b}{a}"
+                    r"\end{cases}"),
+            Tex(r"\begin{minipage}{6 cm}"
+                r"The equilibrium size must be non-zero, therefore:"
+                r"\end{minipage}"),
+            MathTex(r"x=\frac{b}{a}"),
+            Tex(r"\begin{minipage}{6 cm}"
+                r"For maximum rate of growth, the second derivative must be equal to zero:"
+                r"\end{minipage}"),
+            MathTex(r"\frac{dx}{dt}=x(b-ax)"),
             MathTex(r"\frac{dx}{dt}=bx-ax^{2}"),
-            Tex("Differentiate both sides with respect to $t$:"),
             MathTex(r"\frac{d}{dt}\left[\frac{dx}{dt}=bx-ax^{2}\right]"),
             MathTex(r"\frac{d^{2}x}{dt^{2}}=\frac{d}{dt}[bx-ax^{2}]"),
             MathTex(r"\frac{d^{2}x}{dt^{2}}=b\frac{dx}{dt}-2ax\frac{dx}{dt}"),
-            Tex(r"For maximum rate of growth, the second derivative must be equal to zero:"),
+            MathTex(r"0=b\frac{dx}{dt}-2ax\frac{dx}{dt}"),
+            MathTex(r"0=(b-2ax)\frac{dx}{dt}"),
+            Tex(r"\begin{minipage}{6 cm}"
+                r"Since $dx/dt=x(b-ax)$:"
+                r"\end{minipage}"),
+            MathTex(r"0=(b-2ax)(x)(b-ax)"),
+            Tex(r"Solving for $x$:"),
+            MathTex(r"0 = "
+                    r"\begin{cases}"
+                    r"x \\"
+                    r"b-ax \\"
+                    r"b-2ax"
+                    r"\end{cases}"),
+            MathTex(r"\begin{cases}"
+                    r"x = 0 \\"
+                    r"b-ax = 0"
+                    r"b-2ax = 0"
+                    r"\end{cases}"),
 
         )
 
+        solutionLines[0].move_to(5 * UP)
+        self.play(Write(solutionLines[0]))
+        self.wait(0.3)
+        self.play(Write(solutionLines[1].next_to(solutionLines[0], DOWN, LARGE_BUFF)))
+        self.wait(0.3)
+        solutionLines[1][0][0:5].set_color(YELLOW)
+        arrowLines = Arrow(solutionLines[1][0][0:5].get_corner(DL),
+                           solutionLines[1][0][0:5].get_corner(UR), color=BLUE)
+        tempText = MathTex(r"0", font_size=50, color=BLUE)
+        self.play(Create(arrowLines))
+        self.play(Write(tempText.next_to(solutionLines[1][0][0:5].get_corner(UR), UP, SMALL_BUFF)))
+        self.wait(0.5)
+        self.play(FadeOut(arrowLines, tempText, run_time=0.5))
+        self.play(ReplacementTransform(solutionLines[1], solutionLines[2].next_to(solutionLines[0], DOWN,
+                                                                                  LARGE_BUFF)))
+        self.wait(0.5)
+        for i in range(3, 6):
+            self.play(ReplacementTransform(solutionLines[i-1], solutionLines[i].next_to(solutionLines[0], DOWN,
+                                                                                        LARGE_BUFF)))
+            self.wait(0.5)
+
+        for i in range(6, 8):
+            self.play(Write(solutionLines[i].next_to(solutionLines[i-1], DOWN, LARGE_BUFF)))
+            self.wait(0.3)
+        boxRectangle = SurroundingRectangle(solutionLines[7], buff=0.5)
+        self.play(Create(boxRectangle))
+        self.wait(1.25)
+        self.play(FadeOut(solutionLines[0], solutionLines[5:8], boxRectangle))
