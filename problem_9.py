@@ -37,7 +37,7 @@ class problemSolution(Scene):
                     r"\end{cases}"),
             MathTex(r"\begin{cases}"
                     r"x=0 \\"
-                    r"x=\frac{b}{a}"
+                    r"x=b/a"
                     r"\end{cases}"),
             Tex(r"\begin{minipage}{6 cm}"
                 r"The equilibrium size must be non-zero, therefore:"
@@ -54,9 +54,7 @@ class problemSolution(Scene):
             MathTex(r"\frac{d^{2}x}{dt^{2}}=b\frac{dx}{dt}-2ax\frac{dx}{dt}"),
             MathTex(r"0=b\frac{dx}{dt}-2ax\frac{dx}{dt}"),
             MathTex(r"0=(b-2ax)\frac{dx}{dt}"),
-            Tex(r"\begin{minipage}{6 cm}"
-                r"Since $dx/dt=x(b-ax)$:"
-                r"\end{minipage}"),
+            Tex(r"Since $dx/dt=x(b-ax)$:"),
             MathTex(r"0=(b-2ax)(x)(b-ax)"),
             Tex(r"Solving for $x$:"),
             MathTex(r"0 = "
@@ -75,13 +73,14 @@ class problemSolution(Scene):
                     r"ax = b \\"
                     r"2ax = b"
                     r"\end{cases}"),
-            MathTex(r"\begin{cases}"
-                    r"x = 0 \\"
-                    r"x = \frac{b}{a} \\"
-                    r"x = \frac{b}{2a}"
+            MathTex(r"x = "
+                    r"\begin{cases}"
+                    r"0 \\"
+                    r"b/a \\"
+                    r"b/2a"
                     r"\end{cases}"),
             Tex(r"\begin{minipage}{6 cm}"
-                r"Substituting the values of x to determine the maximum rate of change:"
+                r"Substituting the values of x to \\determine the maximum rate of change:"
                 r"\end{minipage}"),
             Tex(r"if $x=0$"),
             MathTex(r"\frac{dx}{dt}=x(b-ax)"),
@@ -152,5 +151,55 @@ class problemSolution(Scene):
         for i in range(11, 17):
             self.play(ReplacementTransform(solutionLines[i-1], solutionLines[i].next_to(solutionLines[9], DOWN,
                                                                                         LARGE_BUFF)))
+            if i == 14:
+                solutionLines[i][0][0:7].set_color(BLUE)
+                arrowLines = Arrow(solutionLines[i][0][0:7].get_corner(DL),
+                                   solutionLines[i][0][0:7].get_corner(UR), color=YELLOW)
+                tempText = MathTex(r"0", font_size=50, color=BLUE)
+                self.play(Create(arrowLines))
+                self.play(Write(tempText.next_to(solutionLines[i][0][0:7].get_corner(UR), UP, SMALL_BUFF)))
+                self.wait(0.5)
+                self.play(FadeOut(arrowLines, tempText, run_time=0.5))
+            else:
+                self.wait(0.5)
+        self.play(Write(solutionLines[17].next_to(solutionLines[16], DOWN, LARGE_BUFF)))
+        solutionLines[17][0][5:].set_color(BLUE)
+        self.wait(0.3)
+        self.play(ReplacementTransform(solutionLines[16], solutionLines[18].next_to(solutionLines[17], DOWN,
+                                                                                    LARGE_BUFF)))
+        self.play(solutionLines[17].animate.move_to(4 * UP))
+        self.play(solutionLines[18].animate.move_to(2 * UP))
+        self.wait(0.3)
+        self.play(Write(solutionLines[19].next_to(solutionLines[18], DOWN, LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(Write(solutionLines[20].next_to(solutionLines[19], DOWN, LARGE_BUFF)))
+        self.wait(0.5)
+        for i in range(21, 24):
+            self.play(ReplacementTransform(solutionLines[i-1], solutionLines[i].next_to(solutionLines[19], DOWN,
+                                                                                        LARGE_BUFF)))
             self.wait(0.5)
+        self.wait(1.25)
+        self.play(FadeOut(solutionLines[9], solutionLines[23], solutionLines[17:20]))
+
+        solutionLines[24].move_to(3 * UP)
+        self.play(Write(solutionLines[24]))
+        self.wait(0.3)
+        self.play(Write(solutionLines[25].next_to(solutionLines[24], DOWN, LARGE_BUFF)))
+        solutionLines[25][0][2:].set_color(BLUE)
+        self.wait(0.3)
+        self.play(Write(solutionLines[26].next_to(solutionLines[25], DOWN, LARGE_BUFF)))
+        self.wait(0.5)
+        for i in range(27, 29):
+            self.play(ReplacementTransform(solutionLines[i-1], solutionLines[i].next_to(solutionLines[25], DOWN,
+                                                                                        LARGE_BUFF)))
+            self.wait(0.5)
+        boxRectangle = SurroundingRectangle(solutionLines[28], buff=0.5)
+        self.play(Create(boxRectangle))
+        self.wait(1)
+        self.play(FadeOut(solutionLines[25], solutionLines[28], boxRectangle))
+        self.wait(0.2)
+        self.play(Write(solutionLines[29]))
+        solutionLines[29][0][2:].set_color(YELLOW)
+        self.wait(0.3)
+        self.play(Write(solutionLines[30].next_to(solutionLines[29], DOWN, LARGE_BUFF)))
         self.wait(1.25)
