@@ -43,8 +43,9 @@ class problemSolution(Scene):
                 r"The equilibrium size must be non-zero, therefore:"
                 r"\end{minipage}"),
             MathTex(r"x=\frac{b}{a}"),
+            MathTex(r"n_{eq}=\frac{b}{a}"),
             Tex(r"\begin{minipage}{6 cm}"
-                r"For maximum rate of growth, the second derivative must be equal to zero:"
+                r"For maximum rate of growth, the \\second derivative must be equal to zero:"
                 r"\end{minipage}"),
             MathTex(r"\frac{dx}{dt}=x(b-ax)"),
             MathTex(r"\frac{dx}{dt}=bx-ax^{2}"),
@@ -66,10 +67,51 @@ class problemSolution(Scene):
                     r"\end{cases}"),
             MathTex(r"\begin{cases}"
                     r"x = 0 \\"
-                    r"b-ax = 0"
+                    r"b-ax = 0 \\"
                     r"b-2ax = 0"
                     r"\end{cases}"),
-
+            MathTex(r"\begin{cases}"
+                    r"x = 0 \\"
+                    r"ax = b \\"
+                    r"2ax = b"
+                    r"\end{cases}"),
+            MathTex(r"\begin{cases}"
+                    r"x = 0 \\"
+                    r"x = \frac{b}{a} \\"
+                    r"x = \frac{b}{2a}"
+                    r"\end{cases}"),
+            Tex(r"\begin{minipage}{6 cm}"
+                r"Substituting the values of x to determine the maximum rate of change:"
+                r"\end{minipage}"),
+            Tex(r"if $x=0$"),
+            MathTex(r"\frac{dx}{dt}=x(b-ax)"),
+            MathTex(r"\frac{dx}{dt}=0[b-a(0)]"),
+            MathTex(r"\frac{dx}{dt}=0"),
+            Tex("if $x = b/a$"),
+            MathTex(r"\frac{dx}{dt}=x(b-ax)"),
+            MathTex(r"\frac{dx}{dt}=\left(\frac{b}{a}\right)\left[b-a\left(\frac{b}{a}\right)\right]"),
+            MathTex(r"\frac{dx}{dt}=\left(\frac{b}{a}\right)(b-b)"),
+            MathTex(r"\frac{dx}{dt}=\left(\frac{b}{a}\right)(0)"),
+            MathTex(r"\frac{dx}{dt}=0"),
+            Tex("if $x = b/2a$"),
+            MathTex(r"\frac{dx}{dt}=x(b-ax)"),
+            MathTex(r"\frac{dx}{dt}=\left(\frac{b}{2a}\right)\left[b-a\left(\frac{b}{2a}\right)\right]"),
+            MathTex(r"\frac{dx}{dt}=\left(\frac{b}{2a}\right)\left(b-\frac{b}{2}\right)"),
+            MathTex(r"\frac{dx}{dt}=\left(\frac{b}{2a}\right)\left(\frac{b}{2}\right)"),
+            MathTex(r"\frac{dx}{dt}=\frac{b^{2}}{4a}"),
+            Tex(r"\begin{minipage}{6 cm}"
+                r"By comparing different values, we have:"
+                r"\end{minipage}"),
+            MathTex(r"\frac{dx}{dt} = "
+                    r"\begin{cases}"
+                    r"0 \quad \mathrm{if } x = 0 \\"
+                    r"0 \quad \mathrm{if } x = b/a"
+                    r"\frac{b^{2}}{4a} & \quad \mathrm{if } x = b/2a"
+                    r"\end{cases}"),
+            Tex(r"\begin{minipage}{6 cm}"
+                r"Therefore, the maximum rate of growth is:"
+                r"\end{minipage}"),
+            MathTex(r"x = \frac{b}{2a}")
         )
 
         solutionLines[0].move_to(5 * UP)
@@ -96,7 +138,19 @@ class problemSolution(Scene):
         for i in range(6, 8):
             self.play(Write(solutionLines[i].next_to(solutionLines[i-1], DOWN, LARGE_BUFF)))
             self.wait(0.3)
-        boxRectangle = SurroundingRectangle(solutionLines[7], buff=0.5)
+        self.play(ReplacementTransform(solutionLines[7], solutionLines[8].next_to(solutionLines[6], DOWN, LARGE_BUFF)))
+        boxRectangle = SurroundingRectangle(solutionLines[8], buff=0.5)
         self.play(Create(boxRectangle))
         self.wait(1.25)
-        self.play(FadeOut(solutionLines[0], solutionLines[5:8], boxRectangle))
+        self.play(FadeOut(solutionLines[0], solutionLines[5:7], solutionLines[8], boxRectangle))
+
+        solutionLines[9].move_to(6 * UP)
+        self.play(Write(solutionLines[9]))
+        self.wait(0.3)
+        self.play(Write(solutionLines[10].next_to(solutionLines[9], DOWN, LARGE_BUFF)))
+        self.wait(0.5)
+        for i in range(11, 17):
+            self.play(ReplacementTransform(solutionLines[i-1], solutionLines[i].next_to(solutionLines[9], DOWN,
+                                                                                        LARGE_BUFF)))
+            self.wait(0.5)
+        self.wait(1.25)
