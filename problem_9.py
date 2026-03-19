@@ -192,7 +192,17 @@ class problemSolution(Scene):
         for i in range(27, 29):
             self.play(ReplacementTransform(solutionLines[i-1], solutionLines[i].next_to(solutionLines[25], DOWN,
                                                                                         LARGE_BUFF)))
-            self.wait(0.5)
+            if i == 27:
+                solutionLines[i][0][6:].set_color(YELLOW)
+                arrowLines = Arrow(solutionLines[i][0][6:].get_corner(DL),
+                                   solutionLines[i][0][6:].get_corner(UR), color=BLUE)
+                tempText = MathTex(r"0", font_size=50, color=BLUE)
+                self.play(Create(arrowLines))
+                self.play(Write(tempText.next_to(solutionLines[i][0][6:].get_corner(UR), UP, SMALL_BUFF)))
+                self.wait(0.5)
+                self.play(FadeOut(arrowLines, tempText, run_time=0.4))
+            else:
+                self.wait(0.5)
         boxRectangle = SurroundingRectangle(solutionLines[28], buff=0.5)
         self.play(Create(boxRectangle))
         self.wait(1)
@@ -202,4 +212,8 @@ class problemSolution(Scene):
         solutionLines[29][0][2:].set_color(YELLOW)
         self.wait(0.3)
         self.play(Write(solutionLines[30].next_to(solutionLines[29], DOWN, LARGE_BUFF)))
+        for i in range(31, 35):
+            self.play(ReplacementTransform(solutionLines[i-1], solutionLines[i].next_to(solutionLines[29], DOWN,
+                                                                                        LARGE_BUFF)))
+            self.wait(0.5)
         self.wait(1.25)
