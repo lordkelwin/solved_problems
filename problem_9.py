@@ -103,9 +103,9 @@ class problemSolution(Scene):
                 r"\end{minipage}"),
             MathTex(r"\frac{dx}{dt} = "
                     r"\begin{cases}"
-                    r"0 \quad \mathrm{if} \, x = 0 \\"
-                    r"0 \quad \mathrm{if} \, x = b/a \\"
-                    r"\frac{b^{2}}{4a} & \quad \mathrm{if} \, x = b/2a"
+                    r"0 \qquad \qquad \mathrm{if} \, x = 0 \\"
+                    r"0 \qquad \qquad \mathrm{if} \, x = b/a \\"
+                    r"b^{2}/4a \qquad \mathrm{if} \, x = b/2a"
                     r"\end{cases}"),
             Tex(r"\begin{minipage}{6 cm}"
                 r"Therefore, the maximum rate of growth is:"
