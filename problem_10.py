@@ -47,7 +47,7 @@ class ProblemSolution(Scene):
             Tex(r"Raise both sides by $\mathrm{e}$:"),
             MathTex(r"e^{\ln{(T-70)}}=e^{(-kt+C)}"),
             Tex(r"\begin{minipage}{5cm}"
-                r"Take note some of the exponential identities:"
+                r"Take note some of the \\exponential identities:"
                 r"\end{minipage}"),
             MathTex(r"e^{\ln{x}}=x \quad e^{(a+b)}=e^{a} e^{b}"),
             MathTex(r"T-70=e^{-kt}e^{C}"),
@@ -73,7 +73,9 @@ class ProblemSolution(Scene):
             MathTex(r"-k=\ln{\left(\frac{39}{52}\right)"),
             MathTex(r"-1 \times -k=\ln{\left(\frac{39}{52}\right)} \times -1"),
             MathTex(r"k=-\ln{\left(\frac{39}{52}\right)}"),
-            Tex("The equation of temperature as a function of time:"),
+            Tex(r"\begin{minipage}{5cm}"
+                r"The equation of temperature as a function of time:"
+                r"\end{minipage}"),
             MathTex(r"T=70-52e^{-t(-\ln{\left(\frac{39}{52}\right)}"),
             MathTex(r"T=70-52e^{t\ln{\left(\frac{39}{52}\right)}"),
             Tex(r"Solving for the temperature at $t=5$:"),
@@ -204,12 +206,14 @@ class ProblemSolution(Scene):
             self.play(ReplacementTransform(solutions[i-1], solutions[i].next_to(solutions[28], DOWN, LARGE_BUFF)))
             if i == 30:
                 solutions[i][0][:2].set_color(BLUE)
-                solutions[i][0][3:5].set_color(YELLOW)
-                arrowLines_1 = CurvedArrow(solutions[i][0][3:5].get_top(),
-                                           solutions[i][0][:2].get_top(), color=YELLOW)
-                self.play(Create(arrowLines_1))
+                solutions[i][0][6:].set_color(YELLOW)
+                arrowLines_1 = CurvedArrow(solutions[i][0][:2].get_bottom(),
+                                           solutions[i][0][6].get_bottom(), color=YELLOW)
+                arrowLines_2 = CurvedArrow(solutions[i][0][6:].get_top(),
+                                           solutions[i][0][0].get_top(), color=BLUE)
+                self.play(Create(arrowLines_1), Create(arrowLines_2))
                 self.wait(0.5)
-                self.play(FadeOut(arrowLines_1, run_time=0.35))
+                self.play(FadeOut(arrowLines_1, arrowLines_2, run_time=0.35))
             elif i == 31:
                 solutions[i][0][6:].set_color(BLUE)
                 arrowLines_1 = Arrow(solutions[i][0][6:].get_corner(DL),
@@ -254,12 +258,12 @@ class ProblemSolution(Scene):
             else:
                 self.wait(0.5)
         BoxRectangle_2 = SurroundingRectangle(solutions[40], buff=0.5)
-        self.play(Create(BoxRectangle_1))
+        self.play(Create(BoxRectangle_2))
         self.wait(1.25)
         self.play(FadeOut(BoxRectangle_1, BoxRectangle_2, solutions[40], solutions[35], solutions[28],
                           solutions[27], solutions[22], solutions[6]))
 
-        solutions[41].move_to(6 * UP)
+        solutions[41].move_to(3 * UP)
         self.play(Write(solutions[41]))
         self.wait(0.3)
         self.play(Write(solutions[42].next_to(solutions[41], DOWN, LARGE_BUFF)))
