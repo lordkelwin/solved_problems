@@ -34,7 +34,7 @@ class ProblemSolution(Scene):
                 r"proportional to the number of uninfected students, $100-I$:"
                 r"\end{minipage}"),
             MathTex(r"\frac{dI}{dt}=kI(100-I)"),
-            MathTex(r"\frac{1}{(dt)(I)(100-I)} \times \frac{dI}{dt} = kI(100-I) \times \frac{1}{(dt)(I)(100-I)}"),
+            MathTex(r"\frac{dt}{(I)(100-I)} \times \frac{dI}{dt} = kI(100-I) \times \frac{dt}{(I)(100-I)}"),
             MathTex(r"\frac{dI}{I(100-I)}=k\:dt"),
             Tex(r"Integrating both sides:"),
             MathTex(r"\int \left[\frac{dI}{I(100-I)}=k\:dt\right]"),
@@ -67,9 +67,49 @@ class ProblemSolution(Scene):
             MathTex(r"I=\left(ce^{100kt}\right)(100-I)"),
             MathTex(r"I=100ce^{100kt}-Ice^{100kt}"),
             MathTex(r"I+Ice^{100kt}=100ce^{100kt}"),
-            MathTex(r"I\left(1+e^{100kt}\right)=100ce^{100kt}"),
-            MathTex(r"\frac{1}{1+e^{100kt}}\times{I\left(1+e^{100kt}\right)}=\left(100ce^{100kt}\right)"
-                    r"\times{\frac{1}{1+e^{100kt}}"),
-            MathTex(r"I=\frac{100ce^{100kt}}{1+e^{100kt}}"),
-            Tex(r"Solving for c, when $t=0$, $I=1$:")
+            MathTex(r"I\left(1+ce^{100kt}\right)=100ce^{100kt}"),
+            MathTex(r"\frac{1}{1+ce^{100kt}}\times{I\left(1+e^{100kt}\right)}=\left(100ce^{100kt}\right)"
+                    r"\times{\frac{1}{1+ce^{100kt}}"),
+            MathTex(r"I=\frac{100ce^{100kt}}{1+ce^{100kt}}"),
+            Tex(r"Solving for c, when $t=0$, $I=1$:"),
+            MathTex(r"1=\frac{100ce^{100k(0)}}{1+ce^{100k(0)}}"),
+            MathTex(r"1=\frac{100ce^{0}}{1+ce^{0}"),
+            MathTex(r"1=\frac{100c}{1+c}"),
+            MathTex(r"(1+c)\times{1}=\frac{100c}{1+c}\times{(1+c)}"),
+            MathTex(r"1+c=100c"),
+            MathTex(r"100c-c=1"),
+            MathTex(r"99c=1"),
+            MathTex(r"\frac{1}{99}\times{99c}=1\times{\frac{1}{99}}"),
+            MathTex(r"c=\frac{1}{99}"),
+            Tex(r"Substitute $c=1/99$ in the equation:"),
+            MathTex(r"I=\frac{\frac{100}{99}e^{100kt}}{1+\frac{1}{99}e^{100kt}}"),
+            MathTex(r"I=\frac{\frac{100}{99}e^{100kt}}{1+\frac{1}{99}e^{100kt}}\times{\frac{99}{99}}"),
+            MathTex(r"I=\frac{100e^{100kt}}{99+e^{100kt}}")
         )
+
+        solution[0].move_to(5 * UP)
+        self.play(Write(solution[0]))
+        self.wait(0.3)
+        self.play(Write(solution[1].next_to(solution[0], DOWN, LARGE_BUFF)))
+        self.wait(0.5)
+        for i in range(2, 4):
+            self.play(ReplacementTransform(solution[i-1], solution[i].next_to(solution[0], DOWN, LARGE_BUFF)))
+            if i == 2:
+                solution[i][0][:2].set_color(YELLOW)
+                solution[i][0][17:19].set_color(BLUE)
+                solution[i][0][21:29].set_color(BLUE)
+                solution[i][0][33:].set_color(YELLOW)
+                arrowLine_1 = Line(solution[i][0][:2].get_corner(DL),
+                                   solution[i][0][:2].get_corner(UR), color=BLUE)
+                arrowLine_2 = Line(solution[i][0][17:19].get_corner(DL),
+                                   solution[i][0][17:19].get_corner(UR), color=YELLOW)
+                arrowLine_3 = Line(solution[i][0][21:29].get_corner(DL),
+                                   solution[i][0][21:29].get_corner(UR), color=YELLOW)
+                arrowLine_4 = Line(solution[i][0][33:].get_corner(DL),
+                                   solution[i][0][33:].get_corner(UR), color=BLUE)
+                self.play(Create(arrowLine_1), Create(arrowLine_2), Create(arrowLine_3), Create(arrowLine_4))
+                self.wait(0.5)
+                self.play(FadeOut(arrowLine_1, arrowLine_2, arrowLine_3, arrowLine_4, run_time=0.35))
+            else:
+                self.wait(0.5)
+
