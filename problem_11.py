@@ -49,5 +49,27 @@ class ProblemSolution(Scene):
             MathTex(r"A = \frac{1}{100}"),
             MathTex(r"B = \lim_{I->100} \frac{1}{I}"),
             MathTex(r"B = \frac{1}{100}"),
-
+            Tex(r"\begin{minipage}{5.5cm}"
+                r"Substitute the coefficients and evaluate the integral:"
+                r"\end{minipage}"),
+            MathTex(r"\int \left[\frac{1}{100}\left(\frac{1}{I}+\frac{1}{100-I}\,dI\right)\right]=\int k\:dt"),
+            MathTex(r"\frac{1}{100}\left[\int\frac{dI}{I}+\int\frac{dI}{100-I}\right]=\int k\:dt"),
+            MathTex(r"100 \times \frac{1}{100}\left[\int\frac{dI}{I}+\int\frac{dI}{100-I}\right]=\int k\:dt "
+                    r"\times 100"),
+            MathTex(r"\int\frac{dI}{I}+\int\frac{dI}{100-I}=100 \int k\:dt"),
+            MathTex(r"\ln{I}-\ln{(100-I)}=100kt + C"),
+            MathTex(r"\ln{\left(\frac{I}{100-I}\right)}=100kt+C"),
+            MathTex(r"e^{\ln{\left(\frac{I}{100-I}\right)}}=e^{(100kt+C)}"),
+            MathTex(r"\frac{I}{100-I}=e^{100kt)e^{C}"),
+            Tex(r"Let c=e^{C}:"),
+            MathTex(r"\frac{I}{100-I}=ce^{100kt}"),
+            MathTex(r"(100-I)\times\frac{I}{100-I}=ce^{100kt}\times{(100-I)}"),
+            MathTex(r"I=\left(ce^{100kt}\right)(100-I)"),
+            MathTex(r"I=100ce^{100kt}-Ice^{100kt}"),
+            MathTex(r"I+Ice^{100kt}=100ce^{100kt}"),
+            MathTex(r"I\left(1+e^{100kt}\right)=100ce^{100kt}"),
+            MathTex(r"\frac{1}{1+e^{100kt}}\times{I\left(1+e^{100kt}\right)}=\left(100ce^{100kt}\right)"
+                    r"\times{\frac{1}{1+e^{100kt}}"),
+            MathTex(r"I=\frac{100ce^{100kt}}{1+e^{100kt}}"),
+            Tex(r"Solving for c, when $t=0$, $I=1$:")
         )
