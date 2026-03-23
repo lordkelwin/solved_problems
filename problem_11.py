@@ -34,20 +34,23 @@ class ProblemSolution(Scene):
                 r"proportional to the number of uninfected students, $100-I$:"
                 r"\end{minipage}"),
             MathTex(r"\frac{dI}{dt}=kI(100-I)"),
-            MathTex(r"\frac{dt}{(I)(100-I)} \times \frac{dI}{dt} = kI(100-I) \times \frac{dt}{(I)(100-I)}"),
+            MathTex(r"\frac{dt}{(I)(100-I)} \times \frac{dI}{dt} =\\kI(100-I) \times \frac{dt}{(I)(100-I)}"),
             MathTex(r"\frac{dI}{I(100-I)}=k\:dt"),
             Tex(r"Integrating both sides:"),
             MathTex(r"\int \left[\frac{dI}{I(100-I)}=k\:dt\right]"),
             MathTex(r"\int \frac{dI}{I(100-I)} = \int k\:dt"),
-            Tex(r"Solving for the partial fraction decomposition:"),
+            Tex(r"\begin{minipage}{5.5cm}"
+                r"The left-hand side of the equation requires partial fraction decomposition to integrate:"
+                r"\end{minipage}"),
             MathTex(r"\frac{1}{I(100-I)}=\frac{A}{I}+\frac{B}{100-I}"),
             Tex(r"\begin{minipage}{5.5cm}"
-                r"To solve for the coefficients, Heaviside Method is used:"
+                r"To solve for the coefficients, since this a case 1 partial fraction, "
+                r"\\Heaviside Cover-Up Method is used:"
                 r"\end{minipage}"),
-            MathTex(r"A = \lim_{I->0} \frac{1}{100-I}"),
+            MathTex(r"A = \lim\limits_{I \to 0} \frac{1}{100-I}"),
             MathTex(r"A = \frac{1}{100-0}"),
             MathTex(r"A = \frac{1}{100}"),
-            MathTex(r"B = \lim_{I->100} \frac{1}{I}"),
+            MathTex(r"B = \lim\limits_{I \to 100} \frac{1}{I}"),
             MathTex(r"B = \frac{1}{100}"),
             Tex(r"\begin{minipage}{5.5cm}"
                 r"Substitute the coefficients and evaluate the integral:"
@@ -61,7 +64,7 @@ class ProblemSolution(Scene):
             MathTex(r"\ln{\left(\frac{I}{100-I}\right)}=100kt+C"),
             MathTex(r"e^{\ln{\left(\frac{I}{100-I}\right)}}=e^{(100kt+C)}"),
             MathTex(r"\frac{I}{100-I}=e^{100kt)e^{C}"),
-            Tex(r"Let c=e^{C}:"),
+            Tex(r"Let $c=e^{C}$:"),
             MathTex(r"\frac{I}{100-I}=ce^{100kt}"),
             MathTex(r"(100-I)\times\frac{I}{100-I}=ce^{100kt}\times{(100-I)}"),
             MathTex(r"I=\left(ce^{100kt}\right)(100-I)"),
@@ -112,4 +115,37 @@ class ProblemSolution(Scene):
                 self.play(FadeOut(arrowLine_1, arrowLine_2, arrowLine_3, arrowLine_4, run_time=0.35))
             else:
                 self.wait(0.5)
+
+        self.play(solution[3].animate.shift(DOWN * 2))
+        self.wait(0.3)
+        self.play(Write(solution[4].next_to(solution[0], DOWN, LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(ReplacementTransform(solution[3], solution[5].next_to(solution[4], DOWN, LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(ReplacementTransform(solution[5], solution[6].next_to(solution[4], DOWN, LARGE_BUFF)))
+        self.wait(0.3)
+        for i in range(7, 9):
+            self.play(Write(solution[i].next_to(solution[i-1], DOWN, LARGE_BUFF)))
+            self.wait(0.3)
+        self.wait(1.25)
+        self.play(FadeOut(solution[0], solution[4], solution[6:8]))
+        self.play(solution[8].animate.shift(UP * 13))
+        self.play(Write(solution[9].next_to(solution[8], DOWN, LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(Write(solution[10].next_to(solution[9], DOWN, LARGE_BUFF)))
+        for i in range(11, 13):
+            self.play(ReplacementTransform(solution[i-1], solution[i].next_to(solution[9], DOWN, LARGE_BUFF)))
+            self.wait(0.5)
+        BoxRectangle = SurroundingRectangle(solution[12], buff=0.25)
+        self.play(Create(BoxRectangle))
+        self.wait(0.3)
+        self.play(Write(solution[13].next_to(solution[12], DOWN, LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(ReplacementTransform(solution[13], solution[14].next_to(solution[12], DOWN, LARGE_BUFF)))
+        BoxRectangle_2 = SurroundingRectangle(solution[14], buff=0.25)
+        self.play(Create(BoxRectangle_2))
+        self.wait(1.25)
+        self.play(FadeOut(BoxRectangle, BoxRectangle_2, solution[14], solution[12], solution[8:10]))
+        solution[15].move_to(6 * UP)
+        self.play(Write(solution[15]))
 
