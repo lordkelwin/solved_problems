@@ -53,17 +53,17 @@ class ProblemSolution(Scene):
             MathTex(r"B = \lim\limits_{I \to 100} \frac{1}{I}"),
             MathTex(r"B = \frac{1}{100}"),
             Tex(r"\begin{minipage}{5.5cm}"
-                r"Substitute the coefficients and evaluate the integral:"
+                r"Substitute the coefficients and \\evaluate the integral:"
                 r"\end{minipage}"),
             MathTex(r"\int \left[\frac{1}{100}\left(\frac{1}{I}+\frac{1}{100-I}\,dI\right)\right]=\int k\:dt"),
             MathTex(r"\frac{1}{100}\left[\int\frac{dI}{I}+\int\frac{dI}{100-I}\right]=\int k\:dt"),
-            MathTex(r"100 \times \frac{1}{100}\left[\int\frac{dI}{I}+\int\frac{dI}{100-I}\right]=\int k\:dt "
+            MathTex(r"100 \times \frac{1}{100}\left[\int\frac{dI}{I}+\int\frac{dI}{100-I}\right]\\=\int k\:dt "
                     r"\times 100"),
             MathTex(r"\int\frac{dI}{I}+\int\frac{dI}{100-I}=100 \int k\:dt"),
             MathTex(r"\ln{I}-\ln{(100-I)}=100kt + C"),
             MathTex(r"\ln{\left(\frac{I}{100-I}\right)}=100kt+C"),
             MathTex(r"e^{\ln{\left(\frac{I}{100-I}\right)}}=e^{(100kt+C)}"),
-            MathTex(r"\frac{I}{100-I}=e^{100kt)e^{C}"),
+            MathTex(r"\frac{I}{100-I}=e^{100kt}e^{C}"),
             Tex(r"Let $c=e^{C}$:"),
             MathTex(r"\frac{I}{100-I}=ce^{100kt}"),
             MathTex(r"(100-I)\times\frac{I}{100-I}=ce^{100kt}\times{(100-I)}"),
@@ -148,4 +148,40 @@ class ProblemSolution(Scene):
         self.play(FadeOut(BoxRectangle, BoxRectangle_2, solution[14], solution[12], solution[8:10]))
         solution[15].move_to(6 * UP)
         self.play(Write(solution[15]))
-
+        self.wait(0.3)
+        self.play(Write(solution[16].next_to(solution[15], DOWN, LARGE_BUFF)))
+        self.wait(0.5)
+        for i in range(17, 24):
+            tempText = VGroup(
+                Tex(r"Remember the formula: $\int (du/u) = \ln{u} + C"),
+                Tex(r"From the logarithm property: $\ln{(x/y)}=\ln{x}-\ln{y}$"),
+                Tex(r"Raising both sides by natural logarithm:"),
+                Tex(r"Remember the logarithm property: $e^{\ln{x}}=x$")
+            )
+            self.play(ReplacementTransform(solution[i-1], solution[i].next_to(solution[15], DOWN, LARGE_BUFF)))
+            if i == 18:
+                solution[i][0][:3].set_color(BLUE)
+                solution[i][0][6:9].set_color(YELLOW)
+                arrowLine_1 = Line(solution[i][0][:3].get_corner(DL),
+                                   solution[i][0][:3].get_corner(UR), color=YELLOW)
+                arrowLine_2 = Line(solution[i][0][6:9].get_corner(DL),
+                                   solution[i][0][6:9].get_corner(UR), color=BLUE)
+                self.play(Create(arrowLine_1), Create(arrowLine_2))
+                self.wait(0.5)
+                self.play(FadeOut(arrowLine_1, arrowLine_2, run_time=0.35))
+            elif i == 19:
+                self.play(solution[i].animate.shift(DOWN * 2))
+                self.play(Write(tempText[0].next_to(solution[15], DOWN, LARGE_BUFF)))
+                self.wait(0.5)
+            elif i == 20:
+                self.play(ReplacementTransform(tempText[0], tempText[1].next_to(solution[15], DOWN, LARGE_BUFF)))
+                self.wait(0.5)
+            elif i == 21:
+                self.play(ReplacementTransform(tempText[1], tempText[2].next_to(solution[15], DOWN, LARGE_BUFF)))
+                self.wait(0.5)
+            elif i == 22:
+                self.play(ReplacementTransform(tempText[2], tempText[3].next_to(solution[15], DOWN, LARGE_BUFF)))
+                self.wait(0.5)
+            else:
+                self.wait(0.5)
+        self.wait(1.25)
