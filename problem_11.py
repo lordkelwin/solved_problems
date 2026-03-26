@@ -30,7 +30,7 @@ class ProblemSolution(Scene):
         Tex.set_default(font_size=80)
         solution = VGroup(
             Tex(r"\begin{minipage}{5cm}"
-                r"It was stated that the rate of change with respect to time of the number of infected student $I$ is"
+                r"It was stated that the rate of change with respect to time of the number of infected student $I$ is "
                 r"proportional to the number of uninfected students, $100-I$:"
                 r"\end{minipage}"),
             MathTex(r"\frac{dI}{dt}=kI(100-I)"),
@@ -39,7 +39,7 @@ class ProblemSolution(Scene):
             Tex(r"Integrating both sides:"),
             MathTex(r"\int \left[\frac{dI}{I(100-I)}=k\:dt\right]"),
             MathTex(r"\int \frac{dI}{I(100-I)} = \int k\:dt"),
-            Tex(r"\begin{minipage}{5.5cm}"
+            Tex(r"\begin{minipage}{5cm}"
                 r"The left-hand side of the equation requires partial fraction decomposition to integrate:"
                 r"\end{minipage}"),
             MathTex(r"\frac{1}{I(100-I)}=\frac{A}{I}+\frac{B}{100-I}"),
@@ -155,7 +155,7 @@ class ProblemSolution(Scene):
         tempText = VGroup(
             Tex(r"Remember the formula:\\$\int (du/u) = \ln{u} + C$"),
             Tex(r"From the logarithm property:\\$\ln{(x/y)}=\ln{x}-\ln{y}$"),
-            Tex(r"Raising both sides by\\natural logarithm:"),
+            Tex(r"Raising both sides by\\natural exponent $e$:"),
             Tex(r"Remember the logarithm property:\\$e^{\ln{x}}=x$")
         )
         for i in range(17, 24):
@@ -249,27 +249,115 @@ class ProblemSolution(Scene):
         self.play(FadeOut(BoxRectangle, solution[15], solution[24]))
 
         self.play(solution[32].animate.shift(2 * UP))
-        solution[33].move_to(6 * UP)
         self.play(Write(solution[33].next_to(solution[32], DOWN, LARGE_BUFF)))
         self.wait(0.3)
         self.play(Write(solution[34].next_to(solution[33], DOWN, LARGE_BUFF)))
         solution[34][0][7:14].set_color(YELLOW)
-        solution[34][0][20:].set_color(BLUE)
+        solution[34][0][19:].set_color(BLUE)
         arrowLine_1 = Arrow(solution[34][0][7:14].get_corner(DL),
                             solution[34][0][7:14].get_corner(UR), color=BLUE)
-        arrowLine_2 = Arrow(solution[34][0][20:].get_corner(DL),
-                            solution[34][0][20:].get_corner(UR), color=YELLOW)
+        arrowLine_2 = Arrow(solution[34][0][19:].get_corner(DL),
+                            solution[34][0][19:].get_corner(UR), color=YELLOW)
         tempText = VGroup(
             MathTex(r"0", font_size=50, color=BLUE),
             MathTex(r"0", font_size=50, color=YELLOW)
         )
         self.play(Create(arrowLine_1), Create(arrowLine_2))
         self.wait(0.2)
-        self.play(Write(tempText[0].next_to(solution[34][0][7:14].get_corner(DL), UP, SMALL_BUFF)),
-                  Write(tempText[1].next_to(solution[34][0][20:].get_corner(DL), UP, SMALL_BUFF)))
+        self.play(Write(tempText[0].next_to(solution[34][0][7:14].get_corner(UR), UP, SMALL_BUFF)),
+                  Write(tempText[1].next_to(solution[34][0][20:].get_corner(UR), UP, SMALL_BUFF)))
         self.wait(0.5)
         self.play(FadeOut(arrowLine_1, arrowLine_2, tempText, run_time=0.35))
         for i in range(35, 43):
             self.play(ReplacementTransform(solution[i-1], solution[i].next_to(solution[33], DOWN, LARGE_BUFF)))
-            self.wait(0.5)
+            if i == 35:
+                solution[i][0][6:8].set_color(BLUE)
+                solution[i][0][12:].set_color(YELLOW)
+                arrowLine_1 = Arrow(solution[i][0][6:8].get_corner(DL),
+                                    solution[i][0][6:8].get_corner(UR), color=YELLOW)
+                arrowLine_2 = Arrow(solution[i][0][12:].get_corner(DL),
+                                    solution[i][0][12:].get_corner(UR), color=BLUE)
+                tempText = VGroup(
+                    MathTex(r"1", font_size=50, color=YELLOW),
+                    MathTex(r"1", font_size=50, color=BLUE)
+                )
+                self.play(Create(arrowLine_1), Create(arrowLine_2))
+                self.wait(0.2)
+                self.play(Write(tempText[0].next_to(solution[i][0][6:8].get_corner(UR), UP, SMALL_BUFF)),
+                          Write(tempText[1].next_to(solution[i][0][12:].get_corner(UR), UP, SMALL_BUFF)))
+                self.wait(0.5)
+                self.play(FadeOut(arrowLine_1, arrowLine_2, tempText, run_time=0.2))
+            elif i == 37:
+                solution[i][0][13:16].set_color(BLUE)
+                solution[i][0][17:].set_color(YELLOW)
+                arrowLine_1 = Line(solution[i][0][13:16].get_corner(DL),
+                                   solution[i][0][13:16].get_corner(UR), color=YELLOW)
+                arrowLine_2 = Line(solution[i][0][17:].get_corner(DL),
+                                   solution[i][0][17:].get_corner(UR), color=BLUE)
+                self.play(Create(arrowLine_1), Create(arrowLine_2))
+                self.wait(0.5)
+                self.play(FadeOut(arrowLine_1, arrowLine_2, run_time=0.2))
+            elif i == 38:
+                solution[i][0][2].set_color(BLUE)
+                solution[i][0][4:].set_color(YELLOW)
+                arrowLine_1 = CurvedArrow(solution[i][0][2].get_top(),
+                                          solution[i][0][7].get_top(), radius=-3)
+                self.play(Create(arrowLine_1))
+                self.wait(0.5)
+                self.play(FadeOut(arrowLine_1, run_time=0.2))
+            elif i == 39:
+                solution[i][0][:6].set_color(YELLOW)
+                arrowLine_1 = Arrow(solution[i][0][:6].get_corner(DL),
+                                    solution[i][0][:6].get_corner(UR), color=BLUE)
+                tempText = MathTex(r"99c", font_size=50, color=BLUE)
+                self.play(Create(arrowLine_1))
+                self.wait(0.2)
+                self.play(Write(tempText.next_to(solution[i][0][:6].get_corner(UR), UP, SMALL_BUFF)))
+                self.wait(0.5)
+                self.play(FadeOut(arrowLine_1, tempText, run_time=0.25))
+            elif i == 41:
+                solution[i][0][2:4].set_color(YELLOW)
+                solution[i][0][5:7].set_color(BLUE)
+                arrowLine_1 = Line(solution[i][0][2:4].get_corner(DL),
+                                   solution[i][0][2:4].get_corner(UR), color=BLUE)
+                arrowLine_2 = Line(solution[i][0][5:7].get_corner(DL),
+                                   solution[i][0][5:7].get_corner(UR), color=YELLOW)
+                self.play(Create(arrowLine_1), Create(arrowLine_2))
+                self.wait(0.5)
+                self.play(FadeOut(arrowLine_1, arrowLine_2, run_time=0.25))
+            else:
+                self.wait(0.5)
+        BoxRectangle = SurroundingRectangle(solution[42], buff=0.5)
+        self.play(Create(BoxRectangle))
         self.wait(1.25)
+        self.play(FadeOut(BoxRectangle, solution[42], solution[32:34]))
+
+        solution[43].move_to(2 * UP)
+        self.play(Write(solution[43]))
+        self.wait(0.3)
+        self.play(Write(solution[44].next_to(solution[43], DOWN, LARGE_BUFF)))
+        self.wait(0.5)
+        for i in range(45, 47):
+            self.play(ReplacementTransform(solution[i-1], solution[i].next_to(solution[43], DOWN, LARGE_BUFF)))
+            if i == 45:
+                solution[i][0][6:8].set_color(BLUE)
+                solution[i][0][18:20].set_color(BLUE)
+                solution[i][0][27:29].set_color(YELLOW)
+                solution[i][0][30:].set_color(YELLOW)
+                arrowLine_1 = Line(solution[i][0][6:8].get_corner(DL),
+                                   solution[i][0][6:8].get_corner(UR), color=YELLOW)
+                arrowLine_2 = Line(solution[i][0][18:20].get_corner(DL),
+                                   solution[i][0][18:20].get_corner(UR), color=YELLOW)
+                arrowLine_3 = Line(solution[i][0][27:29].get_corner(DL),
+                                   solution[i][0][27:29].get_corner(UR), color=BLUE)
+                arrowLine_4 = Line(solution[i][0][30:].get_corner(DL),
+                                   solution[i][0][30:].get_corner(UR), color=BLUE)
+                self.play(Create(arrowLine_1), Create(arrowLine_2), Create(arrowLine_3), Create(arrowLine_4))
+                self.wait(0.5)
+                self.play(FadeOut(arrowLine_1, arrowLine_2, arrowLine_3, arrowLine_4, run_time=0.25))
+            else:
+                self.wait(0.5)
+        BoxRectangle = SurroundingRectangle(solution[46], buff=0.5)
+        self.play(Create(BoxRectangle))
+        self.wait(2)
+        self.play(FadeOut(BoxRectangle, solution[46], solution[43]))
