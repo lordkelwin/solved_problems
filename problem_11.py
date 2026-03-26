@@ -87,7 +87,10 @@ class ProblemSolution(Scene):
             Tex(r"Substitute $c=1/99$ in the equation:"),
             MathTex(r"I=\frac{\frac{100}{99}e^{100kt}}{1+\frac{1}{99}e^{100kt}}"),
             MathTex(r"I=\frac{\frac{100}{99}e^{100kt}}{1+\frac{1}{99}e^{100kt}}\times{\frac{99}{99}}"),
-            MathTex(r"I=\frac{100e^{100kt}}{99+e^{100kt}}")
+            MathTex(r"I=\frac{100e^{100kt}}{99+e^{100kt}}"),
+            Tex(r"\begin{minipage}{5cm}"
+                r"At any time $t$, the number of \\infected students is:"
+                r"\end{minipage}")
         )
 
         solution[0].move_to(5 * UP)
@@ -341,23 +344,31 @@ class ProblemSolution(Scene):
             self.play(ReplacementTransform(solution[i-1], solution[i].next_to(solution[43], DOWN, LARGE_BUFF)))
             if i == 45:
                 solution[i][0][6:8].set_color(BLUE)
-                solution[i][0][18:20].set_color(BLUE)
-                solution[i][0][27:29].set_color(YELLOW)
-                solution[i][0][30:].set_color(YELLOW)
+                solution[i][0][19:21].set_color(BLUE)
+                solution[i][0][28:30].set_color(YELLOW)
+                solution[i][0][31:].set_color(YELLOW)
                 arrowLine_1 = Line(solution[i][0][6:8].get_corner(DL),
                                    solution[i][0][6:8].get_corner(UR), color=YELLOW)
-                arrowLine_2 = Line(solution[i][0][18:20].get_corner(DL),
-                                   solution[i][0][18:20].get_corner(UR), color=YELLOW)
-                arrowLine_3 = Line(solution[i][0][27:29].get_corner(DL),
-                                   solution[i][0][27:29].get_corner(UR), color=BLUE)
-                arrowLine_4 = Line(solution[i][0][30:].get_corner(DL),
-                                   solution[i][0][30:].get_corner(UR), color=BLUE)
+                arrowLine_2 = Line(solution[i][0][19:21].get_corner(DL),
+                                   solution[i][0][19:21].get_corner(UR), color=YELLOW)
+                arrowLine_3 = Line(solution[i][0][28:30].get_corner(DL),
+                                   solution[i][0][28:30].get_corner(UR), color=BLUE)
+                arrowLine_4 = Line(solution[i][0][31:].get_corner(DL),
+                                   solution[i][0][31:].get_corner(UR), color=BLUE)
+                arrowLine_5 = CurvedArrow(solution[i][0][31:].get_bottom(),
+                                          solution[i][0][15].get_bottom(), color=BLUE, radius=-3)
+                arrowLine_6 = CurvedArrow(solution[i][0][31:].get_bottom(),
+                                          solution[i][0][17:27].get_bottom(), color=BLUE, radius=-2)
+                self.play(Create(arrowLine_5), Create(arrowLine_6))
+                self.wait(0.25)
                 self.play(Create(arrowLine_1), Create(arrowLine_2), Create(arrowLine_3), Create(arrowLine_4))
                 self.wait(0.5)
-                self.play(FadeOut(arrowLine_1, arrowLine_2, arrowLine_3, arrowLine_4, run_time=0.25))
+                self.play(FadeOut(arrowLine_1, arrowLine_2, arrowLine_3, arrowLine_4, arrowLine_5,
+                          arrowLine_6, run_time=0.25))
             else:
                 self.wait(0.5)
         BoxRectangle = SurroundingRectangle(solution[46], buff=0.5)
+        self.play(ReplacementTransform(solution[43], solution[47].next_to(solution[46], UP, LARGE_BUFF)))
         self.play(Create(BoxRectangle))
         self.wait(2)
-        self.play(FadeOut(BoxRectangle, solution[46], solution[43]))
+        self.play(FadeOut(BoxRectangle, solution[46], solution[47]))
