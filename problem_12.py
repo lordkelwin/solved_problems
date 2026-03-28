@@ -1,3 +1,4 @@
+import numpy as np
 from manim import *
 
 
@@ -24,7 +25,7 @@ class ProblemSolution(Scene):
         Tex.set_default(font_size=75)
         MathTex.set_default(font_size=80)
 
-        ax = Axes(x_range=[-1, 5, 1], y_range=[-1, 8, 1])
+        ax = Axes(x_range=[-1, 5, 1], y_range=[-1, 8, 1], y_length=14)
 
         x_val = [3, 1.5]
         y_val = [2, 5]
@@ -113,6 +114,43 @@ class ProblemSolution(Scene):
         self.wait(0.5)
         for i in range(11, 17):
             self.play(ReplacementTransform(lines[i-1], lines[i].next_to(lines[8], DOWN, LARGE_BUFF)))
+            if i == 14:
+                lines[i][0][:14].set_color(YELLOW)
+                arrowLines_1 = CurvedArrow(lines[i][0][:14].get_bottom(),
+                                           lines[i][0][14:].get_bottom(), color=BLUE)
+                self.play(Create(arrowLines_1))
+                self.wait(0.5)
+                self.play(FadeOut(arrowLines_1, run_time=0.3))
             self.wait(0.5)
+        lines[16].set_color(BLUE)
+        BoxRectangle = SurroundingRectangle(lines[16], buff=0.5)
+        self.play(Create(BoxRectangle))
         self.wait(1.25)
-        self.play(FadeOut(lines[:2], lines[8], lines[16]))
+        self.play(FadeOut(lines[:2], lines[8], lines[16], BoxRectangle))
+
+        ax = Axes(x_range=[-1, 6, 1], y_range=[-9, 13, 1], y_length=22)
+        locus = ax.plot(
+            lambda x: np.sqrt(3*x**2 + 6*x - 9) + 2,
+            color=BLUE,
+            x_range=[1, 5],
+            use_smoothing=True
+        )
+
+        locus_1 = ax.plot(
+            lambda x: -np.sqrt(3*x**2 + 6*x - 9) + 2,
+            color=BLUE,
+            x_range=[1, 5],
+            use_smoothing=True
+        )
+
+        dots = VGroup(
+            Dot(color=YELLOW).move_to(ax.c2p(x_val[0], y_val[0])),
+            Dot(color=BLUE).move_to(ax.c2p(x_val[1], y_val[1])),
+        )
+
+        self.play(Create(ax))
+        self.wait(0.3)
+        self.play(Create(dots[0]))
+        self.play(Create(locus))
+        self.play(Create(locus_1))
+        self.wait(1.25)
