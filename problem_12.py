@@ -10,7 +10,7 @@ class ProblemStatement(Scene):
         statement = VGroup(
             Tex(r"\begin{minipage}{5cm}"
                 r"A point $P(x,y)$ moves so as its distance from the point $(3,2)$ is twice its distance from the "
-                r"y-axis." 
+                r"y-axis."
                 r"\end{minipage}")
         )
 
@@ -102,7 +102,7 @@ class ProblemSolution(Scene):
         self.play(ReplacementTransform(lines[4], lines[5].next_to(lines[3], DOWN, LARGE_BUFF)))
         self.wait(0.5)
         for i in range(6, 8):
-            self.play(ReplacementTransform(lines[i-1], lines[i].next_to(lines[3], DOWN, LARGE_BUFF)))
+            self.play(ReplacementTransform(lines[i - 1], lines[i].next_to(lines[3], DOWN, LARGE_BUFF)))
             self.wait(0.5)
         self.wait(1.25)
         self.play(FadeOut(lines[3], lines[7]))
@@ -113,7 +113,7 @@ class ProblemSolution(Scene):
         self.play(ReplacementTransform(lines[9], lines[10].next_to(lines[8], DOWN, LARGE_BUFF)))
         self.wait(0.5)
         for i in range(11, 17):
-            self.play(ReplacementTransform(lines[i-1], lines[i].next_to(lines[8], DOWN, LARGE_BUFF)))
+            self.play(ReplacementTransform(lines[i - 1], lines[i].next_to(lines[8], DOWN, LARGE_BUFF)))
             if i == 14:
                 lines[i][0][:14].set_color(YELLOW)
                 arrowLines_1 = CurvedArrow(lines[i][0][:14].get_bottom(),
@@ -130,27 +130,107 @@ class ProblemSolution(Scene):
 
         ax = Axes(x_range=[-1, 6, 1], y_range=[-9, 13, 1], y_length=22)
         locus = ax.plot(
-            lambda x: np.sqrt(3*x**2 + 6*x - 9) + 2,
+            lambda x: np.sqrt(3 * x ** 2 + 6 * x - 9) + 2,
             color=BLUE,
             x_range=[1, 5],
             use_smoothing=True
         )
 
         locus_1 = ax.plot(
-            lambda x: -np.sqrt(3*x**2 + 6*x - 9) + 2,
+            lambda x: -np.sqrt(3 * x ** 2 + 6 * x - 9) + 2,
             color=BLUE,
             x_range=[1, 5],
             use_smoothing=True
         )
+
+        def locusFunction(x):
+            return np.sqrt(3 * x ** 2 + 6 * x - 9) + 2
+
+        def locusFunctionNegative(x):
+            return -np.sqrt(3 * x ** 2 + 6 * x - 9) + 2
+
+        def distanceLocusFunction(x):
+            return np.round(np.sqrt((3 - x) ** 2 + (2 - locusFunction(x)) ** 2), 1)
+
+        def distanceLocusFunctionNegative(x):
+            return np.round(np.sqrt((3 - x) ** 2 + (2 - locusFunctionNegative(x)) ** 2), 1)
 
         dots = VGroup(
             Dot(color=YELLOW).move_to(ax.c2p(x_val[0], y_val[0])),
             Dot(color=BLUE).move_to(ax.c2p(x_val[1], y_val[1])),
         )
 
+        linesDistance = VGroup(
+            Line(ax.c2p(3, 2),
+                 ax.c2p(1, locusFunction(1)), color=GREY),
+            Line(ax.c2p(3, 2),
+                 ax.c2p(2, locusFunction(2)), color=GREY),
+            Line(ax.c2p(3, 2),
+                 ax.c2p(2, locusFunctionNegative(2)), color=GREY),
+            Line(ax.c2p(3, 2),
+                 ax.c2p(3, locusFunction(3)), color=GREY),
+            Line(ax.c2p(3, 2),
+                 ax.c2p(3, locusFunctionNegative(3)), color=GREY),
+            Line(ax.c2p(3, 2),
+                 ax.c2p(4, locusFunction(4)), color=GREY),
+            Line(ax.c2p(3, 2),
+                 ax.c2p(4, locusFunctionNegative(4)), color=GREY),
+            Line(ax.c2p(3, 2),
+                 ax.c2p(5, locusFunction(5)), color=GREY),
+            Line(ax.c2p(3, 2),
+                 ax.c2p(5, locusFunctionNegative(5)), color=GREY)
+        )
+
+        linesAxis = VGroup(
+            Line(ax.c2p(1, locusFunction(1)),
+                 ax.c2p(0, locusFunction(1)), color=RED),
+            Line(ax.c2p(2, locusFunction(2)),
+                 ax.c2p(0, locusFunction(2)), color=RED),
+            Line(ax.c2p(2, locusFunctionNegative(2)),
+                 ax.c2p(0, locusFunctionNegative(2)), color=RED),
+            Line(ax.c2p(3, locusFunction(3)),
+                 ax.c2p(0, locusFunction(3)), color=RED),
+            Line(ax.c2p(3, locusFunctionNegative(3)),
+                 ax.c2p(0, locusFunctionNegative(3)), color=RED),
+            Line(ax.c2p(4, locusFunction(4)),
+                 ax.c2p(0, locusFunction(4)), color=RED),
+            Line(ax.c2p(4, locusFunctionNegative(4)),
+                 ax.c2p(0, locusFunctionNegative(4)), color=RED),
+            Line(ax.c2p(5, locusFunction(5)),
+                 ax.c2p(0, locusFunction(5)), color=RED),
+            Line(ax.c2p(5, locusFunctionNegative(5)),
+                 ax.c2p(0, locusFunctionNegative(5)), color=RED)
+        )
+
+        distances = VGroup()
+        distanceLine = VGroup()
+        x = 1
+        for i in range(9):
+            if i > 0:
+                if i % 2 == 1:
+                    distances.add(MathTex(f"{distanceLocusFunction(x)}", font_size=40, color=YELLOW))
+                    distanceLine.add(MathTex(f"{x}", font_size=40, color=BLUE))
+                else:
+                    distances.add(MathTex(f"{distanceLocusFunctionNegative(x)}", font_size=40, color=YELLOW))
+                    distanceLine.add(MathTex(f"{x}", font_size=40, color=BLUE))
+                    x += 1
+            else:
+                distances.add(MathTex(f"{distanceLocusFunction(x)}", font_size=40, color=YELLOW))
+                distanceLine.add(MathTex(f"{x}", font_size=40, color=BLUE))
+                x += 1
+
         self.play(Create(ax))
         self.wait(0.3)
         self.play(Create(dots[0]))
         self.play(Create(locus))
         self.play(Create(locus_1))
+        for i in range(9):
+            self.play(Create(linesDistance[i]))
+            self.wait(0.3)
+            self.play(Write(distances[i].next_to(linesDistance[i].get_midpoint(), UP, MED_SMALL_BUFF)))
+            self.wait(0.3)
+            self.play(Create(linesAxis[i]))
+            self.wait(0.3)
+            self.play(Write(distanceLine[i].next_to(linesAxis[i].get_midpoint(), UP, MED_SMALL_BUFF)))
+            self.wait(0.3)
         self.wait(1.25)
