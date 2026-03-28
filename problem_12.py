@@ -66,7 +66,7 @@ class ProblemSolution(Scene):
 
         lines = VGroup(
             Tex(r"\begin{minipage}{5cm}"
-                r"The distance from the point $(3,2)$ to $P(x,y)$ is twice the distance from point "
+                r"The distance from the point $(3,2)$ to $P(x,y)$ is twice the \\ distance from point "
                 r"$P(x,y)$ to the y-axis."
                 r"\end{minipage}"),
             MathTex(r"d_{1}=2d_{2}"),
@@ -104,10 +104,8 @@ class ProblemSolution(Scene):
             self.play(ReplacementTransform(lines[i-1], lines[i].next_to(lines[3], DOWN, LARGE_BUFF)))
             self.wait(0.5)
         self.wait(1.25)
-        self.play(FadeOut(lines[:4], lines[7]))
-
-        lines[8].move_to(2 * UP)
-        self.play(Write(lines[8]))
+        self.play(FadeOut(lines[3], lines[7]))
+        self.play(ReplacementTransform(lines[2], lines[8].next_to(lines[1], DOWN, LARGE_BUFF)))
         self.wait(0.3)
         self.play(Write(lines[9].next_to(lines[8], DOWN, LARGE_BUFF)))
         self.wait(0.5)
@@ -117,4 +115,4 @@ class ProblemSolution(Scene):
             self.play(ReplacementTransform(lines[i-1], lines[i].next_to(lines[8], DOWN, LARGE_BUFF)))
             self.wait(0.5)
         self.wait(1.25)
-        self.play(FadeOut(lines[8], lines[16]))
+        self.play(FadeOut(lines[:2], lines[8], lines[16]))
