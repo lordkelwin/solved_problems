@@ -63,3 +63,58 @@ class ProblemSolution(Scene):
         self.play(Write(labels[3]))
         self.wait(1.25)
         self.play(FadeOut(ax, dots, labels, lines))
+
+        lines = VGroup(
+            Tex(r"\begin{minipage}{5cm}"
+                r"The distance from the point $(3,2)$ to $P(x,y)$ is twice the distance from point "
+                r"$P(x,y)$ to the y-axis."
+                r"\end{minipage}"),
+            MathTex(r"d_{1}=2d_{2}"),
+            Tex(r"Where:"),
+            MathTex(r"d_{1}=\sqrt{(x-3)^{2}+(y-2)^{2}}"),
+            MathTex(r"d_{2}=\sqrt{(x-0)^{2}+(y-y)^{2}}"),
+            MathTex(r"d_{2}=\sqrt{x^{2}+0^{2}}"),
+            MathTex(r"d_{2}=\sqrt{x^{2}}"),
+            MathTex(r"d_{2}=x"),
+            Tex(r"Substituting $d_{1}$ and $d_{2}$:"),
+            MathTex(r"\sqrt{(x-3)^{2}+(y-2)^{2}}=2x"),
+            MathTex(r"\left[\sqrt{(x-3)^{2}+(y-2)^{2}}=2x\right]^{2}"),
+            MathTex(r"(x-3)^{2}+(y-2)^{2}=(2x)^{2}"),
+            MathTex(r"(x-3)^{2}+(y-2)^{2}=4x^{2}"),
+            MathTex(r"(x^{2}-6x+9)+(y^{2}-4y+4)=4x^{2}"),
+            MathTex(r"x^{2}+y^{2}-6x-4y+13=4x^{2}"),
+            MathTex(r"4x^{2}-x^{2}-y^{2}+6x+4y-13=0"),
+            MathTex(r"3x^{2}-y^{2}+6x+4y-13=0")
+        )
+
+        lines[0].move_to(4 * UP)
+        self.play(Write(lines[0]))
+        self.wait(0.3)
+        self.play(Write(lines[1].next_to(lines[0], DOWN, LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(Write(lines[2].next_to(lines[1], DOWN, LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(Write(lines[3].next_to(lines[2], DOWN, LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(Write(lines[4].next_to(lines[3], DOWN, LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(ReplacementTransform(lines[4], lines[5].next_to(lines[3], DOWN, LARGE_BUFF)))
+        self.wait(0.5)
+        for i in range(6, 8):
+            self.play(ReplacementTransform(lines[i-1], lines[i].next_to(lines[3], DOWN, LARGE_BUFF)))
+            self.wait(0.5)
+        self.wait(1.25)
+        self.play(FadeOut(lines[:4], lines[7]))
+
+        lines[8].move_to(2 * UP)
+        self.play(Write(lines[8]))
+        self.wait(0.3)
+        self.play(Write(lines[9].next_to(lines[8], DOWN, LARGE_BUFF)))
+        self.wait(0.5)
+        self.play(ReplacementTransform(lines[9], lines[10].next_to(lines[8], DOWN, LARGE_BUFF)))
+        self.wait(0.5)
+        for i in range(11, 17):
+            self.play(ReplacementTransform(lines[i-1], lines[i].next_to(lines[8], DOWN, LARGE_BUFF)))
+            self.wait(0.5)
+        self.wait(1.25)
+        self.play(FadeOut(lines[8], lines[16]))
