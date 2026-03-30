@@ -150,10 +150,10 @@ class ProblemSolution(Scene):
             return -np.sqrt(3 * x ** 2 + 6 * x - 9) + 2
 
         def distanceLocusFunction(x):
-            return np.round(np.sqrt((3 - x) ** 2 + (2 - locusFunction(x)) ** 2), 1)
+            return np.round(np.sqrt((3 - x) ** 2 + (2 - locusFunction(x)) ** 2), 0)
 
         def distanceLocusFunctionNegative(x):
-            return np.round(np.sqrt((3 - x) ** 2 + (2 - locusFunctionNegative(x)) ** 2), 1)
+            return np.round(np.sqrt((3 - x) ** 2 + (2 - locusFunctionNegative(x)) ** 2), 0)
 
         dots = VGroup(
             Dot(color=YELLOW).move_to(ax.c2p(x_val[0], y_val[0])),
@@ -204,27 +204,42 @@ class ProblemSolution(Scene):
 
         distances = VGroup()
         distanceLine = VGroup()
+        dots_new = VGroup()
+        labels_new = VGroup()
         x = 1
         for i in range(9):
             if i > 0:
                 if i % 2 == 1:
                     distances.add(MathTex(f"{distanceLocusFunction(x)}", font_size=40, color=YELLOW))
                     distanceLine.add(MathTex(f"{x}", font_size=40, color=BLUE))
+                    dots_new.add(Dot(color=BLUE, radius=0.10).move_to(ax.c2p(x, locusFunction(x))))
+                    labels_new.add(MathTex(f"({x},{np.round(locusFunction(x), 1)})", font_size=40))
                 else:
                     distances.add(MathTex(f"{distanceLocusFunctionNegative(x)}", font_size=40, color=YELLOW))
                     distanceLine.add(MathTex(f"{x}", font_size=40, color=BLUE))
+                    dots_new.add(Dot(color=BLUE, radius=0.10).move_to(ax.c2p(x, locusFunctionNegative(x))))
+                    labels_new.add(MathTex(f"({x},{np.round(locusFunctionNegative(x), 1)})", font_size=40))
                     x += 1
             else:
                 distances.add(MathTex(f"{distanceLocusFunction(x)}", font_size=40, color=YELLOW))
                 distanceLine.add(MathTex(f"{x}", font_size=40, color=BLUE))
+                dots_new.add(Dot(color=BLUE, radius=0.10).move_to(ax.c2p(x, locusFunction(x))))
+                labels_new.add(MathTex(f"({x},{np.round(locusFunction(x), 1)})", font_size=40))
                 x += 1
 
+        dots_new.add(Dot(color=YELLOW, radius=0.10).move_to(ax.c2p(3, 2)))
+        labels_new.add(MathTex(r"(3,2)", font_size=40).next_to(dots_new[9], RIGHT, SMALL_BUFF))
         self.play(Create(ax))
         self.wait(0.3)
-        self.play(Create(dots[0]))
+        self.play(Create(dots_new[9]))
+        self.play(Write(labels_new[9]))
+        self.wait(0.2)
         self.play(Create(locus))
         self.play(Create(locus_1))
         for i in range(9):
+            self.play(Create(dots_new[i]))
+            self.play(Write(labels_new[i].next_to(dots_new[i], UP, SMALL_BUFF)))
+            self.wait(0.3)
             self.play(Create(linesDistance[i]))
             self.wait(0.3)
             self.play(Write(distances[i].next_to(linesDistance[i].get_midpoint(), UP, MED_SMALL_BUFF)))
@@ -234,3 +249,5 @@ class ProblemSolution(Scene):
             self.play(Write(distanceLine[i].next_to(linesAxis[i].get_midpoint(), UP, MED_SMALL_BUFF)))
             self.wait(0.3)
         self.wait(1.25)
+        self.play(FadeOut(distanceLine, linesAxis, labels_new, dots_new, locus, locus_1, ax, distances,
+                          linesDistance))
