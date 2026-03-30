@@ -206,6 +206,8 @@ class ProblemSolution(Scene):
         distanceLine = VGroup()
         dots_new = VGroup()
         labels_new = VGroup()
+        dots_y_axis = VGroup()
+        labels_y_axis = VGroup()
         x = 1
         for i in range(9):
             if i > 0:
@@ -214,17 +216,23 @@ class ProblemSolution(Scene):
                     distanceLine.add(MathTex(f"{x}", font_size=40, color=BLUE))
                     dots_new.add(Dot(color=BLUE, radius=0.10).move_to(ax.c2p(x, locusFunction(x))))
                     labels_new.add(MathTex(f"({x},{np.round(locusFunction(x), 1)})", font_size=40))
+                    dots_y_axis.add(Dot(color=BLUE, radius=0.10).move_to(ax.c2p(0, locusFunction(x))))
+                    labels_y_axis.add(MathTex(f"(0,{np.round(locusFunction(x), 1)})", font_size=40))
                 else:
                     distances.add(MathTex(f"{distanceLocusFunctionNegative(x)}", font_size=40, color=YELLOW))
                     distanceLine.add(MathTex(f"{x}", font_size=40, color=BLUE))
                     dots_new.add(Dot(color=BLUE, radius=0.10).move_to(ax.c2p(x, locusFunctionNegative(x))))
                     labels_new.add(MathTex(f"({x},{np.round(locusFunctionNegative(x), 1)})", font_size=40))
+                    dots_y_axis.add(Dot(color=BLUE, radius=0.10).move_to(ax.c2p(0, locusFunctionNegative(x))))
+                    labels_y_axis.add(MathTex(f"(0,{np.round(locusFunctionNegative(x), 1)})", font_size=40))
                     x += 1
             else:
                 distances.add(MathTex(f"{distanceLocusFunction(x)}", font_size=40, color=YELLOW))
                 distanceLine.add(MathTex(f"{x}", font_size=40, color=BLUE))
                 dots_new.add(Dot(color=BLUE, radius=0.10).move_to(ax.c2p(x, locusFunction(x))))
                 labels_new.add(MathTex(f"({x},{np.round(locusFunction(x), 1)})", font_size=40))
+                dots_y_axis.add(Dot(color=BLUE, radius=0.10).move_to(ax.c2p(0, locusFunction(x))))
+                labels_y_axis.add(MathTex(f"(0,{np.round(locusFunction(x), 1)})", font_size=40))
                 x += 1
 
         dots_new.add(Dot(color=YELLOW, radius=0.10).move_to(ax.c2p(3, 2)))
@@ -244,10 +252,13 @@ class ProblemSolution(Scene):
             self.wait(0.3)
             self.play(Write(distances[i].next_to(linesDistance[i].get_midpoint(), UP, MED_SMALL_BUFF)))
             self.wait(0.3)
+            self.play(Create(dots_y_axis[i]))
+            self.play(Write(labels_y_axis[i].next_to(dots_y_axis[i], LEFT, SMALL_BUFF)))
+            self.wait(0.3)
             self.play(Create(linesAxis[i]))
             self.wait(0.3)
             self.play(Write(distanceLine[i].next_to(linesAxis[i].get_midpoint(), UP, MED_SMALL_BUFF)))
             self.wait(0.3)
         self.wait(1.25)
         self.play(FadeOut(distanceLine, linesAxis, labels_new, dots_new, locus, locus_1, ax, distances,
-                          linesDistance))
+                          linesDistance, dots_y_axis, labels_y_axis))
