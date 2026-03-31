@@ -137,36 +137,44 @@ class ProblemSolution(Scene):
                     r"-13 & 3 \\ -25 & 4 \\ -5 & 2"
                     r"\end{matrix}"),
             MathTex(r"\Delta_{C} = [(-13)(4)(1)]"),
-            MathTex(r"\Delta_{C} = [(-13)(4)(1)+(3)(1)(-5)]"),
-            MathTex(r"\Delta_{C} = [(-13)(4)(1)+(3)(1)(-5)+(1)(-25)(2)]"),
-            MathTex(r"\Delta_{C} = [(-13)(4)(1)+(3)(1)(-5)+(1)(-25)(2)] - [(-5)(4)(1)]"),
-            MathTex(r"\Delta_{C} = [(-13)(4)(1)+(3)(1)(-5)+(1)(-25)(2)] - [(-5)(4)(1)+(2)(1)(-13)]"),
-            MathTex(r"\Delta_{C} = [(-13)(4)(1)+(3)(1)(-5)+(1)(-25)(2)] - [(-5)(4)(1)+(2)(1)(-13)+(1)(-25)(3)]"),
-            MathTex(r"\Delta_{C} = [-52-15-50]-[-20-26-75]"),
+            MathTex(r"\Delta_{C} = [-52+(3)(1)(-5)]"),
+            MathTex(r"\Delta_{C} = [-52-15+(1)(-25)(2)]"),
+            MathTex(r"\Delta_{C} = [-52-15-50] - [(-5)(4)(1)]"),
+            MathTex(r"\Delta_{C} = -117 - [-20+(2)(1)(-13)]"),
+            MathTex(r"\Delta_{C} = -117 - [-20-26+(1)(-25)(3)]"),
+            MathTex(r"\Delta_{C} = -117 - [-20-26-75]"),
+            MathTex(r"\Delta_{C} = -117-(-121)"),
             MathTex(r"\Delta_{C} = -117+121"),
             MathTex(r"\Delta_{C} = 4"),
             MathTex(r"\Delta_{D} = \begin{vmatrix}"
                     r"-2 & -13 &  1 \\ 3 & -25 & 1 \\ -1 & -5 & 1"
-                    r"\end{vmatrix}"),
+                    r"\end{vmatrix}"
+                    r"\begin{matrix}"
+                    r"-2 & -13 \\ 3 & -25 \\ -1 & -5"
+                    r"\end{matrix}"),
             MathTex(r"\Delta_{D} = [(2)(-25)(1)]"),
-            MathTex(r"\Delta_{D} = [(2)(-25)(1)+(-13)(1)(-1)]"),
-            MathTex(r"\Delta_{D} = [(2)(-25)(1)+(-13)(1)(-1)+(1)(3)(-5)]"),
-            MathTex(r"\Delta_{D} = [(2)(-25)(1)+(-13)(1)(-1)+(1)(3)(-5)] - [(-1)(-25)(1)]"),
-            MathTex(r"\Delta_{D} = [(2)(-25)(1)+(-13)(1)(-1)+(1)(3)(-5)] - [(-1)(-25)(1)+(-5)(1)(2)]"),
-            MathTex(r"\Delta_{D} = [(2)(-25)(1)+(-13)(1)(-1)+(1)(3)(-5)] - [(-1)(-25)(1)+(-5)(1)(2)+(1)(3)(-13)]"),
-            MathTex(r"\Delta_{D} = [-50+13-15]-[-25-10-39]"),
+            MathTex(r"\Delta_{D} = [-50+(-13)(1)(-1)]"),
+            MathTex(r"\Delta_{D} = [-50+13+(1)(3)(-5)]"),
+            MathTex(r"\Delta_{D} = [-50+13-15] - [(-1)(-25)(1)]"),
+            MathTex(r"\Delta_{D} = -52 - [25+(-5)(1)(2)]"),
+            MathTex(r"\Delta_{D} = -52 - [25-10+(1)(3)(-13)]"),
+            MathTex(r"\Delta_{D} = -52 -[25-10-39]"),
             MathTex(r"\Delta_{D} = -52+24"),
             MathTex(r"\Delta_{D} = -28"),
             MathTex(r"\Delta_{F} = \begin{vmatrix}"
                     r"-2 & 3 & -13 \\ 3 & 4 & -25 \\ -1 & 2 & -5"
-                    r"\end{vmatrix}"),
+                    r"\end{vmatrix}"
+                    r"\begin{matrix}"
+                    r"-2 & 3 \\ 3 & 4 \\ -1 & 2"
+                    r"\end{matrix}"),
             MathTex(r"\Delta_{F} = [(2)(4)(-5)]"),
-            MathTex(r"\Delta_{F} = [(2)(4)(-5)+(3)(-25)(-1)]"),
-            MathTex(r"\Delta_{F} = [(2)(4)(-5)+(3)(-25)(-1)+(-13)(3)(2)]"),
-            MathTex(r"\Delta_{F} = [(2)(4)(-5)+(3)(-25)(-1)+(-13)(3)(2)] - [(-1)(4)(-13)]"),
-            MathTex(r"\Delta_{F} = [(2)(4)(-5)+(3)(-25)(-1)+(-13)(3)(2)] - [(-1)(4)(-13)+(2)(-25)(2)]"),
-            MathTex(r"\Delta_{F} = [(2)(4)(-5)+(3)(-25)(-1)+(-13)(3)(2)] - [(-1)(4)(-13)+(2)(-25)(2)+(-5)(3)(3)]"),
-            MathTex(r"\Delta_{F} = [-40+75-78]-[52-100-45]"),
+            MathTex(r"\Delta_{F} = [-40+(3)(-25)(-1)]"),
+            MathTex(r"\Delta_{F} = [-40+75+(-13)(3)(2)]"),
+            MathTex(r"\Delta_{F} = [-40+75-78] - [(-1)(4)(-13)]"),
+            MathTex(r"\Delta_{F} = -43 - [52+(2)(-25)(2)]"),
+            MathTex(r"\Delta_{F} = -43 - [52-100+(-5)(3)(3)]"),
+            MathTex(r"\Delta_{F} = -43 -[52-100-45]"),
+            MathTex(r"\Delta_{F} = -43-(-93)"),
             MathTex(r"\Delta_{F} = -43+93"),
             MathTex(r"\Delta_{F} = 50"),
             Tex(r"Substituting the values \\of the determinant:"),
@@ -277,9 +285,9 @@ class ProblemSolution(Scene):
         self.play(Write(solutions[16].next_to(solutions[15], RIGHT, LARGE_BUFF)))
 
         self.play(Write(solutions[17].next_to(solutions[15], DOWN, LARGE_BUFF)))
-        self.wait(0.3)
+        self.wait(0.1)
         self.play(Write(solutions[18].next_to(solutions[17], DOWN, LARGE_BUFF)))
-        self.wait(0.5)
+        self.wait(0.2)
         for i in range(19, 22):
             self.play(ReplacementTransform(solutions[i - 1], solutions[i].next_to(solutions[17], DOWN, LARGE_BUFF)))
             if i == 19:
@@ -298,7 +306,7 @@ class ProblemSolution(Scene):
                 self.wait(0.2)
                 self.play(FadeOut(arrow))
             else:
-                self.wait(0.5)
+                self.wait(0.2)
         BoxRectangle.add(SurroundingRectangle(solutions[21], buff=0.3))
         self.play(Create(BoxRectangle[2]))
         self.play(Write(solutions[22].next_to(solutions[21], RIGHT, LARGE_BUFF)))
@@ -341,7 +349,6 @@ class ProblemSolution(Scene):
         self.play(Create(arrowDet))
         self.play(Write(tempText.next_to(solutions[34][0][3:-1].get_corner(UR), UP, SMALL_BUFF)))
         self.play(FadeOut(arrowDet, tempText, arrowDelta[0]))
-        self.wait(0.5)
         for i in range(35, 43):
             if i < 40:
                 self.play(Create(arrowDelta[i - 34]))
@@ -401,13 +408,262 @@ class ProblemSolution(Scene):
                 self.play(Write(tempText.next_to(solutions[i][0][6:-1].get_corner(UR), UP, SMALL_BUFF)))
             if i < 40:
                 self.play(FadeOut(arrowDelta[i - 34], arrowDet, tempText))
-            else:
+            elif i == 40:
                 self.play(FadeOut(arrowDet, tempText))
-            self.wait(0.5)
         BoxRectangle.add(SurroundingRectangle(solutions[42], buff=0.3))
         self.play(Create(BoxRectangle[3]))
         self.wait(0.3)
         self.play(FadeOut(BoxRectangle[3], solutions[33]))
-        self.play(solutions[42].animate.shift(3 * UP))
+        self.play(solutions[42].animate.shift(4 * UP))
         self.play(Write(solutions[43].next_to(solutions[42], DOWN, LARGE_BUFF)))
+        arrowDelta = VGroup(
+            Arrow(solutions[43][0][9:12].get_corner(UL), solutions[43][0][22].get_corner(DR), color=YELLOW),
+            Arrow(solutions[43][0][12].get_corner(UR), solutions[43][0][37:39].get_corner(DR), color=YELLOW),
+            Arrow(solutions[43][0][13].get_corner(UR), solutions[43][0][39].get_corner(DR), color=YELLOW),
+            Arrow(solutions[43][0][19:21].get_corner(DL), solutions[43][0][13].get_corner(UR), color=BLUE),
+            Arrow(solutions[43][0][21].get_corner(DL), solutions[43][0][29:32].get_corner(UR), color=BLUE),
+            Arrow(solutions[43][0][22].get_corner(DL), solutions[43][0][32].get_corner(UR), color=BLUE),
+        )
+        self.play(Create(arrowDelta[0]))
+        self.play(Write(solutions[44].next_to(solutions[43], DOWN, LARGE_BUFF)))
+        arrowDet = Arrow(solutions[44][0][4:-1].get_corner(DL),
+                         solutions[44][0][4:-1].get_corner(UR), color=YELLOW)
+        tempText = MathTex(r"-52", font_size=50)
+        self.play(Create(arrowDet))
+        self.play(Write(tempText.next_to(solutions[44][0][4:-1].get_corner(UR), UP, SMALL_BUFF)))
+        self.play(FadeOut(arrowDet, tempText, arrowDelta[0]))
+        self.wait(0.5)
+        for i in range(45, 54):
+            if i < 50:
+                self.play(Create(arrowDelta[i - 44]))
+
+            self.play(ReplacementTransform(solutions[i - 1], solutions[i].next_to(solutions[43], DOWN, LARGE_BUFF)))
+
+            if i == 45:
+                solutions[i][0][8:-1].set_color(BLUE)
+                arrowDet = Arrow(solutions[i][0][8:-1].get_corner(DL),
+                                 solutions[i][0][8:-1].get_corner(UR), color=YELLOW)
+                tempText = MathTex(r"-15", font_size=50)
+                self.play(Create(arrowDet))
+                self.play(Write(tempText.next_to(solutions[i][0][8:-1].get_corner(UR), UP, SMALL_BUFF)))
+            elif i == 46:
+                solutions[i][0][11:-1].set_color(BLUE)
+                arrowDet = Arrow(solutions[i][0][11:-1].get_corner(DL),
+                                 solutions[i][0][11:-1].get_corner(UR), color=YELLOW)
+                tempText = MathTex(r"-50", font_size=50)
+                self.play(Create(arrowDet))
+                self.play(Write(tempText.next_to(solutions[i][0][11:-1].get_corner(UR), UP, SMALL_BUFF)))
+            elif i == 47:
+                solutions[i][0][16:-1].set_color(BLUE)
+                solutions[i][0][4:13].set_color(YELLOW)
+                arrowDet = VGroup(
+                    Arrow(solutions[i][0][4:13].get_corner(DL),
+                          solutions[i][0][4:13].get_corner(UR), color=BLUE),
+                    Arrow(solutions[i][0][16:-1].get_corner(DL),
+                          solutions[i][0][16:-1].get_corner(UR), color=YELLOW)
+                )
+                tempText = VGroup(
+                    MathTex(r"-20", font_size=50),
+                    MathTex(r"-117", font_size=50)
+                )
+                self.play(Create(arrowDet[1]), Create(arrowDet[0]))
+                self.play(Write(tempText[0].next_to(solutions[i][0][16:-1].get_corner(UR), UP, SMALL_BUFF)),
+                          Write(tempText[1].next_to(solutions[i][0][4:13].get_corner(UR), UP, SMALL_BUFF)))
+            elif i == 48:
+                solutions[i][0][13:-1].set_color(BLUE)
+                arrowDet = Arrow(solutions[i][0][13:-1].get_corner(DL),
+                                 solutions[i][0][13:-1].get_corner(UR), color=YELLOW)
+                tempText = MathTex(r"-26", font_size=50)
+                self.play(Create(arrowDet))
+                self.play(Write(tempText.next_to(solutions[i][0][13:-1].get_corner(UR), UP, SMALL_BUFF)))
+            elif i == 49:
+                solutions[i][0][16:-1].set_color(BLUE)
+                arrowDet = Arrow(solutions[i][0][16:-1].get_corner(DL),
+                                 solutions[i][0][16:-1].get_corner(UR), color=YELLOW)
+                tempText = MathTex(r"-75", font_size=50)
+                self.play(Create(arrowDet))
+                self.play(Write(tempText.next_to(solutions[i][0][16:-1].get_corner(UR), UP, SMALL_BUFF)))
+            elif i == 50:
+                solutions[i][0][9:-1].set_color(BLUE)
+                arrowDet = Arrow(solutions[i][0][9:-1].get_corner(DL),
+                                 solutions[i][0][9:-1].get_corner(UR), color=YELLOW)
+                tempText = MathTex(r"-121", font_size=50)
+                self.play(Create(arrowDet))
+                self.play(Write(tempText.next_to(solutions[i][0][9:-1].get_corner(UR), UP, SMALL_BUFF)))
+            if i < 50:
+                self.play(FadeOut(arrowDelta[i - 44], arrowDet, tempText))
+            elif i == 50:
+                self.play(FadeOut(arrowDet, tempText))
+        BoxRectangle.add(SurroundingRectangle(solutions[53], buff=0.3))
+        self.play(Create(BoxRectangle[4]))
+        self.wait(0.3)
+        self.play(FadeOut(BoxRectangle[4], solutions[43]))
+        self.play(solutions[53].animate.shift(3.5 * UP).set_color(BLUE))
+        self.play(Write(solutions[54].next_to(solutions[53], DOWN, LARGE_BUFF)))
+        arrowDelta = VGroup(
+            Arrow(solutions[54][0][9:11].get_corner(UL), solutions[54][0][24].get_corner(DR), color=YELLOW),
+            Arrow(solutions[54][0][12:14].get_corner(UR), solutions[54][0][40:42].get_corner(DR), color=YELLOW),
+            Arrow(solutions[54][0][14].get_corner(UR), solutions[54][0][42:44].get_corner(DR), color=YELLOW),
+            Arrow(solutions[54][0][20:22].get_corner(DL), solutions[54][0][14].get_corner(UR), color=BLUE),
+            Arrow(solutions[54][0][22:24].get_corner(DL), solutions[54][0][31:33].get_corner(UR), color=BLUE),
+            Arrow(solutions[54][0][24].get_corner(DL), solutions[54][0][33:36].get_corner(UR), color=BLUE),
+        )
+        self.play(Create(arrowDelta[0]))
+        self.play(Write(solutions[55].next_to(solutions[54], DOWN, LARGE_BUFF)))
+        arrowDet = Arrow(solutions[55][0][4:-1].get_corner(DL),
+                         solutions[55][0][4:-1].get_corner(UR), color=YELLOW)
+        tempText = MathTex(r"-50", font_size=50)
+        self.play(Create(arrowDet))
+        self.play(Write(tempText.next_to(solutions[55][0][4:-1].get_corner(UR), UP, SMALL_BUFF)))
+        self.play(FadeOut(arrowDet, tempText, arrowDelta[0]))
+        for i in range(56, 64):
+            if i < 61:
+                self.play(Create(arrowDelta[i - 55]))
+
+            self.play(ReplacementTransform(solutions[i - 1], solutions[i].next_to(solutions[54], DOWN, LARGE_BUFF)))
+
+            if i == 56:
+                solutions[i][0][8:-1].set_color(BLUE)
+                arrowDet = Arrow(solutions[i][0][8:-1].get_corner(DL),
+                                 solutions[i][0][8:-1].get_corner(UR), color=YELLOW)
+                tempText = MathTex(r"13", font_size=50)
+                self.play(Create(arrowDet))
+                self.play(Write(tempText.next_to(solutions[i][0][8:-1].get_corner(UR), UP, SMALL_BUFF)))
+            elif i == 57:
+                solutions[i][0][11:-1].set_color(BLUE)
+                arrowDet = Arrow(solutions[i][0][11:-1].get_corner(DL),
+                                 solutions[i][0][11:-1].get_corner(UR), color=YELLOW)
+                tempText = MathTex(r"-15", font_size=50)
+                self.play(Create(arrowDet))
+                self.play(Write(tempText.next_to(solutions[i][0][11:-1].get_corner(UR), UP, SMALL_BUFF)))
+            elif i == 58:
+                solutions[i][0][16:-1].set_color(BLUE)
+                solutions[i][0][4:13].set_color(YELLOW)
+                arrowDet = VGroup(
+                    Arrow(solutions[i][0][4:13].get_corner(DL),
+                          solutions[i][0][4:13].get_corner(UR), color=BLUE),
+                    Arrow(solutions[i][0][16:-1].get_corner(DL),
+                          solutions[i][0][16:-1].get_corner(UR), color=YELLOW)
+                )
+                tempText = VGroup(
+                    MathTex(r"-25", font_size=50),
+                    MathTex(r"-52", font_size=50)
+                )
+                self.play(Create(arrowDet[1]), Create(arrowDet[0]))
+                self.play(Write(tempText[0].next_to(solutions[i][0][16:-1].get_corner(UR), UP, SMALL_BUFF)),
+                          Write(tempText[1].next_to(solutions[i][0][4:13].get_corner(UR), UP, SMALL_BUFF)))
+            elif i == 59:
+                solutions[i][0][11:-1].set_color(BLUE)
+                arrowDet = Arrow(solutions[i][0][11:-1].get_corner(DL),
+                                 solutions[i][0][11:-1].get_corner(UR), color=YELLOW)
+                tempText = MathTex(r"-10", font_size=50)
+                self.play(Create(arrowDet))
+                self.play(Write(tempText.next_to(solutions[i][0][11:-1].get_corner(UR), UP, SMALL_BUFF)))
+            elif i == 60:
+                solutions[i][0][14:-1].set_color(BLUE)
+                arrowDet = Arrow(solutions[i][0][14:-1].get_corner(DL),
+                                 solutions[i][0][14:-1].get_corner(UR), color=YELLOW)
+                tempText = MathTex(r"-39", font_size=50)
+                self.play(Create(arrowDet))
+                self.play(Write(tempText.next_to(solutions[i][0][14:-1].get_corner(UR), UP, SMALL_BUFF)))
+            elif i == 61:
+                solutions[i][0][8:-1].set_color(BLUE)
+                arrowDet = Arrow(solutions[i][0][8:-1].get_corner(DL),
+                                 solutions[i][0][8:-1].get_corner(UR), color=YELLOW)
+                tempText = MathTex(r"-24", font_size=50)
+                self.play(Create(arrowDet))
+                self.play(Write(tempText.next_to(solutions[i][0][9:-1].get_corner(UR), UP, SMALL_BUFF)))
+            if i < 61:
+                self.play(FadeOut(arrowDelta[i - 55], arrowDet, tempText))
+            elif i == 61:
+                self.play(FadeOut(arrowDet, tempText))
+        BoxRectangle.add(SurroundingRectangle(solutions[63], buff=0.3))
+        self.play(Create(BoxRectangle[5]))
+        self.wait(0.1)
+        self.play(FadeOut(BoxRectangle[5], solutions[54]))
+        self.play(solutions[63].animate.shift(3.5 * UP).set_color(YELLOW))
+        self.play(Write(solutions[64].next_to(solutions[63], DOWN, LARGE_BUFF)))
+        arrowDelta = VGroup(
+            Arrow(solutions[64][0][9:11].get_corner(UL), solutions[64][0][23:25].get_corner(DR), color=YELLOW),
+            Arrow(solutions[64][0][11].get_corner(UR), solutions[64][0][36:38].get_corner(DR), color=YELLOW),
+            Arrow(solutions[64][0][12:15].get_corner(UR), solutions[64][0][38].get_corner(DR), color=YELLOW),
+            Arrow(solutions[64][0][20:22].get_corner(DL), solutions[64][0][12:15].get_corner(UR), color=BLUE),
+            Arrow(solutions[64][0][22].get_corner(DL), solutions[64][0][31:33].get_corner(UR), color=BLUE),
+            Arrow(solutions[64][0][23:25].get_corner(DL), solutions[64][0][33].get_corner(UR), color=BLUE),
+        )
+        self.play(Create(arrowDelta[0]))
+        self.play(Write(solutions[65].next_to(solutions[64], DOWN, LARGE_BUFF)))
+        arrowDet = Arrow(solutions[65][0][4:-1].get_corner(DL),
+                         solutions[65][0][4:-1].get_corner(UR), color=YELLOW)
+        tempText = MathTex(r"-40", font_size=50)
+        self.play(Create(arrowDet))
+        self.play(Write(tempText.next_to(solutions[65][0][4:-1].get_corner(UR), UP, SMALL_BUFF)))
+        self.play(FadeOut(arrowDet, tempText, arrowDelta[0]))
+        for i in range(66, 74):
+            if i < 71:
+                self.play(Create(arrowDelta[i - 65]))
+
+            self.play(ReplacementTransform(solutions[i - 1], solutions[i].next_to(solutions[64], DOWN, LARGE_BUFF)))
+
+            if i == 66:
+                solutions[i][0][8:-1].set_color(BLUE)
+                arrowDet = Arrow(solutions[i][0][8:-1].get_corner(DL),
+                                 solutions[i][0][8:-1].get_corner(UR), color=YELLOW)
+                tempText = MathTex(r"75", font_size=50)
+                self.play(Create(arrowDet))
+                self.play(Write(tempText.next_to(solutions[i][0][8:-1].get_corner(UR), UP, SMALL_BUFF)))
+            elif i == 67:
+                solutions[i][0][11:-1].set_color(BLUE)
+                arrowDet = Arrow(solutions[i][0][11:-1].get_corner(DL),
+                                 solutions[i][0][11:-1].get_corner(UR), color=YELLOW)
+                tempText = MathTex(r"-78", font_size=50)
+                self.play(Create(arrowDet))
+                self.play(Write(tempText.next_to(solutions[i][0][11:-1].get_corner(UR), UP, SMALL_BUFF)))
+            elif i == 68:
+                solutions[i][0][16:-1].set_color(BLUE)
+                solutions[i][0][4:13].set_color(YELLOW)
+                arrowDet = VGroup(
+                    Arrow(solutions[i][0][4:13].get_corner(DL),
+                          solutions[i][0][4:13].get_corner(UR), color=BLUE),
+                    Arrow(solutions[i][0][16:-1].get_corner(DL),
+                          solutions[i][0][16:-1].get_corner(UR), color=YELLOW)
+                )
+                tempText = VGroup(
+                    MathTex(r"52", font_size=50),
+                    MathTex(r"-43", font_size=50)
+                )
+                self.play(Create(arrowDet[1]), Create(arrowDet[0]))
+                self.play(Write(tempText[0].next_to(solutions[i][0][16:-1].get_corner(UR), UP, SMALL_BUFF)),
+                          Write(tempText[1].next_to(solutions[i][0][4:13].get_corner(UR), UP, SMALL_BUFF)))
+            elif i == 69:
+                solutions[i][0][11:-1].set_color(BLUE)
+                arrowDet = Arrow(solutions[i][0][11:-1].get_corner(DL),
+                                 solutions[i][0][11:-1].get_corner(UR), color=YELLOW)
+                tempText = MathTex(r"-100", font_size=50)
+                self.play(Create(arrowDet))
+                self.play(Write(tempText.next_to(solutions[i][0][11:-1].get_corner(UR), UP, SMALL_BUFF)))
+            elif i == 70:
+                solutions[i][0][15:-1].set_color(BLUE)
+                arrowDet = Arrow(solutions[i][0][15:-1].get_corner(DL),
+                                 solutions[i][0][15:-1].get_corner(UR), color=YELLOW)
+                tempText = MathTex(r"-45", font_size=50)
+                self.play(Create(arrowDet))
+                self.play(Write(tempText.next_to(solutions[i][0][15:-1].get_corner(UR), UP, SMALL_BUFF)))
+            elif i == 71:
+                solutions[i][0][8:-1].set_color(BLUE)
+                arrowDet = Arrow(solutions[i][0][8:-1].get_corner(DL),
+                                 solutions[i][0][8:-1].get_corner(UR), color=YELLOW)
+                tempText = MathTex(r"-93", font_size=50)
+                self.play(Create(arrowDet))
+                self.play(Write(tempText.next_to(solutions[i][0][9:-1].get_corner(UR), UP, SMALL_BUFF)))
+            if i < 71:
+                self.play(FadeOut(arrowDelta[i - 65], arrowDet, tempText))
+            elif i == 71:
+                self.play(FadeOut(arrowDet, tempText))
+        BoxRectangle.add(SurroundingRectangle(solutions[73], buff=0.3))
+        self.play(Create(BoxRectangle[5]))
+        self.wait(0.15)
+        self.play(FadeOut(BoxRectangle[5], solutions[64]))
+        self.play(solutions[73].animate.shift(3.5 * UP).set_color(RED))
+        self.play(Write(solutions[74].next_to(solutions[73], DOWN, LARGE_BUFF)))
         self.wait(1.25)
