@@ -179,15 +179,16 @@ class ProblemSolution(Scene):
             MathTex(r"\Delta_{F} = 50"),
             Tex(r"Substituting the values \\of the determinant:"),
             MathTex(r"C=\frac{\Delta_{C}}{\Delta}"),
-            MathTex(r"C=\frac{4}{2}"),
+            MathTex(r"C=\frac{\Delta_{C}}{\Delta}=\frac{4}{2}"),
             MathTex(r"C=2"),
             MathTex(r"D=\frac{\Delta_{D}}{\Delta}"),
-            MathTex(r"D=\frac{-28}{2}"),
+            MathTex(r"D=\frac{\Delta_{D}}{\Delta}=\frac{-28}{2}"),
             MathTex(r"D=-14"),
             MathTex(r"F=\frac{\Delta_{F}}{\Delta}"),
-            MathTex(r"F=\frac{50}{2}"),
+            MathTex(r"F=\frac{\Delta_{F}}{\Delta}=\frac{50}{2}"),
             MathTex(r"F=25"),
             Tex(r"Substituting the values:"),
+            MathTex(r"x^{2}+y^{2}+Cx+Dy+F=0"),
             MathTex(r"x^{2}+y^{2}+2x-14y+25=0"),
             Tex(r"\begin{minipage}{5cm}"
                 r"Determining the location of the center of the circle and its radius:"
@@ -203,8 +204,8 @@ class ProblemSolution(Scene):
             MathTex(r"C_{y}=\frac{196}{4}"),
             MathTex(r"C_{y}=49"),
             Tex(r"Adding both sides by $C_{x}$ and $C_{y}$:"),
-            MathTex(r"\left(x^{2}+2x+C_{x}\right)+\left(y^{2}-14y+C_{y}\right)=-25+C_{x}+C_{y}"),
-            MathTex(r"\left(x^{2}+2x+1\right)+\left(y^{2}-14y+49\right)=-25+1+49"),
+            MathTex(r"\left(x^{2}+2x+C_{x}\right)+\left(y^{2}-14y+C_{y}\right)=\\-25+C_{x}+C_{y}"),
+            MathTex(r"\left(x^{2}+2x+1\right)+\left(y^{2}-14y+49\right)=\\-25+1+49"),
             MathTex(r"\left(x^{2}+2x+1\right)+\left(y^{2}-14y+49\right)=25"),
             MathTex(r"(x+1)^{2}+(y-7)^{2}=5^{2}"),
             Tex(r"Based on the Center-Radius\\ Form of the Circle:"),
@@ -212,8 +213,8 @@ class ProblemSolution(Scene):
             Tex(r"Where: $C(h,k)$ is the location of\\ the center of circle"),
             Tex(r"$r$ is the length of radius\\ of the circle"),
             Tex(r"Therefore:"),
-            MathTex(r"Center C(1,-7)"),
-            MathTex(r"Radius r=5")
+            MathTex(r"\mathrm{Center}\;C(1,-7)"),
+            MathTex(r"\mathrm{Radius}\;r=5")
         )
 
         solutions[0].move_to(6 * UP)
@@ -276,10 +277,10 @@ class ProblemSolution(Scene):
                 arrow = CurvedArrow(solutions[i][0][:2].get_bottom(),
                                     solutions[i][0][-1].get_bottom(), color=YELLOW)
                 self.play(Create(arrow))
-                self.wait(0.2)
+                self.wait(0.1)
                 self.play(FadeOut(arrow, run_time=0.3))
             else:
-                self.wait(0.5)
+                self.wait(0.25)
         BoxRectangle.add(SurroundingRectangle(solutions[15], buff=0.3))
         self.play(Create(BoxRectangle[1]))
         self.play(Write(solutions[16].next_to(solutions[15], RIGHT, LARGE_BUFF)))
@@ -287,7 +288,7 @@ class ProblemSolution(Scene):
         self.play(Write(solutions[17].next_to(solutions[15], DOWN, LARGE_BUFF)))
         self.wait(0.1)
         self.play(Write(solutions[18].next_to(solutions[17], DOWN, LARGE_BUFF)))
-        self.wait(0.2)
+        self.wait(0.1)
         for i in range(19, 22):
             self.play(ReplacementTransform(solutions[i - 1], solutions[i].next_to(solutions[17], DOWN, LARGE_BUFF)))
             if i == 19:
@@ -303,14 +304,14 @@ class ProblemSolution(Scene):
                 arrow = CurvedArrow(solutions[i][0][0].get_bottom(),
                                     solutions[i][0][-1].get_bottom(), color=YELLOW)
                 self.play(Create(arrow))
-                self.wait(0.2)
+                self.wait(0.1)
                 self.play(FadeOut(arrow))
             else:
                 self.wait(0.2)
         BoxRectangle.add(SurroundingRectangle(solutions[21], buff=0.3))
         self.play(Create(BoxRectangle[2]))
         self.play(Write(solutions[22].next_to(solutions[21], RIGHT, LARGE_BUFF)))
-        self.wait(1.25)
+        self.wait(0.75)
         self.play(FadeOut(solutions[4:6], solutions[11], solutions[17], BoxRectangle))
         self.play(solutions[9].animate.shift(5 * UP), solutions[10].animate.shift(5 * UP),
                   solutions[15].animate.shift(7 * UP), solutions[16].animate.shift(7 * UP),
@@ -319,14 +320,14 @@ class ProblemSolution(Scene):
         self.play(Write(solutions[24].next_to(solutions[23], DOWN, LARGE_BUFF)),
                   Write(solutions[25].next_to(solutions[24], DOWN, LARGE_BUFF)),
                   Write(solutions[26].next_to(solutions[25], DOWN, LARGE_BUFF)))
-        self.wait(0.5)
+        self.wait(0.25)
         self.play(FadeOut(solutions[24:27]))
         self.play(Write(solutions[27].next_to(solutions[23], DOWN, MED_LARGE_BUFF)))
         self.play(Write(solutions[28].next_to(solutions[27], DOWN, MED_LARGE_BUFF)),
                   Write(solutions[29].next_to(solutions[28], DOWN, MED_LARGE_BUFF).set_color(BLUE)),
                   Write(solutions[30].next_to(solutions[29], DOWN, MED_LARGE_BUFF).set_color(YELLOW)),
                   Write(solutions[31].next_to(solutions[30], DOWN, MED_LARGE_BUFF).set_color(RED)))
-        self.wait(0.5)
+        self.wait(0.25)
         self.play(FadeOut(solutions[29:32], solutions[27], solutions[23], solutions[9],
                           solutions[10], solutions[15], solutions[16], solutions[21], solutions[22]))
         self.play(solutions[28].animate.shift(3 * UP))
@@ -412,7 +413,7 @@ class ProblemSolution(Scene):
                 self.play(FadeOut(arrowDet, tempText))
         BoxRectangle.add(SurroundingRectangle(solutions[42], buff=0.3))
         self.play(Create(BoxRectangle[3]))
-        self.wait(0.3)
+        self.wait(0.15)
         self.play(FadeOut(BoxRectangle[3], solutions[33]))
         self.play(solutions[42].animate.shift(4 * UP))
         self.play(Write(solutions[43].next_to(solutions[42], DOWN, LARGE_BUFF)))
@@ -432,7 +433,7 @@ class ProblemSolution(Scene):
         self.play(Create(arrowDet))
         self.play(Write(tempText.next_to(solutions[44][0][4:-1].get_corner(UR), UP, SMALL_BUFF)))
         self.play(FadeOut(arrowDet, tempText, arrowDelta[0]))
-        self.wait(0.5)
+        self.wait(0.25)
         for i in range(45, 54):
             if i < 50:
                 self.play(Create(arrowDelta[i - 44]))
@@ -496,7 +497,7 @@ class ProblemSolution(Scene):
                 self.play(FadeOut(arrowDet, tempText))
         BoxRectangle.add(SurroundingRectangle(solutions[53], buff=0.3))
         self.play(Create(BoxRectangle[4]))
-        self.wait(0.3)
+        self.wait(0.15)
         self.play(FadeOut(BoxRectangle[4], solutions[43]))
         self.play(solutions[53].animate.shift(3.5 * UP).set_color(BLUE))
         self.play(Write(solutions[54].next_to(solutions[53], DOWN, LARGE_BUFF)))
@@ -599,7 +600,7 @@ class ProblemSolution(Scene):
         self.play(Create(arrowDet))
         self.play(Write(tempText.next_to(solutions[65][0][4:-1].get_corner(UR), UP, SMALL_BUFF)))
         self.play(FadeOut(arrowDet, tempText, arrowDelta[0]))
-        for i in range(66, 74):
+        for i in range(66, 75):
             if i < 71:
                 self.play(Create(arrowDelta[i - 65]))
 
@@ -660,10 +661,77 @@ class ProblemSolution(Scene):
                 self.play(FadeOut(arrowDelta[i - 65], arrowDet, tempText))
             elif i == 71:
                 self.play(FadeOut(arrowDet, tempText))
-        BoxRectangle.add(SurroundingRectangle(solutions[73], buff=0.3))
-        self.play(Create(BoxRectangle[5]))
+        BoxRectangle.add(SurroundingRectangle(solutions[74], buff=0.3))
+        self.play(Create(BoxRectangle[6]))
         self.wait(0.15)
-        self.play(FadeOut(BoxRectangle[5], solutions[64]))
-        self.play(solutions[73].animate.shift(3.5 * UP).set_color(RED))
-        self.play(Write(solutions[74].next_to(solutions[73], DOWN, LARGE_BUFF)))
+        self.play(FadeOut(BoxRectangle[6], solutions[64]))
+        self.play(solutions[74].animate.shift(3.5 * UP).set_color(RED))
+        self.play(Write(solutions[75].next_to(solutions[74], DOWN, LARGE_BUFF)))
+        self.play(Write(solutions[76].next_to(solutions[75], DOWN, LARGE_BUFF)))
+        for i in range(77, 79):
+            self.play(ReplacementTransform(solutions[i-1], solutions[i].next_to(solutions[75], DOWN, LARGE_BUFF)))
+            self.wait(0.1)
+        solutions[78].set_color(YELLOW)
+        self.play(Write(solutions[79].next_to(solutions[78], DOWN, LARGE_BUFF)))
+        self.wait(0.1)
+        for i in range(80, 82):
+            self.play(ReplacementTransform(solutions[i-1], solutions[i].next_to(solutions[78], DOWN, LARGE_BUFF)))
+            self.wait(0.1)
+        solutions[81].set_color(BLUE)
+        self.play(Write(solutions[82].next_to(solutions[81], DOWN, LARGE_BUFF)))
+        self.wait(0.1)
+        for i in range(83, 85):
+            self.play(ReplacementTransform(solutions[i-1], solutions[i].next_to(solutions[81], DOWN, LARGE_BUFF)))
+            self.wait(0.1)
+        solutions[84].set_color(RED)
+        self.wait(0.75)
+        self.play(FadeOut(solutions[84], solutions[81], solutions[78], solutions[74:76], solutions[63],
+                          solutions[53], solutions[32], solutions[42]))
+
+        solutions[85].move_to(7 * UP)
+        self.play(Write(solutions[85]))
+        self.play(Write(solutions[86].next_to(solutions[85], DOWN, LARGE_BUFF)))
+        self.wait(0.1)
+        self.play(ReplacementTransform(solutions[86], solutions[87].next_to(solutions[85], DOWN, LARGE_BUFF)))
+        BoxRectangle = VGroup(SurroundingRectangle(solutions[87], buff=0.3))
+        self.play(Create(BoxRectangle[0]))
+        self.play(Write(solutions[88].next_to(solutions[87], DOWN, LARGE_BUFF)))
+        self.play(Write(solutions[89].next_to(solutions[88], DOWN, LARGE_BUFF)))
+        self.play(ReplacementTransform(solutions[89], solutions[90].next_to(solutions[88], DOWN, LARGE_BUFF)))
+        self.play(Write(solutions[91].next_to(solutions[90], DOWN, LARGE_BUFF)))
+        self.play(Write(solutions[92].next_to(solutions[91], DOWN, LARGE_BUFF)))
+        self.play(Write(solutions[93].next_to(solutions[92], DOWN, LARGE_BUFF)))
+        for i in range(94, 96):
+            self.play(ReplacementTransform(solutions[i-1], solutions[i].next_to(solutions[92], DOWN, LARGE_BUFF)))
+            self.wait(0.1)
+        solutions[95].set_color(YELLOW)
+        self.play(Write(solutions[96].next_to(solutions[95], DOWN, LARGE_BUFF)))
+        for i in range(97, 99):
+            self.play(ReplacementTransform(solutions[i - 1], solutions[i].next_to(solutions[95], DOWN, LARGE_BUFF)))
+            self.wait(0.1)
+        solutions[98].set_color(BLUE)
+        self.wait(0.25)
+        self.play(FadeOut(solutions[95], solutions[98], solutions[91:93]))
+        self.play(solutions[90].animate.shift(2 * DOWN))
+        self.play(Write(solutions[99].next_to(solutions[88], DOWN, LARGE_BUFF)))
+        self.play(ReplacementTransform(solutions[90], solutions[100].next_to(solutions[99], DOWN, LARGE_BUFF)))
+        self.wait(0.1)
+        for i in range(101, 104):
+            self.play(ReplacementTransform(solutions[i-1], solutions[i].next_to(solutions[99], DOWN, LARGE_BUFF)))
+            self.wait(0.1)
+        self.play(FadeOut(solutions[99]))
+        self.play(solutions[103].animate.shift(2 * UP))
+        self.play(Write(solutions[104].next_to(solutions[103], DOWN, LARGE_BUFF)))
+        for i in range(105, 108):
+            self.play(Write(solutions[i].next_to(solutions[i-1], DOWN, LARGE_BUFF)))
+            self.wait(0.1)
+        self.wait(0.5)
+        self.play(FadeOut(solutions[104:108]))
+        self.play(Write(solutions[108].next_to(solutions[103], DOWN, LARGE_BUFF)))
+        self.play(Write(solutions[109].next_to(solutions[108], DOWN, LARGE_BUFF)),
+                  Write(solutions[110].next_to(solutions[109], DOWN, LARGE_BUFF)))
+        BoxRectangle.add(SurroundingRectangle(solutions[109:111], buff=0.3))
+        self.play(Create(BoxRectangle[1]))
         self.wait(1.25)
+        self.play(FadeOut(solutions[108:111], solutions[103], solutions[87:89], solutions[85],
+                          BoxRectangle))
