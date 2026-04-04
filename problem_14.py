@@ -225,6 +225,56 @@ class ProblemSolution(Scene):
                     r"-2(x^{2}+y^{2})-13y & (x^{2}+y^{2})-13 \\ 5(x^{2}+y^{2})-29x & 2(x^{2}+y^{2})-29y & "
                     r"(x^{2}+y^{2})-29"
                     r"\end{vmatrix} = 0", font_size=55),
+            Tex(r"Let $u=x^{2}+y^{2}$:"),
+            MathTex(r"\begin{vmatrix}"
+                    r"-u-17x & -4u-17y & u-17 "
+                    r"\\ 3u-13x & -2u-13y & u-13 \\ "
+                    r"5u-29x & 2u-29y & u-29"
+                    r"\end{vmatrix} = 0", font_size=65),
+            MathTex(r"\begin{vmatrix}"
+                    r"-u-17x & -4u-17y & u-17 "
+                    r"\\ 3u-13x & -2u-13y & u-13 \\ "
+                    r"5u-29x & 2u-29y & u-29"
+                    r"\end{vmatrix} "
+                    r"\begin{matrix}"
+                    r"-u-17x & -4u-17y \\"
+                    r"3u-13x & -2u-13y \\"
+                    r"5u-29x & 2u-29y"
+                    r"\end{matrix} = 0", font_size=55),
+            MathTex(r"S_{1} = (-u-17x)(-2u-13y)(u-29)"),
+            MathTex(r"S_{1} = (2u^{2}+13uy+34ux+221xy)(u-29)"),
+            MathTex(r"S_{1} = (2u^{3}+13u^{2}y+34u^{2}x+221uxy)-\\(58u^{2}+377uy+986ux+6409xy)", font_size=65),
+            MathTex(r"S_{2} = (-4u-17y)(u-13)(5u-29x)"),
+            MathTex(r"S_{2} = (-4u^{2}+52u-17uy+221y)(5u-29x)"),
+            MathTex(r"S_{2} = (-20u^{3}+260u^{2}-85u^{2}y+1105uy)-\\(-116u^{2}x+1508ux-493uxy+6409xy)", font_size=65),
+            MathTex(r"S_{3} = (u-17)(3u-13x)(2u-29y)"),
+            MathTex(r"S_{3} = (3u^{2}-13ux-51u+221x)(2u-29y)"),
+            MathTex(r"S_{3} = (6u^{3}-26u^{2}x-102u^{2}+442ux)-\\(87u^{2}y-377uxy-1479uy+6409xy)", font_size=65),
+            MathTex(r"S_{1}+S_{2}+S_{3}=\left[(2u^{3}+13u^{2}y+34u^{2}x+221uxy)-\\(58u^{2}+377uy+986ux+6409xy)\right]+"
+                    r"\left[(-20u^{3}+260u^{2}-85u^{2}y+1105uy)-\\(-116u^{2}x+1508ux-493uxy+6409xy)\right]+"
+                    r"\left[(6u^{3}-26u^{2}x-102u^{2}+442ux)-\\(87u^{2}y-377uxy-1479uy+6409xy)\right]", font_size=60),
+            MathTex(r"S_{1}+S_{2}+S_{3}=-12u^{3}+\left[13u^{2}y+34u^{2}x+221uxy)-\\(58u^{2}+377uy+986ux+6409xy)\right]+"
+                    r"\left[(260u^{2}-85u^{2}y+1105uy)-\\(-116u^{2}x+1508ux-493uxy+6409xy)\right]+"
+                    r"\left[(-26u^{2}x-102u^{2}+442ux)-\\(87u^{2}y-377uxy-1479uy+6409xy)\right]", font_size=60),
+            MathTex(r"S_{1}+S_{2}+S_{3}=-12u^{3}-159u^{2}y+\left[34u^{2}x+221uxy)-\\"
+                    r"(58u^{2}+377uy+986ux+6409xy)\right]+\left[(260u^{2}+1105uy)-\\(-116u^{2}x+1508ux-493uxy+6409xy)"
+                    r"\right]+\left[(-26u^{2}x-102u^{2}+442ux)-\\(377uxy-1479uy+6409xy)\right]", font_size=60),
+            MathTex(r"S_{1}+S_{2}+S_{3}=-12u^{3}-159u^{2}y+124u^{2}x+\left[221uxy-\\"
+                    r"(58u^{2}+377uy+986ux+6409xy)\right]+\left[(260u^{2}+1105uy)-\\(1508ux-493uxy+6409xy)"
+                    r"\right]+\left[(-102u^{2}+442ux)-\\(377uxy-1479uy+6409xy)\right]", font_size=60),
+            MathTex(r"S_{1}+S_{2}+S_{3}=-12u^{3}-159u^{2}y+124u^{2}x+1091uxy+\left[-\\"
+                    r"(58u^{2}+377uy+986ux+6409xy)\right]+\left[(260u^{2}+1105uy)-\\(1508ux+6409xy)"
+                    r"\right]+\left[(-102u^{2}+442ux)-\\(-1479uy+6409xy)\right]", font_size=60),
+            MathTex(r"S_{1}+S_{2}+S_{3}=-12u^{3}-159u^{2}y+124u^{2}x+1091uxy+100u^{2}+\left[-\\"
+                    r"(377uy+986ux+6409xy)\right]+\left[1105uy-\\(1508ux+6409xy)"
+                    r"\right]+\left[442ux-\\(-1479uy+6409xy)\right]", font_size=60),
+            MathTex(r"S_{1}+S_{2}+S_{3}=-12u^{3}-159u^{2}y+124u^{2}x+1091uxy+100u^{2}+2207uy+\left[-\\"
+                    r"(986ux+6409xy)\right]+\left[-(1508ux+6409xy)"
+                    r"\right]+\left[442ux-6409xy\right]", font_size=60),
+            MathTex(r"S_{1}+S_{2}+S_{3}=-12u^{3}-159u^{2}y+124u^{2}x+1091uxy+100u^{2}+2207uy-2052ux+(-"
+                    r"6409xy-6409xy-6409xy)", font_size=60),
+            MathTex(r"S_{1}+S_{2}+S_{3}=-12u^{3}-159u^{2}y+124u^{2}x+\\1091uxy+100u^{2}+2207uy-2052ux-19227xy",
+                    font_size=60),
         )
 
         lines[0].move_to(8 * UP)
@@ -291,6 +341,129 @@ class ProblemSolution(Scene):
                 self.play(Create(arrows[2]), Create(arrows[3]))
                 self.wait(0.3)
                 self.play(FadeOut(arrows[2:4]))
-            else:
-                self.wait(0.4)
+            elif i == 19:
+                lines[i][0][41:48].set_color(BLUE)
+                lines[i][0][51].set_color(BLUE)
+                lines[i][0][48].set_color(YELLOW)
+                lines[i][0][49:51].set_color(YELLOW)
+                arrows.add(Arrow(lines[i][0][41:48].get_center(), lines[i][0][51].get_center(), color=YELLOW))
+                arrows.add(Arrow(lines[i][0][49:51].get_center(), lines[i][0][48].get_center(), color=BLUE))
+                self.play(Create(arrows[4]), Create(arrows[5]))
+                self.wait(0.3)
+                self.play(FadeOut(arrows[4:6]))
+            elif i == 20:
+                lines[i][0][49:56].set_color(BLUE)
+                lines[i][0][59].set_color(BLUE)
+                lines[i][0][56].set_color(YELLOW)
+                lines[i][0][57:59].set_color(YELLOW)
+                arrows.add(Arrow(lines[i][0][49:56].get_center(), lines[i][0][59].get_center(), color=YELLOW))
+                arrows.add(Arrow(lines[i][0][57:59].get_center(), lines[i][0][56].get_center(), color=BLUE))
+                self.play(Create(arrows[6]), Create(arrows[7]))
+                self.wait(0.3)
+                self.play(FadeOut(arrows[6:8]))
+            elif i == 21:
+                lines[i][0][61:68].set_color(BLUE)
+                lines[i][0][71].set_color(BLUE)
+                lines[i][0][68].set_color(YELLOW)
+                lines[i][0][69:71].set_color(YELLOW)
+                arrows.add(Arrow(lines[i][0][61:68].get_center(), lines[i][0][71].get_center(), color=YELLOW))
+                arrows.add(Arrow(lines[i][0][69:71].get_center(), lines[i][0][68].get_center(), color=BLUE))
+                self.play(Create(arrows[8]), Create(arrows[9]))
+                self.wait(0.3)
+                self.play(FadeOut(arrows[8:10]))
+            elif i == 22:
+                lines[i][0][74:81].set_color(BLUE)
+                lines[i][0][84].set_color(BLUE)
+                lines[i][0][81].set_color(YELLOW)
+                lines[i][0][82:84].set_color(YELLOW)
+                arrows.add(Arrow(lines[i][0][74:81].get_center(), lines[i][0][84].get_center(), color=YELLOW))
+                arrows.add(Arrow(lines[i][0][82:84].get_center(), lines[i][0][81].get_center(), color=BLUE))
+                self.play(Create(arrows[10]), Create(arrows[11]))
+                self.wait(0.3)
+                self.play(FadeOut(arrows[10:12]))
+            elif i == 23:
+                lines[i][0][82:89].set_color(BLUE)
+                lines[i][0][92].set_color(BLUE)
+                lines[i][0][89].set_color(YELLOW)
+                lines[i][0][90:92].set_color(YELLOW)
+                arrows.add(Arrow(lines[i][0][82:89].get_center(), lines[i][0][92].get_center(), color=YELLOW))
+                arrows.add(Arrow(lines[i][0][90:92].get_center(), lines[i][0][89].get_center(), color=BLUE))
+                self.play(Create(arrows[12]), Create(arrows[13]))
+                self.wait(0.3)
+                self.play(FadeOut(arrows[12:14]))
+            elif i == 24:
+                lines[i][0][94:101].set_color(BLUE)
+                lines[i][0][104].set_color(BLUE)
+                lines[i][0][101].set_color(YELLOW)
+                lines[i][0][102:104].set_color(YELLOW)
+                arrows.add(Arrow(lines[i][0][94:101].get_center(), lines[i][0][104].get_center(), color=YELLOW))
+                arrows.add(Arrow(lines[i][0][102:104].get_center(), lines[i][0][101].get_center(), color=BLUE))
+                self.play(Create(arrows[14]), Create(arrows[15]))
+                self.wait(0.3)
+                self.play(FadeOut(arrows[14:16]))
+            elif i == 25:
+                lines[i][0][106:113].set_color(BLUE)
+                lines[i][0][116].set_color(BLUE)
+                lines[i][0][113].set_color(YELLOW)
+                lines[i][0][114:116].set_color(YELLOW)
+                arrows.add(Arrow(lines[i][0][106:113].get_center(), lines[i][0][116].get_center(), color=YELLOW))
+                arrows.add(Arrow(lines[i][0][114:116].get_center(), lines[i][0][113].get_center(), color=BLUE))
+                self.play(Create(arrows[16]), Create(arrows[17]))
+                self.wait(0.3)
+                self.play(FadeOut(arrows[16:18]))
+
+        self.wait(0.4)
+        self.play(ReplacementTransform(lines[16], lines[27].next_to(lines[5], DOWN, LARGE_BUFF)))
+        self.wait(0.25)
+        self.play(ReplacementTransform(lines[26], lines[28].next_to(lines[27], DOWN, MED_LARGE_BUFF)))
+        self.wait(0.25)
+        self.play(ReplacementTransform(lines[28], lines[29].next_to(lines[27], DOWN, MED_LARGE_BUFF)))
+        self.play(FadeOut(lines[5]))
+        self.play(lines[27].animate.shift(5 * UP), lines[29].animate.shift(5 * UP))
+        self.wait(0.25)
+        arrows = VGroup(
+            Arrow(lines[29][0][6:12].get_center(), lines[29][0][52:56].get_center(), color=BLUE),
+            Arrow(lines[29][0][12:19], lines[29][0][88:94].get_center(), color=BLUE),
+            Arrow(lines[29][0][19:23], lines[29][0][94:100].get_center(), color=BLUE),
+            Arrow(lines[29][0][40:46].get_center(), lines[29][0][19:23].get_center(), color=YELLOW),
+            Arrow(lines[29][0][46:52].get_center(), lines[29][0][62:68].get_center(), color=YELLOW),
+            Arrow(lines[29][0][52:56].get_center(), lines[29][0][68:75].get_center(), color=YELLOW)
+        )
+
+        labels = VGroup(
+            MathTex(r"S_{1}", font_size=40, color=YELLOW).next_to(lines[29][0][52:56].get_corner(DR), DOWN, MED_SMALL_BUFF),
+            MathTex(r"S_{2}", font_size=40, color=YELLOW).next_to(lines[29][0][88:94].get_corner(DR), DOWN, MED_SMALL_BUFF),
+            MathTex(r"S_{3}", font_size=40, color=YELLOW).next_to(lines[29][0][94:100].get_corner(DR), DOWN, MED_SMALL_BUFF),
+            MathTex(r"S_{4}", font_size=40, color=BLUE).next_to(lines[29][0][19:23].get_corner(UR), UP, MED_SMALL_BUFF),
+            MathTex(r"S_{5}", font_size=40, color=BLUE).next_to(lines[29][0][62:68].get_corner(UR), UP, MED_SMALL_BUFF),
+            MathTex(r"S_{6}", font_size=40, color=BLUE).next_to(lines[29][0][68:75].get_corner(UR), UP, MED_SMALL_BUFF)
+        )
+
+        self.play(Create(arrows[0]))
+        self.play(Write(labels[0]))
+        self.wait(0.3)
+        self.play(Write(lines[30].next_to(lines[29], DOWN, LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(ReplacementTransform(lines[30], lines[31].next_to(lines[29], DOWN, LARGE_BUFF)))
+        self.wait(0.25)
+        self.play(ReplacementTransform(lines[31], lines[32].next_to(lines[29], DOWN, LARGE_BUFF)))
+
+        self.play(Create(arrows[1]))
+        self.play(Write(labels[1]))
+        self.wait(0.3)
+        self.play(Write(lines[33].next_to(lines[32], DOWN, LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(ReplacementTransform(lines[33], lines[34].next_to(lines[32], DOWN, LARGE_BUFF)))
+        self.wait(0.25)
+        self.play(ReplacementTransform(lines[34], lines[35].next_to(lines[32], DOWN, LARGE_BUFF)))
+
+        self.play(Create(arrows[2]))
+        self.play(Write(labels[2]))
+        self.wait(0.3)
+        self.play(Write(lines[36].next_to(lines[35], DOWN, LARGE_BUFF)))
+        self.wait(0.3)
+        self.play(ReplacementTransform(lines[36], lines[37].next_to(lines[35], DOWN, LARGE_BUFF)))
+        self.wait(0.25)
+        self.play(ReplacementTransform(lines[37], lines[38].next_to(lines[35], DOWN, LARGE_BUFF)))
+
         self.wait(1.25)
