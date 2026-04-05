@@ -35,7 +35,7 @@ class ProblemSolution(Scene):
             Line(ax.c2p(-1, -4), ax.c2p(3, -2), color=BLUE),
             Line(ax.c2p(3, -2), ax.c2p(5, 2), color=YELLOW),
             Line(ax.c2p(5, 2), ax.c2p(-1, -4), color=GREEN),
-            Arrow(ax.c2p(-2, 3), ax.c2p(-2+5*np.sqrt(2), 3), color=RED),
+            Arrow(ax.c2p(-2, 3), ax.c2p(-2 + 5 * np.sqrt(2), 3), color=RED),
             CurvedArrow(ax.c2p(1, 13), ax.c2p(-2, 3 + 5 * np.sqrt(2)), color=GOLD)
         )
 
@@ -250,31 +250,48 @@ class ProblemSolution(Scene):
             MathTex(r"S_{3} = (u-17)(3u-13x)(2u-29y)"),
             MathTex(r"S_{3} = (3u^{2}-13ux-51u+221x)(2u-29y)"),
             MathTex(r"S_{3} = (6u^{3}-26u^{2}x-102u^{2}+442ux)-\\(87u^{2}y-377uxy-1479uy+6409xy)", font_size=65),
-            MathTex(r"S_{1}+S_{2}+S_{3}=\left[(2u^{3}+13u^{2}y+34u^{2}x+221uxy)-\\(58u^{2}+377uy+986ux+6409xy)\right]+"
-                    r"\left[(-20u^{3}+260u^{2}-85u^{2}y+1105uy)-\\(-116u^{2}x+1508ux-493uxy+6409xy)\right]+"
-                    r"\left[(6u^{3}-26u^{2}x-102u^{2}+442ux)-\\(87u^{2}y-377uxy-1479uy+6409xy)\right]", font_size=60),
-            MathTex(r"S_{1}+S_{2}+S_{3}=-12u^{3}+\left[13u^{2}y+34u^{2}x+221uxy)-\\(58u^{2}+377uy+986ux+6409xy)\right]+"
-                    r"\left[(260u^{2}-85u^{2}y+1105uy)-\\(-116u^{2}x+1508ux-493uxy+6409xy)\right]+"
-                    r"\left[(-26u^{2}x-102u^{2}+442ux)-\\(87u^{2}y-377uxy-1479uy+6409xy)\right]", font_size=60),
-            MathTex(r"S_{1}+S_{2}+S_{3}=-12u^{3}-159u^{2}y+\left[34u^{2}x+221uxy)-\\"
-                    r"(58u^{2}+377uy+986ux+6409xy)\right]+\left[(260u^{2}+1105uy)-\\(-116u^{2}x+1508ux-493uxy+6409xy)"
-                    r"\right]+\left[(-26u^{2}x-102u^{2}+442ux)-\\(377uxy-1479uy+6409xy)\right]", font_size=60),
-            MathTex(r"S_{1}+S_{2}+S_{3}=-12u^{3}-159u^{2}y+124u^{2}x+\left[221uxy-\\"
-                    r"(58u^{2}+377uy+986ux+6409xy)\right]+\left[(260u^{2}+1105uy)-\\(1508ux-493uxy+6409xy)"
-                    r"\right]+\left[(-102u^{2}+442ux)-\\(377uxy-1479uy+6409xy)\right]", font_size=60),
-            MathTex(r"S_{1}+S_{2}+S_{3}=-12u^{3}-159u^{2}y+124u^{2}x+1091uxy+\left[-\\"
-                    r"(58u^{2}+377uy+986ux+6409xy)\right]+\left[(260u^{2}+1105uy)-\\(1508ux+6409xy)"
-                    r"\right]+\left[(-102u^{2}+442ux)-\\(-1479uy+6409xy)\right]", font_size=60),
-            MathTex(r"S_{1}+S_{2}+S_{3}=-12u^{3}-159u^{2}y+124u^{2}x+1091uxy+100u^{2}+\left[-\\"
-                    r"(377uy+986ux+6409xy)\right]+\left[1105uy-\\(1508ux+6409xy)"
-                    r"\right]+\left[442ux-\\(-1479uy+6409xy)\right]", font_size=60),
-            MathTex(r"S_{1}+S_{2}+S_{3}=-12u^{3}-159u^{2}y+124u^{2}x+1091uxy+100u^{2}+2207uy+\left[-\\"
-                    r"(986ux+6409xy)\right]+\left[-(1508ux+6409xy)"
-                    r"\right]+\left[442ux-6409xy\right]", font_size=60),
-            MathTex(r"S_{1}+S_{2}+S_{3}=-12u^{3}-159u^{2}y+124u^{2}x+1091uxy+100u^{2}+2207uy-2052ux+(-"
-                    r"6409xy-6409xy-6409xy)", font_size=60),
-            MathTex(r"S_{1}+S_{2}+S_{3}=-12u^{3}-159u^{2}y+124u^{2}x+\\1091uxy+100u^{2}+2207uy-2052ux-19227xy",
-                    font_size=60),
+            Tex(r"\begin{minipage}{7cm}"
+                r"$S_{1}+S_{2}+S_{3}=[(2u^{3}+13u^{2}y+34u^{2}x+221uxy)-(58u^{2}+377uy+986ux+6409xy)]+"
+                r"[(-20u^{3}+260u^{2}-85u^{2}y+1105uy)-(-116u^{2}x+1508ux-493uxy+6409xy)]+"
+                r"[(6u^{3}-26u^{2}x-102u^{2}+442ux)-(87u^{2}y-377uxy-1479uy+6409xy)]$"
+                r"\end{minipage}", font_size=70),
+            Tex(r"\begin{minipage}{7cm}"
+                r"$S_{1}+S_{2}+S_{3}=-12u^{3}+[13u^{2}y+34u^{2}x+221uxy)-(58u^{2}+377uy+986ux+6409xy)]+"
+                r"[(260u^{2}-85u^{2}y+1105uy)-(-116u^{2}x+1508ux-493uxy+6409xy)]+"
+                r"[(-26u^{2}x-102u^{2}+442ux)-(87u^{2}y-377uxy-1479uy+\\6409xy)]$"
+                r"\end{minipage}", font_size=70),
+            Tex(r"\begin{minipage}{7cm}"
+                r"$S_{1}+S_{2}+S_{3}=-12u^{3}-159u^{2}y+[34u^{2}x+221uxy)-"
+                r"(58u^{2}+377uy+986ux+6409xy)]+[(260u^{2}+1105uy)-(-116u^{2}x+1508ux-493uxy+6409xy)"
+                r"]+[(-26u^{2}x-102u^{2}+442ux)-(377uxy-1479uy+6409xy)]$"
+                r"\end{minipage}", font_size=70),
+            Tex(r"\begin{minipage}{7cm}"
+                r"$S_{1}+S_{2}+S_{3}=-12u^{3}-159u^{2}y+124u^{2}x+[221uxy-"
+                r"(58u^{2}+377uy+986ux+6409xy)]+[(260u^{2}+1105uy)-(1508ux-493uxy+6409xy)"
+                r"]+[(-102u^{2}+442ux)-(377uxy-1479uy+6409xy)]$"
+                r"\end{minipage}", font_size=70),
+            Tex(r"\begin{minipage}{7cm}"
+                r"$S_{1}+S_{2}+S_{3}=-12u^{3}-159u^{2}y+124u^{2}x+1091uxy+[-"
+                r"(58u^{2}+377uy+986ux+6409xy)]+[(260u^{2}+1105uy)-(1508ux+6409xy)"
+                r"]+[(-102u^{2}+442ux)-(-1479uy+6409xy)]$"
+                r"\end{minipage}", font_size=70),
+            Tex(r"\begin{minipage}{7cm}"
+                r"$S_{1}+S_{2}+S_{3}=-12u^{3}-159u^{2}y+124u^{2}x+1091uxy+100u^{2}+[-"
+                r"(377uy+986ux+6409xy)]+[1105uy-(1508ux+6409xy)"
+                r"]+[442ux-(-1479uy+6409xy)]$"
+                r"\end{minipage}", font_size=70),
+            Tex(r"\begin{minipage}{7cm}"
+                r"$S_{1}+S_{2}+S_{3}=-12u^{3}-159u^{2}y+124u^{2}x+1091uxy+100u^{2}+2207uy+[-"
+                r"(986ux+6409xy)]+[-(1508ux+6409xy)]+\left[442ux-6409xy\right]$"
+                r"\end{minipage}", font_size=70),
+            Tex(r"\begin{minipage}{7cm}"
+                r"$S_{1}+S_{2}+S_{3}=-12u^{3}-159u^{2}y+124u^{2}x+1091uxy+100u^{2}+2207uy-2052ux+(-"
+                r"6409xy-6409xy-6409xy)$"
+                r"\end{minipage}", font_size=70),
+            Tex(r"\begin{minipage}{7cm}"
+                r"$S_{1}+S_{2}+S_{3}=-12u^{3}-159u^{2}y+124u^{2}x+1091uxy+100u^{2}+2207uy-2052ux-19227xy$"
+                r"\end{minipage}",
+                font_size=70),
         )
 
         lines[0].move_to(8 * UP)
@@ -303,7 +320,7 @@ class ProblemSolution(Scene):
                   ReplacementTransform(lines[11], lines[13].next_to(lines[12], DOWN, LARGE_BUFF)))
         self.wait(0.3)
         for i in range(14, 16):
-            self.play(ReplacementTransform(lines[i-1], lines[i].next_to(lines[12], DOWN, LARGE_BUFF)))
+            self.play(ReplacementTransform(lines[i - 1], lines[i].next_to(lines[12], DOWN, LARGE_BUFF)))
             if i == 14:
                 lines[i][0][:8].set_color(BLUE)
                 lines[i][0][11:19].set_color(YELLOW)
@@ -330,7 +347,7 @@ class ProblemSolution(Scene):
         self.wait(0.3)
         self.play(FadeOut(arrows[:2]))
         for i in range(18, 27):
-            self.play(ReplacementTransform(lines[i-1], lines[i].next_to(lines[16], DOWN, MED_LARGE_BUFF)))
+            self.play(ReplacementTransform(lines[i - 1], lines[i].next_to(lines[16], DOWN, MED_LARGE_BUFF)))
             if i == 18:
                 lines[i][0][28:35].set_color(BLUE)
                 lines[i][0][38:40].set_color(BLUE)
@@ -431,9 +448,12 @@ class ProblemSolution(Scene):
         )
 
         labels = VGroup(
-            MathTex(r"S_{1}", font_size=40, color=YELLOW).next_to(lines[29][0][52:56].get_corner(DR), DOWN, MED_SMALL_BUFF),
-            MathTex(r"S_{2}", font_size=40, color=YELLOW).next_to(lines[29][0][88:94].get_corner(DR), DOWN, MED_SMALL_BUFF),
-            MathTex(r"S_{3}", font_size=40, color=YELLOW).next_to(lines[29][0][94:100].get_corner(DR), DOWN, MED_SMALL_BUFF),
+            MathTex(r"S_{1}", font_size=40, color=YELLOW).next_to(lines[29][0][52:56].get_corner(DR), DOWN,
+                                                                  MED_SMALL_BUFF),
+            MathTex(r"S_{2}", font_size=40, color=YELLOW).next_to(lines[29][0][88:94].get_corner(DR), DOWN,
+                                                                  MED_SMALL_BUFF),
+            MathTex(r"S_{3}", font_size=40, color=YELLOW).next_to(lines[29][0][94:100].get_corner(DR), DOWN,
+                                                                  MED_SMALL_BUFF),
             MathTex(r"S_{4}", font_size=40, color=BLUE).next_to(lines[29][0][19:23].get_corner(UR), UP, MED_SMALL_BUFF),
             MathTex(r"S_{5}", font_size=40, color=BLUE).next_to(lines[29][0][62:68].get_corner(UR), UP, MED_SMALL_BUFF),
             MathTex(r"S_{6}", font_size=40, color=BLUE).next_to(lines[29][0][68:75].get_corner(UR), UP, MED_SMALL_BUFF)
@@ -465,5 +485,10 @@ class ProblemSolution(Scene):
         self.play(ReplacementTransform(lines[36], lines[37].next_to(lines[35], DOWN, LARGE_BUFF)))
         self.wait(0.25)
         self.play(ReplacementTransform(lines[37], lines[38].next_to(lines[35], DOWN, LARGE_BUFF)))
-
+        self.wait(0.5)
+        self.play(FadeOut(lines[38], lines[35]), ReplacementTransform(lines[32],
+                                                                      lines[39].next_to(lines[29], DOWN, LARGE_BUFF)))
+        for i in range(40, 48):
+            self.play(ReplacementTransform(lines[i - 1], lines[i].next_to(lines[29], DOWN, LARGE_BUFF)))
+            self.wait(0.25)
         self.wait(1.25)
