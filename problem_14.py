@@ -509,10 +509,45 @@ class ProblemSolution(Scene):
                 lines[i][0][16:21].set_color(BLUE)
                 lines[i][0][70:76].set_color(BLUE)
                 lines[i][0][140:145].set_color(BLUE)
-                arrows[0].replace(Line(lines[i][0][16:21].get_corner(DL), lines[i][0][16:21].get_corner(UR), color=YELLOW))
-                arrows[1].replace(Line(lines[i][0][70:76].get_corner(DL), lines[i][0][70:76].get_corner(UR), color=YELLOW))
-                arrows[2].replace(Line(lines[i][0][140:145].get_corner(DL), lines[i][0][140:145].get_corner(UR), color=YELLOW))
+                arrows[0].replace(Line(lines[i][0][16:21].get_corner(DL), lines[i][0][16:21].get_corner(UR),
+                                       color=YELLOW))
+                arrows[1].replace(Line(lines[i][0][70:76].get_corner(DL), lines[i][0][70:76].get_corner(UR),
+                                       color=YELLOW))
+                arrows[2].replace(Line(lines[i][0][140:145].get_corner(DL), lines[i][0][140:145].get_corner(UR),
+                                       color=YELLOW))
                 tempText = MathTex(r"-159u^{2}y", font_size=50, color=YELLOW).next_to(lines[i][0][16:21].get_corner(UR), UP, SMALL_BUFF)
+                self.play(Create(arrows[0]), Create(arrows[1]), Create(arrows[2]))
+                self.play(Write(tempText))
+                self.wait(0.25)
+                self.play(FadeOut(tempText, arrows))
+            elif i == 41:
+                lines[i][0][23:28].set_color(BLUE)
+                lines[i][0][81:88].set_color(BLUE)
+                lines[i][0][114:120].set_color(BLUE)
+                arrows[0].replace(
+                    Line(lines[i][0][23:28].get_corner(DL), lines[i][0][23:28].get_corner(UR), color=YELLOW))
+                arrows[1].replace(
+                    Line(lines[i][0][81:88].get_corner(DL), lines[i][0][81:88].get_corner(UR), color=YELLOW))
+                arrows[2].replace(
+                    Line(lines[i][0][114:120].get_corner(DL), lines[i][0][114:120].get_corner(UR), color=YELLOW))
+                tempText = MathTex(r"124u^{2}x", font_size=50, color=YELLOW).next_to(lines[i][0][23:28].get_corner(UR),
+                                                                                      UP, SMALL_BUFF)
+                self.play(Create(arrows[0]), Create(arrows[1]), Create(arrows[2]))
+                self.play(Write(tempText))
+                self.wait(0.25)
+                self.play(FadeOut(tempText, arrows))
+            elif i == 42:
+                lines[i][0][30:36].set_color(BLUE)
+                lines[i][0][87:94].set_color(BLUE)
+                lines[i][0][121:127].set_color(BLUE)
+                arrows[0].replace(
+                    Line(lines[i][0][30:36].get_corner(DL), lines[i][0][30:36].get_corner(UR), color=YELLOW))
+                arrows[1].replace(
+                    Line(lines[i][0][87:94].get_corner(DL), lines[i][0][87:94].get_corner(UR), color=YELLOW))
+                arrows[2].replace(
+                    Line(lines[i][0][121:127].get_corner(DL), lines[i][0][121:127].get_corner(UR), color=YELLOW))
+                tempText = MathTex(r"124u^{2}x", font_size=50, color=YELLOW).next_to(lines[i][0][30:36].get_corner(UR),
+                                                                                     UP, SMALL_BUFF)
                 self.play(Create(arrows[0]), Create(arrows[1]), Create(arrows[2]))
                 self.play(Write(tempText))
                 self.wait(0.25)
