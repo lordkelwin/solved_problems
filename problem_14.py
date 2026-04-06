@@ -488,7 +488,35 @@ class ProblemSolution(Scene):
         self.wait(0.5)
         self.play(FadeOut(lines[38], lines[35]), ReplacementTransform(lines[32],
                                                                       lines[39].next_to(lines[29], DOWN, LARGE_BUFF)))
+        lines[39][0][11:14].set_color(BLUE)
+        lines[39][0][64:69].set_color(BLUE)
+        lines[39][0][124:127].set_color(BLUE)
+        arrows = VGroup(
+            Line(lines[39][0][11:14].get_corner(DL), lines[39][0][11:14].get_corner(UR), color=YELLOW),
+            Line(lines[39][0][64:69].get_corner(DL), lines[39][0][64:69].get_corner(UR), color=YELLOW),
+            Line(lines[39][0][124:127].get_corner(DL), lines[39][0][124:127].get_corner(UR), color=YELLOW)
+        )
+        tempText = MathTex(r"-12u^{3}", font_size=50, color=YELLOW).next_to(lines[39][0][11:14].get_corner(UR), UP, SMALL_BUFF)
+
+        self.play(Create(arrows[0]), Create(arrows[1]), Create(arrows[2]))
+        self.play(Write(tempText))
+        self.wait(0.25)
+        self.play(FadeOut(tempText, arrows))
+
         for i in range(40, 48):
             self.play(ReplacementTransform(lines[i - 1], lines[i].next_to(lines[29], DOWN, LARGE_BUFF)))
-            self.wait(0.25)
+            if i == 40:
+                lines[i][0][16:21].set_color(BLUE)
+                lines[i][0][70:76].set_color(BLUE)
+                lines[i][0][140:145].set_color(BLUE)
+                arrows[0].replace(Line(lines[i][0][16:21].get_corner(DL), lines[i][0][16:21].get_corner(UR), color=YELLOW))
+                arrows[1].replace(Line(lines[i][0][70:76].get_corner(DL), lines[i][0][70:76].get_corner(UR), color=YELLOW))
+                arrows[2].replace(Line(lines[i][0][140:145].get_corner(DL), lines[i][0][140:145].get_corner(UR), color=YELLOW))
+                tempText = MathTex(r"-159u^{2}y", font_size=50, color=YELLOW).next_to(lines[i][0][16:21].get_corner(UR), UP, SMALL_BUFF)
+                self.play(Create(arrows[0]), Create(arrows[1]), Create(arrows[2]))
+                self.play(Write(tempText))
+                self.wait(0.25)
+                self.play(FadeOut(tempText, arrows))
+            else:
+                self.wait(0.25)
         self.wait(1.25)
