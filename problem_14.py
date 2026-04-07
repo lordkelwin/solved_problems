@@ -595,7 +595,7 @@ class ProblemSolution(Scene):
                 arrows[1].replace(
                     Line(lines[i][0][71:77].get_corner(DL), lines[i][0][71:77].get_corner(UR), color=YELLOW))
                 arrows[2].replace(
-                    Line(lines[i][0][88:93].get_corner(DL), lines[i][0][78:83].get_corner(UR), color=YELLOW))
+                    Line(lines[i][0][88:93].get_corner(DL), lines[i][0][88:93].get_corner(UR), color=YELLOW))
                 tempText = MathTex(r"-2052ux", font_size=50, color=YELLOW).next_to(lines[i][0][53:58].get_corner(UR),
                                                                                    UP, SMALL_BUFF)
                 self.play(Create(arrows[0]), Create(arrows[1]), Create(arrows[2]))
@@ -603,15 +603,21 @@ class ProblemSolution(Scene):
                 self.wait(0.25)
                 self.play(FadeOut(tempText, arrows))
             elif i == 46:
-                lines[i][0][67:].set_color(BLUE)
+                lines[i][0][58:65].set_color(BLUE)
+                lines[i][0][65:72].set_color(BLUE)
+                lines[i][0][72:79].set_color(BLUE)
                 arrows[0].replace(
-                    Line(lines[i][0][67:].get_corner(DL), lines[i][0][67:].get_corner(UR), color=YELLOW))
-                tempText = MathTex(r"-19227xy", font_size=50, color=YELLOW).next_to(lines[i][0][67:].get_corner(UR),
+                    Line(lines[i][0][58:65].get_corner(DL), lines[i][0][58:65].get_corner(UR), color=YELLOW))
+                arrows[1].replace(
+                    Line(lines[i][0][65:72].get_corner(DL), lines[i][0][65:72].get_corner(UR), color=YELLOW))
+                arrows[2].replace(
+                    Line(lines[i][0][72:79].get_corner(DL), lines[i][0][72:79].get_corner(UR), color=YELLOW))
+                tempText = MathTex(r"-19227xy", font_size=50, color=YELLOW).next_to(lines[i][0][58:65].get_corner(UR),
                                                                                     UP, SMALL_BUFF)
-                self.play(Create(arrows[0]))
+                self.play(Create(arrows[0]), Create(arrows[1]), Create(arrows[2]))
                 self.play(Write(tempText))
                 self.wait(0.25)
-                self.play(FadeOut(tempText, arrows[0]))
+                self.play(FadeOut(tempText, arrows))
             else:
                 self.wait(0.25)
         self.wait(1.25)
