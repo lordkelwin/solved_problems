@@ -496,7 +496,8 @@ class ProblemSolution(Scene):
             Line(lines[39][0][64:69].get_corner(DL), lines[39][0][64:69].get_corner(UR), color=YELLOW),
             Line(lines[39][0][124:127].get_corner(DL), lines[39][0][124:127].get_corner(UR), color=YELLOW)
         )
-        tempText = MathTex(r"-12u^{3}", font_size=50, color=YELLOW).next_to(lines[39][0][11:14].get_corner(UR), UP, SMALL_BUFF)
+        tempText = MathTex(r"-12u^{3}", font_size=50, color=YELLOW).next_to(lines[39][0][11:14].get_corner(UR), UP,
+                                                                            SMALL_BUFF)
 
         self.play(Create(arrows[0]), Create(arrows[1]), Create(arrows[2]))
         self.play(Write(tempText))
@@ -515,7 +516,8 @@ class ProblemSolution(Scene):
                                        color=YELLOW))
                 arrows[2].replace(Line(lines[i][0][140:145].get_corner(DL), lines[i][0][140:145].get_corner(UR),
                                        color=YELLOW))
-                tempText = MathTex(r"-159u^{2}y", font_size=50, color=YELLOW).next_to(lines[i][0][16:21].get_corner(UR), UP, SMALL_BUFF)
+                tempText = MathTex(r"-159u^{2}y", font_size=50, color=YELLOW).next_to(lines[i][0][16:21].get_corner(UR),
+                                                                                      UP, SMALL_BUFF)
                 self.play(Create(arrows[0]), Create(arrows[1]), Create(arrows[2]))
                 self.play(Write(tempText))
                 self.wait(0.25)
@@ -531,7 +533,7 @@ class ProblemSolution(Scene):
                 arrows[2].replace(
                     Line(lines[i][0][114:120].get_corner(DL), lines[i][0][114:120].get_corner(UR), color=YELLOW))
                 tempText = MathTex(r"124u^{2}x", font_size=50, color=YELLOW).next_to(lines[i][0][23:28].get_corner(UR),
-                                                                                      UP, SMALL_BUFF)
+                                                                                     UP, SMALL_BUFF)
                 self.play(Create(arrows[0]), Create(arrows[1]), Create(arrows[2]))
                 self.play(Write(tempText))
                 self.wait(0.25)
@@ -546,12 +548,70 @@ class ProblemSolution(Scene):
                     Line(lines[i][0][87:94].get_corner(DL), lines[i][0][87:94].get_corner(UR), color=YELLOW))
                 arrows[2].replace(
                     Line(lines[i][0][121:127].get_corner(DL), lines[i][0][121:127].get_corner(UR), color=YELLOW))
-                tempText = MathTex(r"124u^{2}x", font_size=50, color=YELLOW).next_to(lines[i][0][30:36].get_corner(UR),
-                                                                                     UP, SMALL_BUFF)
+                tempText = MathTex(r"1091uxy", font_size=50, color=YELLOW).next_to(lines[i][0][30:36].get_corner(UR),
+                                                                                   UP, SMALL_BUFF)
                 self.play(Create(arrows[0]), Create(arrows[1]), Create(arrows[2]))
                 self.play(Write(tempText))
                 self.wait(0.25)
                 self.play(FadeOut(tempText, arrows))
+            elif i == 43:
+                lines[i][0][40:44].set_color(BLUE)
+                lines[i][0][68:73].set_color(BLUE)
+                lines[i][0][101:107].set_color(BLUE)
+                arrows[0].replace(
+                    Line(lines[i][0][40:44].get_corner(DL), lines[i][0][40:44].get_corner(UR), color=YELLOW))
+                arrows[1].replace(
+                    Line(lines[i][0][68:73].get_corner(DL), lines[i][0][68:73].get_corner(UR), color=YELLOW))
+                arrows[2].replace(
+                    Line(lines[i][0][101:107].get_corner(DL), lines[i][0][101:107].get_corner(UR), color=YELLOW))
+                tempText = MathTex(r"100u^{2}", font_size=50, color=YELLOW).next_to(lines[i][0][40:44].get_corner(UR),
+                                                                                    UP, SMALL_BUFF)
+                self.play(Create(arrows[0]), Create(arrows[1]), Create(arrows[2]))
+                self.play(Write(tempText))
+                self.wait(0.25)
+                self.play(FadeOut(tempText, arrows))
+            elif i == 44:
+                lines[i][0][46:51].set_color(BLUE)
+                lines[i][0][68:74].set_color(BLUE)
+                lines[i][0][100:107].set_color(BLUE)
+                arrows[0].replace(
+                    Line(lines[i][0][46:51].get_corner(DL), lines[i][0][46:51].get_corner(UR), color=YELLOW))
+                arrows[1].replace(
+                    Line(lines[i][0][68:74].get_corner(DL), lines[i][0][68:74].get_corner(UR), color=YELLOW))
+                arrows[2].replace(
+                    Line(lines[i][0][100:107].get_corner(DL), lines[i][0][100:107].get_corner(UR), color=YELLOW))
+                tempText = MathTex(r"2207uy", font_size=50, color=YELLOW).next_to(lines[i][0][46:51].get_corner(UR),
+                                                                                  UP, SMALL_BUFF)
+                self.play(Create(arrows[0]), Create(arrows[1]), Create(arrows[2]))
+                self.play(Write(tempText))
+                self.wait(0.25)
+                self.play(FadeOut(tempText, arrows))
+            elif i == 45:
+                lines[i][0][53:58].set_color(BLUE)
+                lines[i][0][71:77].set_color(BLUE)
+                lines[i][0][88:93].set_color(BLUE)
+                arrows[0].replace(
+                    Line(lines[i][0][53:58].get_corner(DL), lines[i][0][53:58].get_corner(UR), color=YELLOW))
+                arrows[1].replace(
+                    Line(lines[i][0][71:77].get_corner(DL), lines[i][0][71:77].get_corner(UR), color=YELLOW))
+                arrows[2].replace(
+                    Line(lines[i][0][88:93].get_corner(DL), lines[i][0][78:83].get_corner(UR), color=YELLOW))
+                tempText = MathTex(r"-2052ux", font_size=50, color=YELLOW).next_to(lines[i][0][53:58].get_corner(UR),
+                                                                                   UP, SMALL_BUFF)
+                self.play(Create(arrows[0]), Create(arrows[1]), Create(arrows[2]))
+                self.play(Write(tempText))
+                self.wait(0.25)
+                self.play(FadeOut(tempText, arrows))
+            elif i == 46:
+                lines[i][0][67:].set_color(BLUE)
+                arrows[0].replace(
+                    Line(lines[i][0][67:].get_corner(DL), lines[i][0][67:].get_corner(UR), color=YELLOW))
+                tempText = MathTex(r"-19227xy", font_size=50, color=YELLOW).next_to(lines[i][0][67:].get_corner(UR),
+                                                                                    UP, SMALL_BUFF)
+                self.play(Create(arrows[0]))
+                self.play(Write(tempText))
+                self.wait(0.25)
+                self.play(FadeOut(tempText, arrows[0]))
             else:
                 self.wait(0.25)
         self.wait(1.25)
