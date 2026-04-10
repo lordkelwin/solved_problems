@@ -343,7 +343,41 @@ class ProblemSolution(Scene):
                 r"\end{minipage}",
                 font_size=70),
             Tex(r"\begin{minipage}{7cm}"
-                r"$\det{D}=\left[S_{1}+S_{2}+S_{3}\right]-\left[S_{4}+S_{5}+S_{6}\right]$"
+                r"$\det{D}=\left[S_{1}+S_{2}+S_{3}\right]-\left[S_{4}+S_{5}+S_{6}\right]=0$"
+                r"\end{minipage}",
+                font_size=70),
+            Tex(r"\begin{minipage}{7cm}"
+                r"$\left[-12u^{3}-159u^{2}y+124u^{2}x+1091uxy+100u^{2}+2207uy-2052ux-19227xy\right]-"
+                r"\left[-24u^{3}-87u^{2}y+76u^{2}x+1091uxy+544u^{2}+2207uy-2052ux-19227xy\right]=0$"
+                r"\end{minipage}",
+                font_size=70),
+            Tex(r"\begin{minipage}{7cm}"
+                r"$12u^{3}+\left[-159u^{2}y+124u^{2}x+1091uxy+100u^{2}+2207uy-2052ux-19227xy\right]-"
+                r"\left[-87u^{2}y+76u^{2}x+1091uxy+544u^{2}+2207uy-2052ux-19227xy\right]=0$"
+                r"\end{minipage}",
+                font_size=70),
+            Tex(r"\begin{minipage}{7cm}"
+                r"$12u^{3}-72u^{2}y+\left[124u^{2}x+1091uxy+100u^{2}+2207uy-2052ux-19227xy\right]-"
+                r"\left[76u^{2}x+1091uxy+544u^{2}+2207uy-2052ux-19227xy\right]=0$"
+                r"\end{minipage}",
+                font_size=70),
+            Tex(r"\begin{minipage}{7cm}"
+                r"$12u^{3}-72u^{2}y+48u^{2}x+\left[1091uxy+100u^{2}+2207uy-2052ux-19227xy\right]-"
+                r"\left[1091uxy+544u^{2}+2207uy-2052ux-19227xy\right]=0$"
+                r"\end{minipage}",
+                font_size=70),
+            Tex(r"\begin{minipage}{7cm}"
+                r"$12u^{3}-72u^{2}y+48u^{2}x+\left[100u^{2}+2207uy-2052ux-19227xy\right]-"
+                r"\left[544u^{2}+2207uy-2052ux-19227xy\right]=0$"
+                r"\end{minipage}",
+                font_size=70),
+            Tex(r"\begin{minipage}{7cm}"
+                r"$12u^{3}-72u^{2}y+48u^{2}x-444u^{2}+\left[2207uy-2052ux-19227xy\right]-"
+                r"\left[2207uy-2052ux-19227xy\right]=0$"
+                r"\end{minipage}",
+                font_size=70),
+            Tex(r"\begin{minipage}{7cm}"
+                r"$12u^{3}-72u^{2}y+48u^{2}x-444u^{2}=0$"
                 r"\end{minipage}",
                 font_size=70),
         )
