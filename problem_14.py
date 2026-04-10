@@ -342,6 +342,10 @@ class ProblemSolution(Scene):
                 r"$S_{4}+S_{5}+S_{6}=-24u^{3}-87u^{2}y+76u^{2}x+1091uxy+544u^{2}+2207uy-2052ux-19227xy$"
                 r"\end{minipage}",
                 font_size=70),
+            Tex(r"\begin{minipage}{7cm}"
+                r"$\det{D}=\left[S_{1}+S_{2}+S_{3}\right]-\left[S_{4}+S_{5}+S_{6}\right]$"
+                r"\end{minipage}",
+                font_size=70),
         )
 
         lines[0].move_to(8 * UP)
