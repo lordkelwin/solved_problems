@@ -377,16 +377,16 @@ class ProblemSolution(Scene):
                 r"\end{minipage}",
                 font_size=70),
             MathTex(r"12u^{3}-72u^{2}y+48u^{2}x-444u^{2}=0",
-                font_size=70),
+                    font_size=70),
             MathTex(r"12u^{2}\left(u+4x-6y-37\right)=0",
-                font_size=70),
+                    font_size=70),
             MathTex(r"\frac{1}{12u^{2}} \times 12u^{2}\left(12u-72y+48x-444\right)=0 \times \frac{1}{12u^{2}}",
-                font_size=70),
+                    font_size=70),
             MathTex(r"u+4x-6y-37=0",
-                font_size=70),
+                    font_size=70),
             Tex(r"Reverse substitute $u=x^{2}+y^{2}$:"),
             MathTex(r"x^{2}+y^{2}+4x-6y-37=0",
-                font_size=70),
+                    font_size=70),
         )
 
         lines[0].move_to(8 * UP)
@@ -774,7 +774,7 @@ class ProblemSolution(Scene):
                 arrows[2].replace(Line(lines[i][0][140:145].get_corner(DL), lines[i][0][140:145].get_corner(UR),
                                        color=YELLOW))
                 tempText = MathTex(r"-87u^{2}y", font_size=50, color=YELLOW).next_to(lines[i][0][17:23].get_corner(UR),
-                                                                                      UP, SMALL_BUFF)
+                                                                                     UP, SMALL_BUFF)
                 self.play(Create(arrows[0]), Create(arrows[1]), Create(arrows[2]))
                 self.play(Write(tempText))
                 self.wait(0.25)
@@ -790,7 +790,7 @@ class ProblemSolution(Scene):
                 arrows[2].replace(
                     Line(lines[i][0][114:120].get_corner(DL), lines[i][0][112:117].get_corner(UR), color=YELLOW))
                 tempText = MathTex(r"76u^{2}x", font_size=50, color=YELLOW).next_to(lines[i][0][23:28].get_corner(UR),
-                                                                                     UP, SMALL_BUFF)
+                                                                                    UP, SMALL_BUFF)
                 self.play(Create(arrows[0]), Create(arrows[1]), Create(arrows[2]))
                 self.play(Write(tempText))
                 self.wait(0.25)
@@ -882,6 +882,11 @@ class ProblemSolution(Scene):
                   ReplacementTransform(lines[47], lines[66].next_to(lines[29], DOWN, LARGE_BUFF)))
         self.wait(0.25)
         for i in range(67, 77):
-            self.play(ReplacementTransform(lines[i-1], lines[i].next_to(lines[29], DOWN, LARGE_BUFF)))
+            self.play(ReplacementTransform(lines[i - 1], lines[i].next_to(lines[29], DOWN, LARGE_BUFF)))
             self.wait(0.25)
+
+        lines[77].move_to(UP * 3)
+        self.play(FadeOut(arrowsDet, lines[29], labels))
+        self.play(ReplacementTransform(lines[27], lines[77]),
+                  ReplacementTransform(lines[76], lines[78].next_to(lines[77], DOWN, LARGE_BUFF)))
         self.wait(1.25)
