@@ -347,38 +347,45 @@ class ProblemSolution(Scene):
                 r"\end{minipage}",
                 font_size=70),
             Tex(r"\begin{minipage}{7cm}"
-                r"$\left[-12u^{3}-159u^{2}y+124u^{2}x+1091uxy+100u^{2}+2207uy-2052ux-19227xy\right]-"
-                r"\left[-24u^{3}-87u^{2}y+76u^{2}x+1091uxy+544u^{2}+2207uy-2052ux-19227xy\right]=0$"
+                r"$[-12u^{3}-159u^{2}y+124u^{2}x+1091uxy+100u^{2}+2207uy-2052ux-19227xy]-"
+                r"[-24u^{3}-87u^{2}y+76u^{2}x+1091uxy+544u^{2}+2207uy-2052ux-19227xy]=0$"
                 r"\end{minipage}",
                 font_size=70),
             Tex(r"\begin{minipage}{7cm}"
-                r"$12u^{3}+\left[-159u^{2}y+124u^{2}x+1091uxy+100u^{2}+2207uy-2052ux-19227xy\right]-"
-                r"\left[-87u^{2}y+76u^{2}x+1091uxy+544u^{2}+2207uy-2052ux-19227xy\right]=0$"
+                r"$12u^{3}+[-159u^{2}y+124u^{2}x+1091uxy+100u^{2}+2207uy-2052ux-19227xy]-"
+                r"[-87u^{2}y+76u^{2}x+1091uxy+544u^{2}+2207uy-2052ux-19227xy]=0$"
                 r"\end{minipage}",
                 font_size=70),
             Tex(r"\begin{minipage}{7cm}"
-                r"$12u^{3}-72u^{2}y+\left[124u^{2}x+1091uxy+100u^{2}+2207uy-2052ux-19227xy\right]-"
-                r"\left[76u^{2}x+1091uxy+544u^{2}+2207uy-2052ux-19227xy\right]=0$"
+                r"$12u^{3}-72u^{2}y+[124u^{2}x+1091uxy+100u^{2}+2207uy-2052ux-19227xy]-"
+                r"[76u^{2}x+1091uxy+544u^{2}+2207uy-2052ux-19227xy]=0$"
                 r"\end{minipage}",
                 font_size=70),
             Tex(r"\begin{minipage}{7cm}"
-                r"$12u^{3}-72u^{2}y+48u^{2}x+\left[1091uxy+100u^{2}+2207uy-2052ux-19227xy\right]-"
-                r"\left[1091uxy+544u^{2}+2207uy-2052ux-19227xy\right]=0$"
+                r"$12u^{3}-72u^{2}y+48u^{2}x+[1091uxy+100u^{2}+2207uy-2052ux-19227xy]-"
+                r"[1091uxy+544u^{2}+2207uy-2052ux-19227xy]=0$"
                 r"\end{minipage}",
                 font_size=70),
             Tex(r"\begin{minipage}{7cm}"
-                r"$12u^{3}-72u^{2}y+48u^{2}x+\left[100u^{2}+2207uy-2052ux-19227xy\right]-"
-                r"\left[544u^{2}+2207uy-2052ux-19227xy\right]=0$"
+                r"$12u^{3}-72u^{2}y+48u^{2}x+[100u^{2}+2207uy-2052ux-19227xy]-"
+                r"[544u^{2}+2207uy-2052ux-19227xy]=0$"
                 r"\end{minipage}",
                 font_size=70),
             Tex(r"\begin{minipage}{7cm}"
-                r"$12u^{3}-72u^{2}y+48u^{2}x-444u^{2}+\left[2207uy-2052ux-19227xy\right]-"
-                r"\left[2207uy-2052ux-19227xy\right]=0$"
+                r"$12u^{3}-72u^{2}y+48u^{2}x-444u^{2}+[2207uy-2052ux-19227xy]-"
+                r"[2207uy-2052ux-19227xy]=0$"
                 r"\end{minipage}",
                 font_size=70),
-            Tex(r"\begin{minipage}{7cm}"
-                r"$12u^{3}-72u^{2}y+48u^{2}x-444u^{2}=0$"
-                r"\end{minipage}",
+            MathTex(r"12u^{3}-72u^{2}y+48u^{2}x-444u^{2}=0",
+                font_size=70),
+            MathTex(r"12u^{2}\left(u+4x-6y-37\right)=0",
+                font_size=70),
+            MathTex(r"\frac{1}{12u^{2}} \times 12u^{2}\left(12u-72y+48x-444\right)=0 \times \frac{1}{12u^{2}}",
+                font_size=70),
+            MathTex(r"u+4x-6y-37=0",
+                font_size=70),
+            Tex(r"Reverse substitute $u=x^{2}+y^{2}$:"),
+            MathTex(r"x^{2}+y^{2}+4x-6y-37=0",
                 font_size=70),
         )
 
@@ -854,14 +861,14 @@ class ProblemSolution(Scene):
                 self.play(FadeOut(tempText, arrows))
             elif i == 64:
                 lines[i][0][56:63].set_color(BLUE)
-                lines[i][0][65:71].set_color(BLUE)
-                lines[i][0][72:78].set_color(BLUE)
+                lines[i][0][64:70].set_color(BLUE)
+                lines[i][0][71:77].set_color(BLUE)
                 arrows[0].replace(
                     Line(lines[i][0][56:63].get_corner(DL), lines[i][0][56:63].get_corner(UR), color=YELLOW))
                 arrows[1].replace(
-                    Line(lines[i][0][65:71].get_corner(DL), lines[i][0][65:72].get_corner(UR), color=YELLOW))
+                    Line(lines[i][0][64:70].get_corner(DL), lines[i][0][64:70].get_corner(UR), color=YELLOW))
                 arrows[2].replace(
-                    Line(lines[i][0][65:71].get_corner(DL), lines[i][0][65:71].get_corner(UR), color=YELLOW))
+                    Line(lines[i][0][71:77].get_corner(DL), lines[i][0][71:77].get_corner(UR), color=YELLOW))
                 tempText = MathTex(r"-19227xy", font_size=50, color=YELLOW).next_to(lines[i][0][56:63].get_corner(UR),
                                                                                     UP, SMALL_BUFF)
                 self.play(Create(arrows[0]), Create(arrows[1]), Create(arrows[2]))
@@ -870,5 +877,11 @@ class ProblemSolution(Scene):
                 self.play(FadeOut(tempText, arrows))
             else:
                 self.wait(0.25)
-
+        self.wait(0.3)
+        self.play(FadeOut(lines[65]),
+                  ReplacementTransform(lines[47], lines[66].next_to(lines[29], DOWN, LARGE_BUFF)))
+        self.wait(0.25)
+        for i in range(67, 77):
+            self.play(ReplacementTransform(lines[i-1], lines[i].next_to(lines[29], DOWN, LARGE_BUFF)))
+            self.wait(0.25)
         self.wait(1.25)
