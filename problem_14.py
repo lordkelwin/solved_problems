@@ -381,12 +381,13 @@ class ProblemSolution(Scene):
             MathTex(r"12u^{2}\left(u+4x-6y-37\right)=0",
                     font_size=70),
             MathTex(r"\frac{1}{12u^{2}} \times 12u^{2}\left(12u-72y+48x-444\right)=0 \times \frac{1}{12u^{2}}",
-                    font_size=70),
+                    font_size=65),
             MathTex(r"u+4x-6y-37=0",
                     font_size=70),
             Tex(r"Reverse substitute $u=x^{2}+y^{2}$:"),
             MathTex(r"x^{2}+y^{2}+4x-6y-37=0",
                     font_size=70),
+            Tex(r"Equation of the circle:")
         )
 
         lines[0].move_to(8 * UP)
@@ -475,7 +476,7 @@ class ProblemSolution(Scene):
                 self.play(FadeOut(arrows[6:8]))
             elif i == 21:
                 lines[i][0][61:68].set_color(BLUE)
-                lines[i][0][71].set_color(BLUE)
+                lines[i][0][71:73].set_color(BLUE)
                 lines[i][0][68].set_color(YELLOW)
                 lines[i][0][69:71].set_color(YELLOW)
                 arrows.add(Arrow(lines[i][0][61:68].get_center(), lines[i][0][71].get_center(), color=YELLOW))
@@ -535,8 +536,8 @@ class ProblemSolution(Scene):
         self.wait(0.25)
         arrowsDet = VGroup(
             Arrow(lines[29][0][6:12].get_center(), lines[29][0][52:56].get_center(), color=BLUE),
-            Arrow(lines[29][0][12:19], lines[29][0][88:94].get_center(), color=BLUE),
-            Arrow(lines[29][0][19:23], lines[29][0][94:100].get_center(), color=BLUE),
+            Arrow(lines[29][0][12:19].get_center(), lines[29][0][88:94].get_center(), color=BLUE),
+            Arrow(lines[29][0][19:23].get_center(), lines[29][0][94:100].get_center(), color=BLUE),
             Arrow(lines[29][0][40:46].get_center(), lines[29][0][19:23].get_center(), color=YELLOW),
             Arrow(lines[29][0][46:52].get_center(), lines[29][0][62:68].get_center(), color=YELLOW),
             Arrow(lines[29][0][52:56].get_center(), lines[29][0][68:75].get_center(), color=YELLOW)
@@ -883,10 +884,133 @@ class ProblemSolution(Scene):
         self.wait(0.25)
         for i in range(67, 77):
             self.play(ReplacementTransform(lines[i - 1], lines[i].next_to(lines[29], DOWN, LARGE_BUFF)))
+            if i == 67:
+                lines[i][0][1:6].set_color(BLUE)
+                lines[i][0][59:64].set_color(BLUE)
+                arrows = VGroup(
+                    Line(lines[i][0][1:6].get_corner(DL), lines[i][0][1:6].get_corner(UR), color=YELLOW),
+                    Line(lines[i][0][59:64].get_corner(DL), lines[i][0][59:64].get_corner(UR),
+                         color=YELLOW)
+                )
+                tempText = MathTex(r"12u^{3}", font_size=50, color=YELLOW).next_to(lines[i][0][1:6].get_corner(UR),
+                                                                                   UP, SMALL_BUFF)
+                self.play(Create(arrows[0]), Create(arrows[1]))
+                self.play(Write(tempText))
+                self.wait(0.25)
+                self.play(FadeOut(tempText, arrows))
+            elif i == 68:
+                lines[i][0][6:13].set_color(BLUE)
+                lines[i][0][59:65].set_color(BLUE)
+                arrows = VGroup(
+                    Line(lines[i][0][6:13].get_corner(DL), lines[i][0][6:13].get_corner(UR), color=YELLOW),
+                    Line(lines[i][0][59:65].get_corner(DL), lines[i][0][59:65].get_corner(UR),
+                         color=YELLOW)
+                )
+                tempText = MathTex(r"-72u^{2}y", font_size=50, color=YELLOW).next_to(lines[i][0][6:13].get_corner(UR),
+                                                                                     UP, SMALL_BUFF)
+                self.play(Create(arrows[0]), Create(arrows[1]))
+                self.play(Write(tempText))
+                self.wait(0.25)
+                self.play(FadeOut(tempText, arrows))
+            elif i == 69:
+                lines[i][0][12:18].set_color(BLUE)
+                lines[i][0][57:62].set_color(BLUE)
+                arrows = VGroup(
+                    Line(lines[i][0][12:18].get_corner(DL), lines[i][0][12:18].get_corner(UR), color=YELLOW),
+                    Line(lines[i][0][57:62].get_corner(DL), lines[i][0][57:62].get_corner(UR),
+                         color=YELLOW)
+                )
+                tempText = MathTex(r"48u^{2}x", font_size=50, color=YELLOW).next_to(lines[i][0][12:18].get_corner(UR),
+                                                                                    UP, SMALL_BUFF)
+                self.play(Create(arrows[0]), Create(arrows[1]))
+                self.play(Write(tempText))
+                self.wait(0.25)
+                self.play(FadeOut(tempText, arrows))
+            elif i == 70:
+                lines[i][0][18:25].set_color(BLUE)
+                lines[i][0][56:63].set_color(BLUE)
+                arrows = VGroup(
+                    Line(lines[i][0][18:25].get_corner(DL), lines[i][0][18:25].get_corner(UR), color=YELLOW),
+                    Line(lines[i][0][56:63].get_corner(DL), lines[i][0][56:63].get_corner(UR),
+                         color=YELLOW)
+                )
+                tempText = MathTex(r"0", font_size=50, color=YELLOW).next_to(lines[i][0][18:25].get_corner(UR),
+                                                                             UP, SMALL_BUFF)
+                self.play(Create(arrows[0]), Create(arrows[1]))
+                self.play(Write(tempText))
+                self.wait(0.25)
+                self.play(FadeOut(tempText, arrows))
+            elif i == 71:
+                lines[i][0][18:23].set_color(BLUE)
+                lines[i][0][48:53].set_color(BLUE)
+                arrows = VGroup(
+                    Line(lines[i][0][18:23].get_corner(DL), lines[i][0][18:23].get_corner(UR), color=YELLOW),
+                    Line(lines[i][0][48:53].get_corner(DL), lines[i][0][48:53].get_corner(UR),
+                         color=YELLOW)
+                )
+                tempText = MathTex(r"-444u^{2}", font_size=50, color=YELLOW).next_to(lines[i][0][18:23].get_corner(UR),
+                                                                                     UP, SMALL_BUFF)
+                self.play(Create(arrows[0]), Create(arrows[1]))
+                self.play(Write(tempText))
+                self.wait(0.25)
+                self.play(FadeOut(tempText, arrows))
+            elif i == 72:
+                lines[i][0][24:30].set_color(BLUE)
+                lines[i][0][31:37].set_color(BLUE)
+                lines[i][0][38:45].set_color(BLUE)
+                lines[i][0][48:54].set_color(BLUE)
+                lines[i][0][55:61].set_color(BLUE)
+                lines[i][0][62:69].set_color(BLUE)
+                arrows = VGroup(
+                    Line(lines[i][0][24:30].get_corner(DL), lines[i][0][24:30].get_corner(UR), color=YELLOW),
+                    Line(lines[i][0][31:37].get_corner(DL), lines[i][0][31:37].get_corner(UR), color=YELLOW),
+                    Line(lines[i][0][38:45].get_corner(DL), lines[i][0][38:45].get_corner(UR), color=YELLOW),
+                    Line(lines[i][0][48:54].get_corner(DL), lines[i][0][48:54].get_corner(UR), color=YELLOW),
+                    Line(lines[i][0][55:61].get_corner(DL), lines[i][0][55:61].get_corner(UR), color=YELLOW),
+                    Line(lines[i][0][62:69].get_corner(DL), lines[i][0][62:69].get_corner(UR), color=YELLOW)
+                )
+                tempText = VGroup(
+                    MathTex(r"0", font_size=50, color=YELLOW).next_to(lines[i][0][24:30].get_corner(UR),
+                                                                      UP, SMALL_BUFF),
+                    MathTex(r"0", font_size=50, color=YELLOW).next_to(lines[i][0][31:37].get_corner(UR),
+                                                                      UP, SMALL_BUFF),
+                    MathTex(r"0", font_size=50, color=YELLOW).next_to(lines[i][0][38:45].get_corner(UR),
+                                                                      UP, SMALL_BUFF),
+                )
+                self.play(Create(arrows[0]), Create(arrows[1]), Create(arrows[2]), Create(arrows[3]),
+                          Create(arrows[4]), Create(arrows[5]))
+                self.play(Write(tempText[0]), Write(tempText[1]), Write(tempText[2]))
+                self.wait(0.25)
+                self.play(FadeOut(tempText, arrows))
+            elif i == 73:
+                lines[i][0][:4].set_color(YELLOW)
+                lines[i][0][5:9].set_color(YELLOW)
+                lines[i][0][11:15].set_color(YELLOW)
+                lines[i][0][17:22].set_color(YELLOW)
+            elif i == 75:
+                lines[i][0][2:6].set_color(YELLOW)
+                lines[i][0][7:11].set_color(BLUE)
+                lines[-9:].set_color(BLUE)
+                arrows = VGroup(
+                    Arrow(lines[i][0][2:6].get_corner(DL), lines[i][0][2:6].get_corner(UR), color=BLUE),
+                    Arrow(lines[i][0][7:11].get_corner(DL), lines[i][0][7:11].get_corner(UR), color=YELLOW),
+                    Arrow(lines[-9:].get_corner(DL), lines[-9:].get_corner(UR), color=YELLOW)
+                )
+                tempText = MathTex(r"0", font_size=50, color=YELLOW).next_to(lines[-9:].get_corner(UR), UP,
+                                                                             SMALL_BUFF)
+                self.play(Create(arrows[0]), Create(arrows[1]), Create(arrows[2]))
+                self.play(Write(tempText))
+                self.wait(0.25)
+                self.play(FadeOut(arrows, tempText))
             self.wait(0.25)
-
         lines[77].move_to(UP * 3)
         self.play(FadeOut(arrowsDet, lines[29], labels))
         self.play(ReplacementTransform(lines[27], lines[77]),
                   ReplacementTransform(lines[76], lines[78].next_to(lines[77], DOWN, LARGE_BUFF)))
+        self.wait(0.3)
+        lines[79].move_to(UP * 3)
+        self.play(ReplacementTransform(lines[77], lines[79]))
+        boxRectangle = SurroundingRectangle(lines[78], buff=0.3)
+        self.play(Create(boxRectangle))
         self.wait(1.25)
+        self.play(FadeOut(boxRectangle, lines[77], lines[78]))
