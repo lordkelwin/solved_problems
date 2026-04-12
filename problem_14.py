@@ -990,13 +990,13 @@ class ProblemSolution(Scene):
             elif i == 75:
                 lines[i][0][2:6].set_color(YELLOW)
                 lines[i][0][7:11].set_color(BLUE)
-                lines[-9:].set_color(BLUE)
+                lines[i][0][-8:].set_color(BLUE)
                 arrows = VGroup(
                     Arrow(lines[i][0][2:6].get_corner(DL), lines[i][0][2:6].get_corner(UR), color=BLUE),
                     Arrow(lines[i][0][7:11].get_corner(DL), lines[i][0][7:11].get_corner(UR), color=YELLOW),
-                    Arrow(lines[-9:].get_corner(DL), lines[-9:].get_corner(UR), color=YELLOW)
+                    Arrow(lines[i][0][-8:].get_corner(DL), lines[i][0][-8:].get_corner(UR), color=YELLOW)
                 )
-                tempText = MathTex(r"0", font_size=50, color=YELLOW).next_to(lines[-9:].get_corner(UR), UP,
+                tempText = MathTex(r"0", font_size=50, color=YELLOW).next_to(lines[i][0][-8:].get_corner(UR), UP,
                                                                              SMALL_BUFF)
                 self.play(Create(arrows[0]), Create(arrows[1]), Create(arrows[2]))
                 self.play(Write(tempText))
@@ -1013,4 +1013,4 @@ class ProblemSolution(Scene):
         boxRectangle = SurroundingRectangle(lines[78], buff=0.3)
         self.play(Create(boxRectangle))
         self.wait(1.25)
-        self.play(FadeOut(boxRectangle, lines[77], lines[78]))
+        self.play(FadeOut(boxRectangle, lines[79], lines[78]))
