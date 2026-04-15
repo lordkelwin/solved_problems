@@ -235,10 +235,10 @@ class ProblemSolution(Scene):
             MathTex(r"(s-2)X_{1}(s)=C(s)")
         )
 
-        linesSolution[0].next_to(surroundGroup[4], DOWN, MED_LARGE_BUFF)
+        linesSolution[0].next_to(surroundGroup, DOWN, MED_LARGE_BUFF)
         self.play(Write(linesSolution[0]))
         self.wait(0.3)
-        self.play(ReplacementTransform(linesSolution[0], linesSolution[1].next_to(surroundGroup[4], DOWN, MED_LARGE_BUFF)))
+        self.play(ReplacementTransform(linesSolution[0], linesSolution[1].next_to(surroundGroup, DOWN, MED_LARGE_BUFF)))
         self.wait(1.25)
 
         soloBlock = Rectangle(width=1.5, height=1.75).move_to(UP * 1)
@@ -258,7 +258,7 @@ class ProblemSolution(Scene):
             soloBlock, newArrow, newLabels
         )
 
-        self.play(ReplacementTransform(surroundGroup, surroundGroupNew), lines[1].animate.shift(UP))
+        self.play(ReplacementTransform(surroundGroup, surroundGroupNew), linesSolution[1].animate.shift(UP))
         self.wait(2)
         self.play(FadeOut(surroundGroupNew, linesSolution[1]))
         self.play(FadeIn(blockDiagram, arrowFeedback, texts, arrows, lines, labels))
