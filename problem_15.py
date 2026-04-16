@@ -262,4 +262,22 @@ class ProblemSolution(Scene):
         self.wait(2)
         self.play(FadeOut(surroundGroupNew, linesSolution[1]))
         self.play(FadeIn(blockDiagram, arrowFeedback, texts, arrows, lines, labels))
+
+        blockReplacement = VGroup(
+            Rectangle(width=1.5, height=1.75).move_to([blockDiagram[3].get_right()[0]+2.75, blockDiagram[3].get_right()[1], 0])
+        )
+
+        arrowReplacement =VGroup(
+            Arrow(blockDiagram[3].get_right(), blockReplacement[0].get_left(), color=YELLOW, buff=0),
+            Arrow(blockReplacement[0].get_right(), [blockReplacement[0].get_right()[0]+2.0, blockReplacement[0].get_right()[1], 0], color=YELLOW, buff=0)
+        )
+
+        labelReplacement = VGroup(
+            MathTex(r"s-2").move_to(blockReplacement[0], ORIGIN)
+        )
+
+        self.play(ReplacementTransform(VGroup(texts[4], texts[2], blockDiagram[4:6], blockDiagram[7], labels[3], labels[6], arrowFeedback[4:8],
+            arrows[4:7], lines[4:6]), VGroup(blockReplacement, arrowReplacement, labelReplacement)))
+        
+        self.wait(2)
         return super().construct()
