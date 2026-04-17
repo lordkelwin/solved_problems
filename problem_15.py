@@ -322,7 +322,7 @@ class ProblemSolution(Scene):
             self.play(ReplacementTransform(linesSolution[i-1], linesSolution[i].next_to(surroundGroup, DOWN, MED_LARGE_BUFF)))
             self.wait(0.3)
         self.wait(1.25)
-        soloBlock = Rectangle(width=2.25, height=1.75).move_to(UP * 1)
+        soloBlock = Rectangle(width=3.25, height=1.75).move_to(UP * 1)
         newArrow = VGroup(
             Arrow([soloBlock.get_left()[0]-2.0, soloBlock.get_left()[1], 0], soloBlock.get_left(), color=YELLOW, buff=0),
             Arrow(soloBlock.get_right(), [soloBlock.get_right()[0]+2.0, soloBlock.get_right()[1], 0], color=YELLOW, buff=0)
