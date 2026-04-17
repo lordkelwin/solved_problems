@@ -280,4 +280,62 @@ class ProblemSolution(Scene):
             arrows[4:7], lines[4:6]), VGroup(blockReplacement, arrowReplacement, labelReplacement)))
         
         self.wait(2)
+
+        surroundGroup = VGroup(
+            texts[1].copy(), texts[3].copy(), blockDiagram[2:4].copy(), blockDiagram[6].copy(), labels[2].copy(), labels[5].copy(), arrowFeedback[0:4].copy(),
+            arrows[3].copy(), lines[2:4].copy() 
+        )
+
+        box = SurroundingRectangle(surroundGroup, buff=0.45, color=BLUE)
+        self.play(Create(box))
+        self.wait(2)
+        surroundGroup.add(arrows[2].copy())
+        surroundGroup.add(arrowReplacement[0].copy())
+        tempLabel = VGroup(
+            MathTex(r"X_{2}(s)", font_size=40).next_to(arrows[2].get_start(), UP, SMALL_BUFF),
+            MathTex(r"X_{1}(s)", font_size=40).next_to(arrowReplacement[0].get_end(), UP, SMALL_BUFF)
+        )
+        surroundGroup.add(tempLabel)
+        texts.remove(texts[2], texts[4])
+        blockDiagram.remove(blockDiagram[4:6], blockDiagram[7])
+        labels.remove(labels[3], labels[6])
+        arrowFeedback.remove(arrowFeedback[4:8])
+        arrows.remove(arrows[4:7])
+        lines.remove(lines[2:4])
+        self.play(FadeOut(blockDiagram, arrowFeedback, texts, arrows, lines, labels, box, VGroup(blockReplacement, arrowReplacement, labelReplacement)))
+        surroundGroup.move_to(ORIGIN + UP * 1)
+        self.play(FadeIn(surroundGroup)) 
+        self.wait(1.25)
+
+        linesSolution = VGroup(
+            MathTex(r"\frac{X_{1}(s)}{X_{2}(s)}=\frac{G(s)}{1+G(s)H(s)}"),
+            MathTex(r"\frac{X_{1}(s)}{X_{2}(s)}=\frac{\frac{50}{s+1}}{1+\left(\frac{50}{s+1}\right)\left(\frac{2}{s}\right)}"),
+            MathTex(r"\frac{X_{1}(s)}{X_{2}(s)}=\frac{\frac{50}{s+1}}{1+\left(\frac{50}{s+1}\right)\left(\frac{2}{s}\right)} \times \frac{s(s+1)}{s(s+1)}"),
+            MathTex(r"\frac{X_{1}(s)}{X_{2}(s)}=\frac{50s}{s(s+1)+100}"),
+            MathTex(r"\frac{X_{1}(s)}{X_{2}(s)}=\frac{50s}{s^{2}+s+100}")
+        )
+
+        linesSolution[0].next_to(surroundGroup, DOWN, MED_LARGE_BUFF)
+        self.play(Write(linesSolution[0]))
+        self.wait(0.3)
+        for i in range(1, len(linesSolution)):
+            self.play(ReplacementTransform(linesSolution[i-1], linesSolution[i].next_to(surroundGroup, DOWN, MED_LARGE_BUFF)))
+            self.wait(0.3)
+        self.wait(1.25)
+        soloBlock = Rectangle(width=2.25, height=1.75).move_to(UP * 1)
+        newArrow = VGroup(
+            Arrow([soloBlock.get_left()[0]-2.0, soloBlock.get_left()[1], 0], soloBlock.get_left(), color=YELLOW, buff=0),
+            Arrow(soloBlock.get_right(), [soloBlock.get_right()[0]+2.0, soloBlock.get_right()[1], 0], color=YELLOW, buff=0)
+        )
+        newLabels = VGroup(
+            MathTex(r"X_{2}(s)", font_size=40).next_to(newArrow[0].get_start(), UP, SMALL_BUFF),
+            MathTex(r"X_{1}(s)", font_size=40).next_to(newArrow[1].get_end(), UP, SMALL_BUFF),
+            MathTex(r"\frac{50s}{s^{2}+s+100}").move_to(soloBlock, ORIGIN)
+        )
+        surroundGroupNew = VGroup(
+            soloBlock, newArrow, newLabels
+        )
+        self.play(ReplacementTransform(surroundGroup, surroundGroupNew), linesSolution[4].animate.shift(UP))
+        self.wait(2)
+        self.play(FadeOut(surroundGroupNew, linesSolution[4]))
         return super().construct()
