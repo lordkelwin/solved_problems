@@ -338,4 +338,7 @@ class ProblemSolution(Scene):
         self.play(ReplacementTransform(surroundGroup, surroundGroupNew), linesSolution[4].animate.shift(UP))
         self.wait(2)
         self.play(FadeOut(surroundGroupNew, linesSolution[4]))
+
+        self.play(FadeIn(blockDiagram, arrowFeedback, texts, arrows, lines, labels, box, VGroup(blockReplacement, arrowReplacement, labelReplacement)))
+        
         return super().construct()
