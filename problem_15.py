@@ -338,7 +338,23 @@ class ProblemSolution(Scene):
         self.play(ReplacementTransform(surroundGroup, surroundGroupNew), linesSolution[4].animate.shift(UP))
         self.wait(2)
         self.play(FadeOut(surroundGroupNew, linesSolution[4]))
+        self.play(FadeIn(blockDiagram, arrowFeedback, texts, arrows, lines, labels, VGroup(blockReplacement, arrowReplacement, labelReplacement)))
+        self.wait(0.5)
+        blockReplacement_2 = VGroup(
+            Rectangle(width=3.25, height=1.75).move_to([blockDiagram[2].get_right()[0]+2.5, blockDiagram[2].get_right()[1], 0])
+        )
 
-        self.play(FadeIn(blockDiagram, arrowFeedback, texts, arrows, lines, labels, box, VGroup(blockReplacement, arrowReplacement, labelReplacement)))
-        
+        arrowReplacement_2 =VGroup(
+            Arrow(blockDiagram[0].get_right(), blockReplacement_2[0].get_left(), color=YELLOW, buff=0),
+            Arrow(blockReplacement_2[0].get_right(), blockReplacement[0].get_left(), color=YELLOW, buff=0)
+        )
+
+        labelReplacement_2 = VGroup(
+            MathTex(r"\frac{50s}{s^{2}+s+100}").move_to(blockReplacement_2[0], ORIGIN)
+        )
+
+        self.play(ReplacementTransform(VGroup(texts[1:3], blockDiagram[2:5], labels[2], labels[4], arrowFeedback[0:4],
+            arrows[2:4], lines[2:4], arrowReplacement[0]), VGroup(blockReplacement_2, arrowReplacement_2, labelReplacement_2)))
+
+        self.wait(2)
         return super().construct()
