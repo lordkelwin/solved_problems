@@ -120,7 +120,54 @@ class ProblemSolution(Scene):
         self.wait(0.5)
         for i in range(1, 7):
             self.play(ReplacementTransform(transferFunction[i-1], transferFunction[i].next_to(feedbackLoop[1], DOWN, LARGE_BUFF)))
-            self.wait(0.5)
+            if i == 2:
+                transferFunction[i][0][10:25].set_color(YELLOW)
+                transferFunction[i][0][34:49].set_color(YELLOW)
+                transferFunction[i][0][51:66].set_color(BLUE)
+                transferFunction[i][0][67:].set_color(BLUE)
+                crossLines = VGroup(
+                    Line(transferFunction[i][0][10:25].get_corner(DL), transferFunction[i][0][10:25].get_corner(UR), color=BLUE),
+                    Line(transferFunction[i][0][34:49].get_corner(DL), transferFunction[i][0][34:49].get_corner(UR), color=BLUE),
+                    Line(transferFunction[i][0][51:66].get_corner(DL), transferFunction[i][0][51:66].get_corner(UR), color=YELLOW),
+                    Line(transferFunction[i][0][67:].get_corner(DL), transferFunction[i][0][67:].get_corner(UR), color=YELLOW),
+                )
+
+                self.play(Create(crossLines[0]), Create(crossLines[1]), Create(crossLines[2]), Create(crossLines[3]))
+                self.wait(0.5)
+                self.play(FadeOut(crossLines))
+            else:
+                self.wait(0.75)
         
-        self.wait(2)
+        self.wait(1.5)
+
+        blockDiagramNew = Rectangle(width=5.5, height=1.75).move_to(UP * 2.0)
+
+        arrowsNew = VGroup(
+            Arrow(blockDiagramNew.get_left() + 2.5 * LEFT, blockDiagramNew.get_left(), buff=0),
+            Arrow(blockDiagramNew.get_right(), blockDiagramNew.get_right() + 2.5 * RIGHT, buff=0),
+        )
+
+        textNew = VGroup(
+            MathTex(r"\frac{1000}{s^{3}+10s^{2}+31s+1030}").move_to(blockDiagramNew, ORIGIN),
+            MathTex(r"R(s)").next_to(arrowsNew[0].get_start()+0.5*RIGHT, UP, MED_SMALL_BUFF),
+            MathTex(r"C(s)").next_to(arrowsNew[1].get_end()+0.5*LEFT, UP, MED_SMALL_BUFF),
+        )
+
+        simplifiedBlock = VGroup(blockDiagramNew, arrowsNew, textNew)
+        self.play(ReplacementTransform(VGroup(blockDiagram, lines, arrows, feedbackLoop, texts, signs), simplifiedBlock))
+        self.wait(1.0)
+        self.play(FadeOut(transferFunction[6]), simplifiedBlock.animate.shift(0.75 * UP))
+        self.wait(1.5)
+
+        routhTable = MathTable(
+            [
+                ["s^{3}", 1, 10, 0],
+                ["s^{2}", 31, 1030, 0],
+                ["s^{1}", "a_{31}", "a_{32}", "a_{33}"],
+                ["s^{0}", "a_{41}", "a_{42}", "a_{43}"],
+            ]
+        )
+        routhTable.next_to(simplifiedBlock, DOWN, MED_LARGE_BUFF)
+        self.play(Create(routhTable))
+        self.wait(2.0)
         return super().construct()
