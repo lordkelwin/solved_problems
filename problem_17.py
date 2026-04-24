@@ -161,13 +161,42 @@ class ProblemSolution(Scene):
 
         routhTable = MathTable(
             [
-                ["s^{3}", 1, 10, 0],
-                ["s^{2}", 31, 1030, 0],
+                ["s^{3}", 1, 31, 0],
+                ["s^{2}", 10, 1030, 0],
                 ["s^{1}", "a_{31}", "a_{32}", "a_{33}"],
                 ["s^{0}", "a_{41}", "a_{42}", "a_{43}"],
             ]
         )
         routhTable.next_to(simplifiedBlock, DOWN, MED_LARGE_BUFF)
         self.play(Create(routhTable))
+        self.play(routhTable.animate.shift(2.75 * LEFT))
+        self.wait(1.5)
+        
+        routhValues = VGroup(
+            MathTex(r"a_{31} = \frac{-\begin{vmatrix} a_{4} & a_{2} \\ a_{3} & a_{1} \end{vmatrix}}{a_3}"),
+            MathTex(r"a_{31} = \frac{-\begin{vmatrix} 1 & 10 \\ 31 & 1030 \end{vmatrix}}{10}"),
+            MathTex(r"a_{31} = -\frac{[(1)(1030)]-[(10)(31)]}{10}", font_size=40),
+            MathTex(r"a_{31} = -\frac{1030-310}{10}"),
+            MathTex(r"a_{31} = -\frac{720}{10}"),
+            MathTex(r"a_{31} = -72")
+        )
+
+        routhValues.move_to(routhTable.get_right() + 3.5 * RIGHT)
+
+        for i in range(1, 3):
+            for j in range(2, 4):
+                routhTable.add_to_back(routhTable.get_highlighted_cell((i, j), color=GREEN))
+        
+        self.play(FadeIn(routhTable.add_to_back(routhTable.get_highlighted_cell((3, 2), color=YELLOW))))
+        self.play(Write(routhValues[0]))
+        for i in range(1, 6):
+            self.play(ReplacementTransform(routhValues[i-1], routhValues[i]))
+            self.wait(0.5)
+        
+        self.play(ReplacementTransform(routhTable.get_entries((3, 2)), MathTex(r"-72").move_to(routhTable.get_cell((3, 2)), ORIGIN)))
+        self.wait(1.0)
+        self.play(FadeOut(routhTable.add_to_back(routhTable.get_highlighted_cell((3, 2), color=YELLOW))))
+        
+        
         self.wait(2.0)
         return super().construct()
