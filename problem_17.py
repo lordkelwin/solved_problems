@@ -178,16 +178,24 @@ class ProblemSolution(Scene):
             MathTex(r"a_{31} = -\frac{[(1)(1030)]-[(10)(31)]}{10}", font_size=40),
             MathTex(r"a_{31} = -\frac{1030-310}{10}"),
             MathTex(r"a_{31} = -\frac{720}{10}"),
-            MathTex(r"a_{31} = -72")
+            MathTex(r"a_{31} = -72"),
+            MathTex(r"a_{31} = \frac{-\begin{vmatrix} a_{4} & 0 \\ a_{3} & 0 \end{vmatrix}}{a_3}"),
+            MathTex(r"a_{31} = \frac{-\begin{vmatrix} 1 & 0 \\ 31 & 0 \end{vmatrix}}{10}"),
+            MathTex(r"a_{31} = -\frac{[(1)(0)]-[(0)(31)]}{10}", font_size=40),
+            MathTex(r"a_{31} = -\frac{0-0}{10}"),
+            MathTex(r"a_{31} = -\frac{0}{10}"),
+            MathTex(r"a_{31} = 0")
         )
 
         routhValues.move_to(routhTable.get_right() + 3.5 * RIGHT)
 
+        highlight = VGroup()
         for i in range(1, 3):
             for j in range(2, 4):
-                routhTable.add_to_back(routhTable.get_highlighted_cell((i, j), color=GREEN))
+                highlight.add(routhTable.get_highlighted_cell((i, j), color=GREEN))
+        highlight.add(routhTable.get_highlighted_cell((3, 2), color=YELLOW))
         
-        self.play(FadeIn(routhTable.add_to_back(routhTable.get_highlighted_cell((3, 2), color=YELLOW))))
+        self.add(routhTable.add_to_back(highlight))
         self.play(Write(routhValues[0]))
         for i in range(1, 6):
             self.play(ReplacementTransform(routhValues[i-1], routhValues[i]))
@@ -195,8 +203,28 @@ class ProblemSolution(Scene):
         
         self.play(ReplacementTransform(routhTable.get_entries((3, 2)), MathTex(r"-72").move_to(routhTable.get_cell((3, 2)), ORIGIN)))
         self.wait(1.0)
-        self.play(FadeOut(routhTable.add_to_back(routhTable.get_highlighted_cell((3, 2), color=YELLOW))))
-        
+        self.play(FadeOut(highlight, routhValues[5]))
+        self.wait(0.5)
+
+        highlightNew = VGroup()
+        for i in range(1, 3):
+            for j in range(2, 4):
+                if j == 2:
+                    highlightNew.add(routhTable.get_highlighted_cell((i, j), color=GREEN))
+                else:
+                    highlightNew.add(routhTable.get_highlighted_cell((i, j+1), color=GREEN))
+        highlightNew.add(routhTable.get_highlighted_cell((3, 3), color=YELLOW))
+        self.add(routhTable.add_to_back(highlightNew))
+
+        self.play(Write(routhValues[6]))
+        for i in range(7, 12):
+            self.play(ReplacementTransform(routhValues[i-1], routhValues[i]))
+            self.wait(0.5)
+
+        self.play(ReplacementTransform(routhTable.get_entries((3, 3)), MathTex(r"0").move_to(routhTable.get_cell((3, 3)), ORIGIN)))
+        self.wait(1.0)
+        self.play(FadeOut(highlightNew))
+        self.wait(0.5)
         
         self.wait(2.0)
         return super().construct()
