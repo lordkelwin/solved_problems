@@ -161,15 +161,15 @@ class ProblemSolution(Scene):
 
         routhTable = MathTable(
             [
-                ["s^{3}", 1, 31, 0],
-                ["s^{2}", 10, 1030, 0],
-                ["s^{1}", "a_{31}", "a_{32}", "a_{33}"],
-                ["s^{0}", "a_{41}", "a_{42}", "a_{43}"],
+                ["s^{3}", 1, 31, 0, 0],
+                ["s^{2}", 10, 1030, 0, 0],
+                ["s^{1}", "a_{31}", "a_{32}", "a_{33}", 0],
+                ["s^{0}", "a_{41}", "a_{42}", "a_{43}", 0],
             ]
         )
         routhTable.next_to(simplifiedBlock, DOWN, MED_LARGE_BUFF)
         self.play(Create(routhTable))
-        self.play(routhTable.animate.shift(2.75 * LEFT))
+        self.play(routhTable.animate.shift(3.0 * LEFT))
         self.wait(1.5)
         
         routhValues = VGroup(
@@ -179,23 +179,29 @@ class ProblemSolution(Scene):
             MathTex(r"a_{31} = -\frac{1030-310}{10}"),
             MathTex(r"a_{31} = -\frac{720}{10}"),
             MathTex(r"a_{31} = -72"),
-            MathTex(r"a_{31} = \frac{-\begin{vmatrix} a_{4} & 0 \\ a_{3} & 0 \end{vmatrix}}{a_3}"),
-            MathTex(r"a_{31} = \frac{-\begin{vmatrix} 1 & 0 \\ 31 & 0 \end{vmatrix}}{10}"),
-            MathTex(r"a_{31} = -\frac{[(1)(0)]-[(0)(31)]}{10}", font_size=40),
-            MathTex(r"a_{31} = -\frac{0-0}{10}"),
-            MathTex(r"a_{31} = -\frac{0}{10}"),
-            MathTex(r"a_{31} = 0")
+            MathTex(r"a_{32} = \frac{-\begin{vmatrix} a_{4} & 0 \\ a_{3} & 0 \end{vmatrix}}{a_3}"),
+            MathTex(r"a_{32} = \frac{-\begin{vmatrix} 1 & 0 \\ 31 & 0 \end{vmatrix}}{10}"),
+            MathTex(r"a_{32} = -\frac{[(1)(0)]-[(0)(31)]}{10}", font_size=40),
+            MathTex(r"a_{32} = -\frac{0-0}{10}"),
+            MathTex(r"a_{32} = -\frac{0}{10}"),
+            MathTex(r"a_{32} = 0"),
+            MathTex(r"a_{33} = \frac{-\begin{vmatrix} a_{4} & 0 \\ a_{3} & 0 \end{vmatrix}}{a_3}"),
+            MathTex(r"a_{33} = \frac{-\begin{vmatrix} 1 & 0 \\ 31 & 0 \end{vmatrix}}{10}"),
+            MathTex(r"a_{33} = -\frac{[(1)(0)]-[(0)(31)]}{10}", font_size=40),
+            MathTex(r"a_{33} = -\frac{0-0}{10}"),
+            MathTex(r"a_{33} = -\frac{0}{10}"),
+            MathTex(r"a_{33} = 0")
         )
 
         routhValues.move_to(routhTable.get_right() + 3.5 * RIGHT)
 
-        highlight = VGroup()
-        for i in range(1, 3):
-            for j in range(2, 4):
-                highlight.add(routhTable.get_highlighted_cell((i, j), color=GREEN))
-        highlight.add(routhTable.get_highlighted_cell((3, 2), color=YELLOW))
-        
-        self.add(routhTable.add_to_back(highlight))
+        highlight = VGroup(
+            SurroundingRectangle(VGroup(routhTable.get_cell((1, 2)), routhTable.get_cell((2, 2))), color=YELLOW),
+            SurroundingRectangle(VGroup(routhTable.get_cell((1, 3)), routhTable.get_cell((2, 3))), color=YELLOW),
+            SurroundingRectangle(routhTable.get_cell((3,2)), color=BLUE)
+        )
+
+        self.play(FadeIn(highlight))       
         self.play(Write(routhValues[0]))
         for i in range(1, 6):
             self.play(ReplacementTransform(routhValues[i-1], routhValues[i]))
@@ -203,28 +209,32 @@ class ProblemSolution(Scene):
         
         self.play(ReplacementTransform(routhTable.get_entries((3, 2)), MathTex(r"-72").move_to(routhTable.get_cell((3, 2)), ORIGIN)))
         self.wait(1.0)
-        self.play(FadeOut(highlight, routhValues[5]))
+        self.play(FadeOut(routhValues[5]))
         self.wait(0.5)
 
-        highlightNew = VGroup()
-        for i in range(1, 3):
-            for j in range(2, 4):
-                if j == 2:
-                    highlightNew.add(routhTable.get_highlighted_cell((i, j), color=GREEN))
-                else:
-                    highlightNew.add(routhTable.get_highlighted_cell((i, j+1), color=GREEN))
-        highlightNew.add(routhTable.get_highlighted_cell((3, 3), color=YELLOW))
-        self.add(routhTable.add_to_back(highlightNew))
-
+        self.play(highlight[1].animate.shift(2.1 * RIGHT),
+                  highlight[2].animate.shift(2.05 * RIGHT))
         self.play(Write(routhValues[6]))
         for i in range(7, 12):
             self.play(ReplacementTransform(routhValues[i-1], routhValues[i]))
             self.wait(0.5)
 
         self.play(ReplacementTransform(routhTable.get_entries((3, 3)), MathTex(r"0").move_to(routhTable.get_cell((3, 3)), ORIGIN)))
-        self.wait(1.0)
-        self.play(FadeOut(highlightNew))
+        self.wait(1.0)        
+        self.play(FadeOut(routhValues[11]))
         self.wait(0.5)
-        
-        self.wait(2.0)
+
+        self.play(highlight[1].animate.shift(RIGHT * 1.75),
+                  highlight[2].animate.shift(RIGHT * 2.10))
+        self.play(Write(routhValues[12]))
+        for i in range(13, 18):
+            self.play(ReplacementTransform(routhValues[i-1], routhValues[i]))
+            self.wait(0.5)
+
+        self.play(ReplacementTransform(routhTable.get_entries((3, 4)), MathTex(r"0").move_to(routhTable.get_cell((3, 4)), ORIGIN)))
+        self.wait(0.5)        
+        self.play(FadeOut(routhValues[17], highlight[:2]))
+        self.wait(0.5)
+        self.play(highlight[2].animate.shift(4.15 * LEFT + 2 * DOWN))
+
         return super().construct()
