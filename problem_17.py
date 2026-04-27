@@ -171,43 +171,66 @@ class ProblemSolution(Scene):
         self.play(Create(routhTable))
         self.play(routhTable.animate.shift(3.0 * LEFT))
         self.wait(1.5)
+
+        arrows = VGroup(
+            Arrow(routhTable.get_cell((2,2)).get_corner(DL), routhTable.get_cell((2,2)).get_corner(UR), color=BLUE),
+            Arrow(routhTable.get_cell((2,3)).get_corner(DL), routhTable.get_cell((2,3)).get_corner(UR), color=BLUE),
+        )
+
+        labels = VGroup(
+            MathTex(r"1", font_size=36).next_to(arrows[0].get_corner(UR), UP, SMALL_BUFF),
+            MathTex(r"103", font_size=36).next_to(arrows[1].get_corner(UR), UP, SMALL_BUFF),
+        )
+
+        self.play(Create(arrows[0]), Create(arrows[1]))
+        self.wait(0.5)
+        self.play(Write(labels[0]), Write(labels[1]))
+        self.wait(1.0)
+        self.play(FadeOut(arrows, labels))
+        textReplace = VGroup(
+            MathTex(r"1").move_to(routhTable.get_cell((2,2)), ORIGIN),
+            MathTex(r"103").move_to(routhTable.get_cell((2,3)), ORIGIN),
+        )
         
+        self.play(ReplacementTransform(routhTable.get_entries((2, 2)), textReplace[0]),
+                  ReplacementTransform(routhTable.get_entries((2, 3)), textReplace[1]))
+
         routhValues = VGroup(
             MathTex(r"a_{31} = \frac{-\begin{vmatrix} a_{4} & a_{2} \\ a_{3} & a_{1} \end{vmatrix}}{a_3}"),
-            MathTex(r"a_{31} = \frac{-\begin{vmatrix} 1 & 10 \\ 31 & 1030 \end{vmatrix}}{10}"),
-            MathTex(r"a_{31} = -\frac{[(1)(1030)]-[(10)(31)]}{10}", font_size=40),
-            MathTex(r"a_{31} = -\frac{1030-310}{10}"),
-            MathTex(r"a_{31} = -\frac{720}{10}"),
+            MathTex(r"a_{31} = \frac{-\begin{vmatrix} 1 & 1 \\ 31 & 103 \end{vmatrix}}{1}"),
+            MathTex(r"a_{31} = -\frac{[(1)(103)]-[(1)(31)]}{1}", font_size=40),
+            MathTex(r"a_{31} = -\frac{103-31}{1}"),
+            MathTex(r"a_{31} = -\frac{72}{1}"),
             MathTex(r"a_{31} = -72"),
             MathTex(r"a_{32} = \frac{-\begin{vmatrix} a_{4} & 0 \\ a_{3} & 0 \end{vmatrix}}{a_3}"),
-            MathTex(r"a_{32} = \frac{-\begin{vmatrix} 1 & 0 \\ 31 & 0 \end{vmatrix}}{10}"),
-            MathTex(r"a_{32} = -\frac{[(1)(0)]-[(0)(31)]}{10}", font_size=40),
-            MathTex(r"a_{32} = -\frac{0-0}{10}"),
-            MathTex(r"a_{32} = -\frac{0}{10}"),
+            MathTex(r"a_{32} = \frac{-\begin{vmatrix} 1 & 0 \\ 31 & 0 \end{vmatrix}}{1}"),
+            MathTex(r"a_{32} = -\frac{[(1)(0)]-[(0)(31)]}{1}", font_size=40),
+            MathTex(r"a_{32} = \frac{0-0}{1}"),
+            MathTex(r"a_{32} = \frac{0}{1}"),
             MathTex(r"a_{32} = 0"),
             MathTex(r"a_{33} = \frac{-\begin{vmatrix} a_{4} & 0 \\ a_{3} & 0 \end{vmatrix}}{a_3}"),
-            MathTex(r"a_{33} = \frac{-\begin{vmatrix} 1 & 0 \\ 31 & 0 \end{vmatrix}}{10}"),
-            MathTex(r"a_{33} = -\frac{[(1)(0)]-[(0)(31)]}{10}", font_size=40),
-            MathTex(r"a_{33} = -\frac{0-0}{10}"),
-            MathTex(r"a_{33} = -\frac{0}{10}"),
+            MathTex(r"a_{33} = \frac{-\begin{vmatrix} 1 & 0 \\ 31 & 0 \end{vmatrix}}{1}"),
+            MathTex(r"a_{33} = -\frac{[(1)(0)]-[(0)(31)]}{1}", font_size=40),
+            MathTex(r"a_{33} = \frac{0-0}{10}"),
+            MathTex(r"a_{33} = \frac{0}{10}"),
             MathTex(r"a_{33} = 0"),
             MathTex(r"a_{41} = \frac{-\begin{vmatrix} a_{2} & a_{31} \\ a_{0} & a_{32} \end{vmatrix}}{a_{31}}"),
-            MathTex(r"a_{41} = \frac{-\begin{vmatrix} 10 & 1030 \\ -72 & 0 \end{vmatrix}}{-72}"),
-            MathTex(r"a_{41} = -\frac{[(10)(0)]-[(1030)(-72)]}{-72}", font_size=40),
-            MathTex(r"a_{41} = -\frac{0+74160}{-72}"),
-            MathTex(r"a_{41} = \frac{74160}{72}"),
-            MathTex(r"a_{41} = 1030"),
+            MathTex(r"a_{41} = \frac{-\begin{vmatrix} 1 & 103 \\ -72 & 0 \end{vmatrix}}{-72}"),
+            MathTex(r"a_{41} = -\frac{[(1)(0)]-[(103)(-72)]}{-72}", font_size=40),
+            MathTex(r"a_{41} = -\frac{0+7416}{-72}"),
+            MathTex(r"a_{41} = \frac{7416}{72}"),
+            MathTex(r"a_{41} = 103"),
             MathTex(r"a_{42} = \frac{-\begin{vmatrix} a_{2} & a_{31} \\ 0 & 0 \end{vmatrix}}{a_{31}}"),
-            MathTex(r"a_{42} = \frac{-\begin{vmatrix} 10 & 1030 \\ 0 & 0 \end{vmatrix}}{-72}"),
-            MathTex(r"a_{42} = -\frac{[(10)(0)]-[(1030)(0)]}{-72}", font_size=40),
-            MathTex(r"a_{42} = -\frac{0-0}{-72}"),
-            MathTex(r"a_{42} = -\frac{0}{72}"),
+            MathTex(r"a_{42} = \frac{-\begin{vmatrix} 1 & 103 \\ 0 & 0 \end{vmatrix}}{-72}"),
+            MathTex(r"a_{42} = -\frac{[(1)(0)]-[(103)(0)]}{-72}", font_size=40),
+            MathTex(r"a_{42} = \frac{0-0}{-72}"),
+            MathTex(r"a_{42} = \frac{0}{72}"),
             MathTex(r"a_{42} = 0"),
             MathTex(r"a_{43} = \frac{-\begin{vmatrix} a_{2} & a_{31} \\ 0 & 0 \end{vmatrix}}{a_{31}}"),
-            MathTex(r"a_{43} = \frac{-\begin{vmatrix} 10 & 1030 \\ 0 & 0 \end{vmatrix}}{-72}"),
-            MathTex(r"a_{43} = -\frac{[(10)(0)]-[(1030)(0)]}{-72}", font_size=40),
-            MathTex(r"a_{43} = -\frac{0-0}{-72}"),
-            MathTex(r"a_{43} = -\frac{0}{72}"),
+            MathTex(r"a_{43} = \frac{-\begin{vmatrix} 1 & 103 \\ 0 & 0 \end{vmatrix}}{-72}"),
+            MathTex(r"a_{43} = -\frac{[(1)(0)]-[(103)(0)]}{-72}", font_size=40),
+            MathTex(r"a_{43} = \frac{0-0}{-72}"),
+            MathTex(r"a_{43} = \frac{0}{72}"),
             MathTex(r"a_{43} = 0"),
         )
 
