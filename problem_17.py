@@ -223,13 +223,13 @@ class ProblemSolution(Scene):
             MathTex(r"a_{42} = \frac{-\begin{vmatrix} a_{2} & a_{31} \\ 0 & 0 \end{vmatrix}}{a_{31}}"),
             MathTex(r"a_{42} = \frac{-\begin{vmatrix} 1 & 103 \\ 0 & 0 \end{vmatrix}}{-72}"),
             MathTex(r"a_{42} = -\frac{[(1)(0)]-[(103)(0)]}{-72}", font_size=40),
-            MathTex(r"a_{42} = \frac{0-0}{-72}"),
+            MathTex(r"a_{42} = \frac{0-0}{72}"),
             MathTex(r"a_{42} = \frac{0}{72}"),
             MathTex(r"a_{42} = 0"),
             MathTex(r"a_{43} = \frac{-\begin{vmatrix} a_{2} & a_{31} \\ 0 & 0 \end{vmatrix}}{a_{31}}"),
             MathTex(r"a_{43} = \frac{-\begin{vmatrix} 1 & 103 \\ 0 & 0 \end{vmatrix}}{-72}"),
             MathTex(r"a_{43} = -\frac{[(1)(0)]-[(103)(0)]}{-72}", font_size=40),
-            MathTex(r"a_{43} = \frac{0-0}{-72}"),
+            MathTex(r"a_{43} = \frac{0-0}{72}"),
             MathTex(r"a_{43} = \frac{0}{72}"),
             MathTex(r"a_{43} = 0"),
         )
@@ -248,7 +248,7 @@ class ProblemSolution(Scene):
             self.play(ReplacementTransform(routhValues[i-1], routhValues[i]))
             self.wait(0.5)
         
-        self.play(ReplacementTransform(routhTable.get_entries((3, 2)), MathTex(r"-72").move_to(routhTable.get_cell((3, 2)), ORIGIN)))
+        self.play(ReplacementTransform(routhTable.get_entries((3, 2)), MathTex(r"-72", color=YELLOW).move_to(routhTable.get_cell((3, 2)), ORIGIN)))
         self.wait(1.0)
         self.play(FadeOut(routhValues[5]))
         self.wait(0.5)
@@ -260,7 +260,7 @@ class ProblemSolution(Scene):
             self.play(ReplacementTransform(routhValues[i-1], routhValues[i]))
             self.wait(0.5)
 
-        self.play(ReplacementTransform(routhTable.get_entries((3, 3)), MathTex(r"0").move_to(routhTable.get_cell((3, 3)), ORIGIN)))
+        self.play(ReplacementTransform(routhTable.get_entries((3, 3)), MathTex(r"0", color=YELLOW).move_to(routhTable.get_cell((3, 3)), ORIGIN)))
         self.wait(1.0)        
         self.play(FadeOut(routhValues[11]))
         self.wait(0.5)
@@ -272,7 +272,7 @@ class ProblemSolution(Scene):
             self.play(ReplacementTransform(routhValues[i-1], routhValues[i]))
             self.wait(0.5)
 
-        self.play(ReplacementTransform(routhTable.get_entries((3, 4)), MathTex(r"0").move_to(routhTable.get_cell((3, 4)), ORIGIN)))
+        self.play(ReplacementTransform(routhTable.get_entries((3, 4)), MathTex(r"0", color=YELLOW).move_to(routhTable.get_cell((3, 4)), ORIGIN)))
         self.wait(0.5)        
         self.play(FadeOut(routhValues[17]))
         self.wait(0.5)
@@ -286,7 +286,7 @@ class ProblemSolution(Scene):
             self.play(ReplacementTransform(routhValues[i-1], routhValues[i]))
             self.wait(0.5)
         
-        self.play(ReplacementTransform(routhTable.get_entries((4, 2)), MathTex(r"1030").move_to(routhTable.get_cell((4, 2)), ORIGIN)))
+        self.play(ReplacementTransform(routhTable.get_entries((4, 2)), MathTex(r"103", color=YELLOW).move_to(routhTable.get_cell((4, 2)), ORIGIN)))
         self.wait(1.0)
         self.play(FadeOut(routhValues[23]))
         self.wait(0.5)
@@ -298,7 +298,7 @@ class ProblemSolution(Scene):
             self.play(ReplacementTransform(routhValues[i-1], routhValues[i]))
             self.wait(0.5)
 
-        self.play(ReplacementTransform(routhTable.get_entries((4, 3)), MathTex(r"0").move_to(routhTable.get_cell((4, 3)), ORIGIN)))
+        self.play(ReplacementTransform(routhTable.get_entries((4, 3)), MathTex(r"0", color=YELLOW).move_to(routhTable.get_cell((4, 3)), ORIGIN)))
         self.wait(1.0)        
         self.play(FadeOut(routhValues[29]))
         self.wait(0.5)
@@ -310,7 +310,7 @@ class ProblemSolution(Scene):
             self.play(ReplacementTransform(routhValues[i-1], routhValues[i]))
             self.wait(0.5)
 
-        self.play(ReplacementTransform(routhTable.get_entries((4, 4)), MathTex(r"0").move_to(routhTable.get_cell((4, 4)), ORIGIN)))
+        self.play(ReplacementTransform(routhTable.get_entries((4, 4)), MathTex(r"0", color=YELLOW).move_to(routhTable.get_cell((4, 4)), ORIGIN)))
         self.wait(0.5)        
         self.play(FadeOut(routhValues[35]), FadeOut(highlight))
         self.wait(0.25)
