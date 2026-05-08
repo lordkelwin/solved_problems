@@ -67,7 +67,54 @@ class ProblemSolution(Scene):
             MathTex(r"a_{33}=-\frac{18-18}{9}"),
             MathTex(r"a_{33}=\frac{0}{9}"),
             MathTex(r"a_{33}=0"),
+            MathTex(r"a_{34}=-\frac{\begin{vmatrix} a_{7} & 0 \\ a_{6} & 0 \end{vmatrix}}{a_{6}}"),
+            MathTex(r"a_{34}=-\frac{\begin{vmatrix} 3 & 0 \\ 9 & 0 \end{vmatrix}}{9}"),
+            MathTex(r"a_{34}=-\frac{[(3)(0)]-[(0)(9)]}{9}"),
+            MathTex(r"a_{34}=-\frac{0-0}{9}"),
+            MathTex(r"a_{34}=\frac{0}{9}"),
+            MathTex(r"a_{34}=0"),
+            MathTex(r"a_{41}=-\frac{\begin{vmatrix} a_{6} & a_{4} \\ a_{31} & a_{32} \end{vmatrix}}{a_{31}}"),
+            MathTex(r"a_{41}=-\frac{\begin{vmatrix} 9 & 4 \\ 14 & 13 \end{vmatrix}}{14}"),
+            MathTex(r"a_{41}=-\frac{[(9)(13)]-[(4)(14)]}{9}"),
+            MathTex(r"a_{41}=-\frac{117-56}{9}"),
+            MathTex(r"a_{41}=-\frac{61}{9}"),
+            MathTex(r"a_{42}=-\frac{\begin{vmatrix} a_{6} & a_{2} \\ a_{31} & a_{33} \end{vmatrix}}{a_{31}}"),
+            MathTex(r"a_{42}=-\frac{\begin{vmatrix} 9 & 8 \\ 14 & 0 \end{vmatrix}}{14}"),
+            MathTex(r"a_{42}=-\frac{[(9)(0)]-[(8)(14)]}{14}"),
+            MathTex(r"a_{42}=-\frac{0-112}{14}"),
+            MathTex(r"a_{42}=\frac{112}{14}"),
+            MathTex(r"a_{42}=8"),
+            MathTex(r"a_{43}=-\frac{\begin{vmatrix} a_{6} & a_{0} \\ a_{31} & a_{34} \end{vmatrix}}{a_{31}}"),
+            MathTex(r"a_{43}=-\frac{\begin{vmatrix} 9 & 6 \\ 14 & 0 \end{vmatrix}}{14}"),
+            MathTex(r"a_{43}=-\frac{[(9)(0)]-[(6)(14)]}{14}"),
+            MathTex(r"a_{43}=-\frac{0-84}{14}"),
+            MathTex(r"a_{43}=\frac{84}{9}"),
+            MathTex(r"a_{43}=6"),
+            MathTex(r"a_{44}=-\frac{\begin{vmatrix} a_{6} & 0 \\ a_{31} & 0 \end{vmatrix}}{a_{31}}"),
+            MathTex(r"a_{44}=-\frac{\begin{vmatrix} 9 & 0 \\ 14 & 0 \end{vmatrix}}{14}"),
+            MathTex(r"a_{44}=-\frac{[(9)(0)]-[(0)(14)]}{14}"),
+            MathTex(r"a_{44}=-\frac{0-0}{14}"),
+            MathTex(r"a_{44}=\frac{0}{14}"),
+            MathTex(r"a_{44}=0"),
         ).move_to(routhTable.get_right() + 3.5 * RIGHT)
+
+        routhEntries = VGroup(
+            MathTex(r"\frac{14}{3}", color=RED),
+            MathTex(r"\frac{13}{3}", color=RED),
+            MathTex(r"0", color=RED),
+            MathTex(r"0", color=RED),
+            MathTex(r"-\frac{61}{14}", color=RED),
+            MathTex(r"8", color=RED),
+            MathTex(r"6", color=RED),
+            MathTex(r"0", color=RED),
+        )
+
+        routhSimplifiedEntries = VGroup(
+            MathTex(r"14", color=RED),
+            MathTex(r"13", color=RED),
+        )
+
+        arrows = VGroup()
 
         self.play(Create(highlight))
         self.wait(0.5)
@@ -80,7 +127,7 @@ class ProblemSolution(Scene):
         surroundAnswer = SurroundingRectangle(solution[i], buff=0.25, color=YELLOW)
         self.play(Create(surroundAnswer))
         self.wait(0.25)
-        self.play(ReplacementTransform(routhTable.get_entries((3,2)), MathTex(r"\frac{14}{3}", color=RED).move_to(routhTable.get_entries((3,2)), ORIGIN).scale(0.75)))
+        self.play(ReplacementTransform(routhTable.get_entries((3,2)), routhEntries[0].move_to(routhTable.get_entries((3,2)), ORIGIN).scale(0.75)))
         self.wait(0.75)
         self.play(FadeOut(surroundAnswer, solution[i]))
         self.play(highlight[1:3].animate.shift(1.525 * RIGHT))
@@ -95,7 +142,7 @@ class ProblemSolution(Scene):
         surroundAnswer = SurroundingRectangle(solution[i], buff=0.25, color=YELLOW)
         self.play(Create(surroundAnswer))
         self.wait(0.25)
-        self.play(ReplacementTransform(routhTable.get_entries((3,3)), MathTex(r"\frac{13}{3}", color=RED).move_to(routhTable.get_entries((3,3)), ORIGIN).scale(0.75)))
+        self.play(ReplacementTransform(routhTable.get_entries((3,3)), routhEntries[1].move_to(routhTable.get_entries((3,3)), ORIGIN).scale(0.75)))
         self.wait(0.75)
         self.play(FadeOut(surroundAnswer, solution[i]))
         self.play(highlight[1:3].animate.shift(1.525 * RIGHT))
@@ -110,10 +157,100 @@ class ProblemSolution(Scene):
         surroundAnswer = SurroundingRectangle(solution[i], buff=0.25, color=YELLOW)
         self.play(Create(surroundAnswer))
         self.wait(0.25)
-        self.play(ReplacementTransform(routhTable.get_entries((3,4)), MathTex(r"0", color=RED).move_to(routhTable.get_entries((3,4)), ORIGIN).scale(0.75)))
+        self.play(ReplacementTransform(routhTable.get_entries((3,4)), routhEntries[2].move_to(routhTable.get_entries((3,4)), ORIGIN).scale(0.75)))
         self.wait(0.75)
         self.play(FadeOut(surroundAnswer, solution[i]))
         self.play(highlight[1:3].animate.shift(1.525 * RIGHT))
+        self.wait(0.5)
+
+        self.play(Write(solution[i+1]))
+        self.wait(0.25)
+        for i in range(19, 24):
+            self.play(ReplacementTransform(solution[i-1], solution[i]))
+            self.wait(0.5)
+        self.wait(1.25)
+        surroundAnswer = SurroundingRectangle(solution[i], buff=0.25, color=YELLOW)
+        self.play(Create(surroundAnswer))
+        self.wait(0.25)
+        self.play(ReplacementTransform(routhTable.get_entries((3,5)), routhEntries[3].move_to(routhTable.get_entries((3,5)), ORIGIN).scale(0.75)))
+        self.wait(0.75)
+        self.play(FadeOut(surroundAnswer, solution[i]))
+        self.play(highlight[0].animate.shift(1.025 * DOWN), highlight[1:3].animate.shift(4.575 * LEFT + 1.025 * DOWN))
+        self.wait(0.5)
+        
+        arrows.add(Arrow(routhTable.get_cell((3,2)).get_corner(DL), routhTable.get_cell((3,2)).get_corner(UR), color=YELLOW))
+        arrows.add(Arrow(routhTable.get_cell((3,3)).get_corner(DL), routhTable.get_cell((3,3)).get_corner(UR), color=YELLOW))
+
+        self.play(Create(arrows[0]), Create(arrows[1]))
+        self.play(Write(routhSimplifiedEntries[0].next_to(arrows[0].get_end(), UP, buff=0).scale(0.5)), 
+                  Write(routhSimplifiedEntries[1].next_to(arrows[1].get_end(), UP, buff=0).scale(0.5)))
+        
+        self.wait(0.25)
+        self.play(FadeOut(arrows))
+        self.play(FadeOut(routhSimplifiedEntries[:]))
+        
+        self.play(ReplacementTransform(routhEntries[0], routhSimplifiedEntries[0].move_to(routhTable.get_entries((3,2)), ORIGIN).scale(1.5)),
+                  ReplacementTransform(routhEntries[1], routhSimplifiedEntries[1].move_to(routhTable.get_entries((3,3)), ORIGIN).scale(1.5)))
+        self.wait(0.5)
+
+        self.play(Write(solution[i+1]))
+        self.wait(0.25)
+        for i in range(25, 29):
+            self.play(ReplacementTransform(solution[i-1], solution[i]))
+            self.wait(0.5)
+        self.wait(1.25)
+        surroundAnswer = SurroundingRectangle(solution[i], buff=0.25, color=YELLOW)
+        self.play(Create(surroundAnswer))
+        self.wait(0.25)
+        self.play(ReplacementTransform(routhTable.get_entries((4,2)), routhEntries[4].move_to(routhTable.get_entries((4,2)), ORIGIN).scale(0.75)))
+        self.wait(0.75)
+        self.play(FadeOut(surroundAnswer, solution[i]))
+        self.play(highlight[1:3].animate.shift(1.525 * RIGHT))
+        self.wait(0.5)
+
+        self.play(Write(solution[i+1]))
+        self.wait(0.25)
+        for i in range(30, 35):
+            self.play(ReplacementTransform(solution[i-1], solution[i]))
+            self.wait(0.5)
+        self.wait(1.25)
+        surroundAnswer = SurroundingRectangle(solution[i], buff=0.25, color=YELLOW)
+        self.play(Create(surroundAnswer))
+        self.wait(0.25)
+        self.play(ReplacementTransform(routhTable.get_entries((4,3)), routhEntries[5].move_to(routhTable.get_entries((4,3)), ORIGIN).scale(0.75)))
+        self.wait(0.75)
+        self.play(FadeOut(surroundAnswer, solution[i]))
+        self.play(highlight[1:3].animate.shift(1.525 * RIGHT))
+        self.wait(0.5)
+
+        self.play(Write(solution[i+1]))
+        self.wait(0.25)
+        for i in range(36, 41):
+            self.play(ReplacementTransform(solution[i-1], solution[i]))
+            self.wait(0.5)
+        self.wait(1.25)
+        surroundAnswer = SurroundingRectangle(solution[i], buff=0.25, color=YELLOW)
+        self.play(Create(surroundAnswer))
+        self.wait(0.25)
+        self.play(ReplacementTransform(routhTable.get_entries((4,4)), routhEntries[6].move_to(routhTable.get_entries((4,4)), ORIGIN).scale(0.75)))
+        self.wait(0.75)
+        self.play(FadeOut(surroundAnswer, solution[i]))
+        self.play(highlight[1:3].animate.shift(1.525 * RIGHT))
+        self.wait(0.5)
+
+        self.play(Write(solution[i+1]))
+        self.wait(0.25)
+        for i in range(42, 47):
+            self.play(ReplacementTransform(solution[i-1], solution[i]))
+            self.wait(0.5)
+        self.wait(1.25)
+        surroundAnswer = SurroundingRectangle(solution[i], buff=0.25, color=YELLOW)
+        self.play(Create(surroundAnswer))
+        self.wait(0.25)
+        self.play(ReplacementTransform(routhTable.get_entries((4,5)), routhEntries[7].move_to(routhTable.get_entries((4,5)), ORIGIN).scale(0.75)))
+        self.wait(0.75)
+        self.play(FadeOut(surroundAnswer, solution[i]))
+        self.play(highlight[0].animate.shift(1.025 * DOWN), highlight[1:3].animate.shift(4.575 * LEFT + 1.025 * DOWN))
         self.wait(0.5)
 
         self.wait(2.0)
